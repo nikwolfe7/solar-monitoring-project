@@ -16,7 +16,7 @@ A short anecdote will make this point clearer. I once had the opportunity to vis
 
 For more information on issues of humanitarian projects and their shortcomings, I have posted a research paper on this very topic. Please [http://code.google.com/p/solar-monitoring-project/downloads/detail?name=Renewable%20Energy%20in%20Africa.pdf&can=2&q=#makechanges read about it here], or you're just taking my word for it.
 
-=== Further Justifications ===
+=== A Word of Caution and Further Justifications ===
 
 The gap between implementation and sustainability needs to be closed. In any situation where solar technology is introduced as part of a development project, there must be a transfer of knowledge on matters of its operation and maintenance to local stakeholders. For the purposes of this project, I am assuming this to be the de facto standard. Let me be clear: The system I have proposed here is of *no use* if there are not dedicated persons assigned to the task of overseeing a given solar power system. With that in mind, I'll continue...
 
