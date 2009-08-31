@@ -12,7 +12,6 @@ It's a fairly common exercise in the world of humanitarian assistance for a char
 
 A short anecdote will make this point clearer. I once had the opportunity to visit a health clinic in a small town called Sanyang in The Gambia. A Belgian charity organization had been good enough to set up a professional quality solar-powered water pump to provide the clinic with running water. Sadly, the pump wasn't working anymore. The reason? The Belgian organization that built it didn't bother to transfer any knowledge to the local community on how to operate the system. Eventually the pump broke down in expected fashion and the clinic was left without running water. It was precisely the worst kind of photo-op charity project, a solar water pump that nobody knew how to use. And, indeed, how could anyone? Where is one to obtain information on the maintenance of the specific equipment used? To me, this epitomizes the short-sightedness of so many similar humanitarian projects. All too often, a lack of knowledge transfer, a failure to consider issues of sustainability, and a failure to follow up on the project after completion result in situations like the Sanyang health clinic. 
 
-For more information on issues of humanitarian projects and their shortcomings, I have posted a research paper on this very topic. Read it here:
+For more information on issues of humanitarian projects and their shortcomings, I have posted a research paper on this very topic. Read about it [http://code.google.com/p/solar-monitoring-project/downloads/detail?name=Renewable%20Energy%20in%20Africa.pdf&can=2&q=#makechanges here].
 
 The gap between implementation and sustainability needs to be closed. 
-
