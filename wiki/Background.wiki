@@ -6,7 +6,7 @@ Why design a solar monitoring system? Indeed, such products are already on the m
 
 There are many applications for a system like this. Monitoring a solar power array is just one of the possibilities. Practically any device with measurable outputs running in a remote environment represents a potential future extension of this project. And, because this is open-source, anyone who would like to take this project and modify it for their own purposes is free and encouraged to do so. I hope this project provides a general platform for further applications and that many people might benefit from the ideas recorded on these pages. 
 
-== The Bigger Picture ==
+=== The Bigger Picture ===
 
 In general, solar monitoring is an incredibly useful idea. As the world's energy economy gradually evolves towards greener and more renewable sources of energy, power generation will become more [http://www.oe.energy.gov/1165.htm decentralized]. As opposed to the current system of large, centralized coal-fire power plants servicing vast regions of energy consumers, the energy infrastructure of the future will see many different forms of power generation taking root wherever the demand exists. Power will not come from 10 or 20 major locations, it will come from potentially thousands--solar arrays on the roofs of office buildings, wind turbines on the perimeters of farmland, steam turbines on remote geothermal vents--just to name a few. Coordinating such a vast system will prove quite unwieldly without a robust monitoring infrastructure. The ability to measure spot and regional performance is of critical importance if the power of decentralized generation is to be harnessed and the grid is to in fact become "smarter". 
 
