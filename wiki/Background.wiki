@@ -14,7 +14,7 @@ Coordinating such a vast system will prove quite unwieldly without a robust moni
 
 A real world example of this evolution towards decentralized power generation is Denmark. In the last 20 or so years the Danish energy grid has gone from a few large power plants to a vast collection of wind turbines and alternative energy sites all over the country. Denmark now generates almost 20% of its energy from wind! 
 
-As expected, the Danish wind turbine grid requires a vast monitoring infrastructure. Today, with the help of remote senors, wind turbines in Denmark are capable of being [http://www.investindk.com/visNyhed.asp?artikelID=21866 monitored] for diagnostic information as minute as the unique vibration pattern of an individual turbine blade. The Danish energy economy is a shining example of both the benefits of decentralization and making the grid smarter through monitoring. 
+As expected, the Danish wind turbine grid requires a vast monitoring system. Today, with the help of remote senors, wind turbines in Denmark are capable of being [http://www.investindk.com/visNyhed.asp?artikelID=21866 monitored] for diagnostic information as minute as the unique vibration pattern of an individual turbine blade. The Danish energy economy is a shining example of both the benefits of decentralization and making the grid smarter through monitoring. 
 
 The United States, unfortunately, is far behind Denmark and most of the developed world as far as renewable energy is concerned. Solar and wind technologies have yet to reach the critical mass required for widespread adoption. It is also too expensive without the assistance of energy incentives from utilities. This might be one explanation for the lack of diversity and robustness in monitoring systems. 
 
