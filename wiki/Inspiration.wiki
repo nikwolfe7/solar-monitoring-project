@@ -1,6 +1,6 @@
 == My Original Inspiration ==
 
-In my [Background background] page I discussed the relevance of remote monitoring in the context of green technology and "smart grids". Here, I discuss some of the issues that lead to my original inspiration to create this project. 
+In my [Background background] page I discussed the relevance of remote monitoring in the context of green technology and smart grid technology. Here, I discuss some of the issues that lead to my original inspiration to create this project. 
 
 === Solar Energy and International Development ===
 
