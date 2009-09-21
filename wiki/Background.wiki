@@ -77,3 +77,5 @@ In many parts of Sub-Saharan Africa, recent cellular infrastructural development
 At this point, I've discussed most of the background required to understand the basis and motivation for this project. I want to build an open-source remote monitoring system that uses no customized hardware and software that can run anywhere it is installed. I want to completely eliminate the overhead of paying a third party for monitoring services or using an over-priced custom transmitter. This is a simple problem if money and technological constraints were no object. It becomes an altogether more complicated matter to construct this system with off-the-shelf equipment. But, a little elbow grease and old-fashioned circuit-bending hackery should do the trick, I think. 
 
 At least that's my goal. We'll see what happens... 
+
+<img src="http://photos-e.ak.fbcdn.net/hphotos-ak-snc1/hs211.snc1/7822_165054153377_836193377_3739332_4360902_n.jpg" alt="Me with some solar panels" />
