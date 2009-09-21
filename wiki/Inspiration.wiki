@@ -1,6 +1,6 @@
 == My Original Inspiration ==
 
-I have discussed the importance of monitoring decentralized energy production and the myriad applications for this project in the coming "smart grid" revolution. I have not, however, talked about the individual application that inspired my decision to pursue this project. To do that, some background is required. 
+In [Background other pages] have discussed the importance of monitoring decentralized energy production and the myriad applications for this project in the coming "smart grid" revolution. I have not, however, talked about the individual application that inspired my decision to pursue this project. To do that, some background is required. 
 
 === Solar Energy and International Development ===
 
