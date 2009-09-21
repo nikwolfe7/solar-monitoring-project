@@ -1,5 +1,7 @@
 = Background =
 
+<img src="http://venturebeat.com/wp-content/uploads/2009/07/solar-panel-1.jpg" alt="Solar Panel" />
+
 === Why Build This? ===
 
 Why design a solar monitoring system? Indeed, such products are already on the market. The problem, I believe, with existing solar monitoring systems is that they are limited in their application, are expensive, and in most cases require paying service fees to a third party. This sort of system can and should be built using non-custom hardware that can be easily obtained and open-source software that can run anywhere. 
