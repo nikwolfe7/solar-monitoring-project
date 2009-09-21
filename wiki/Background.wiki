@@ -4,7 +4,7 @@
 
 === Why Build This? ===
 
-Why design a solar monitoring system? Indeed, such products are already on the market. The problem, I believe, with existing solar monitoring systems is that they are limited in their application, are expensive, and in most cases require paying service fees to a third party. This sort of system can and should be built using non-custom hardware that can be easily obtained and open-source software that can run anywhere. 
+Why design a solar monitoring system? Indeed, such products are already on the market. The problem, I believe, with existing solar monitoring systems is that they are limited in their application, are expensive, and in most cases require paying service fees to a third party (above and beyond the cost of basic communication). This sort of system can and should be built using non-custom hardware that can be easily obtained and open-source software that can run anywhere. 
 
 There are many applications for a system like this. Monitoring a solar power array is just one of the possibilities. Practically any device with measurable outputs running in a remote environment represents a potential future extension of this project. And, because this is open-source, anyone who would like to take this project and modify it for their own purposes is free and encouraged to do so. This project provides a general platform for further applications and I hope that many people will benefit from the ideas recorded on these pages. 
 
