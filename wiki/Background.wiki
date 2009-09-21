@@ -8,7 +8,7 @@ There are many applications for a system like this. Monitoring a solar power arr
 
 === The Bigger Picture ===
 
-In general, solar monitoring is an incredibly useful idea. As the world's energy economy gradually evolves towards greener and more renewable sources of energy, power generation will become more [http://www.oe.energy.gov/1165.htm decentralized]. As opposed to the current system of large, centralized coal-fire power plants servicing vast regions of energy consumers, the energy infrastructure of the future will see many different forms of power generation taking root wherever the demand exists. Power will not come from 10 or 20 major locations, it will come from potentially thousands--solar arrays on the roofs of office buildings, wind turbines on the perimeters of farmland, steam turbines on remote geothermal vents--just to name a few. 
+In general, solar monitoring is an incredibly useful idea. As the world's energy economy gradually evolves towards greener and more renewable sources of energy, power generation will become more [http://www.oe.energy.gov/1165.htm decentralized]. As opposed to the current system of large, centralized coal-fire power plants servicing vast regions of energy consumers, the energy infrastructure of the future will see many different forms of power generation taking root wherever the demand and the will exists. Power will not come from 10 or 20 major locations, it will come from potentially thousands--solar arrays on the roofs of office buildings, wind turbines on the perimeters of farmland, steam turbines on remote geothermal vents--just to name a few. 
 
 Coordinating such a vast system will prove quite unwieldly without a robust monitoring infrastructure. The ability to measure spot and regional performance is of critical importance if the power of decentralized generation is to be harnessed and the grid is to in fact become "smarter". 
 
@@ -25,4 +25,3 @@ I discuss my approach to solving the simple case here.
 === My Original Inspiration ===
 
 I have discussed the importance of monitoring decentralized energy production and the myriad applications for this project in the coming "smart" grid revolution. I have not, however, talked about the individual application that inspired my decision to create this project in the form that I am pursuing. 
-
