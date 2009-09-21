@@ -20,7 +20,7 @@ As expected, the Danish wind turbine grid requires a vast monitoring system. Tod
 
 The United States, unfortunately, is far behind Denmark and most of the developed world as far as renewable energy is concerned. Solar and wind technologies have yet to reach the critical mass required for widespread adoption. It is also too expensive without the assistance of energy incentives from utilities. This might be one explanation for the lack of diversity and robustness in monitoring systems. 
 
-This project is an attempt to spur thought and innovation on the use of existing out-of-the-box technologies to accomplish the task of remote monitoring. An open-source development approach, furthermore, is preferable in this situation because it is not large companies, government bodies, or utilities that are making respectable strides towards the adoption of renewable energy--by and large, individuals are leading the way. I want to support these efforts and assist people taking the initiative to go green. 
+This project is an attempt to spur thought and innovation on the use of existing out-of-the-box technologies to accomplish the task of remote monitoring. An open-source development approach, furthermore, is preferable in this situation because it is not large companies, government bodies, or utilities that are making respectable strides towards the adoption of renewable energy--by and large, it is individuals who are leading the way. I want to support these efforts and assist people taking the initiative to go green. 
 
 I discuss my approach to solving the simple case here.
 
