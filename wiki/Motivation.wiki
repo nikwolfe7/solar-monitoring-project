@@ -22,6 +22,6 @@ This project is an attempt to spur thought and innovation on the use of existing
 
 I discuss my approach to solving the simple case here.
 
-=== Further Reading ===
+=== Inspirational Background ===
 
-At this point I have discussed the importance of monitoring decentralized energy production and the myriad applications for this project in the coming "smart grid" revolution. I have not, however, talked about the individual application that inspired my decision to pursue this project. Please read about it [Inspiration here].
+At this point I have discussed the importance of monitoring decentralized energy production and the myriad applications for this project in the coming "smart grid" revolution. I have not, however, talked about the individual application that inspired my decision to pursue this project. Please read about it [Background here].
