@@ -2,4 +2,15 @@
 
 To reiterate, the basic purpose of this project is as follows:
 
-_To design and implement an open-source monitoring system for remote solar energy power systems that can deliver useful diagnostic information such as panel voltage, battery voltage, input and output current, among other things, to system overseers._ 
+_To design and implement an open-source monitoring system for remote solar energy power systems that can deliver useful diagnostic information to system overseers._ 
+
+This task will be accomplished with the following constraints in mind:
+
+  * The system must not rely on customized hardware, i.e. the parts it uses must be both generic and generally available to anyone looking to reconstruct this project (i.e. any old microprocessor or cheap cell phone.) _Note: I do not consider the solar charge controller itself to be a part of this monitoring system because it can function independently of any monitoring activity and is a general requirement of a functional solar power system._
+  * The system must eliminate after-installation costs specific to monitoring, i.e. it must not rely on the payment of a third party for telemetry services. The concept of paying for cellular service or potentially server space are not included in this prohibition, as they are impossible to get around without resorting to illegal measures.
+  * The system must be able to be easily configured for any reasonable solar controller providing a serial interface
+  * The system must use only open-source software that can run on any server, anywhere. 
+
+This system can be broken into two main components:
+
+  # A hardware device that interfaces with
