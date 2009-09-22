@@ -1,0 +1,5 @@
+== Project Requirements ==
+
+To reiterate, the basic purpose of this project is as follows:
+
+_To design and implement an open-source monitoring system for remote solar energy power systems that can deliver useful diagnostic information such as panel voltage, battery voltage, input and output current, among other things, to system overseers._ 
