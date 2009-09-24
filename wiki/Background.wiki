@@ -24,9 +24,8 @@ In general, humanitarian projects involving solar technology fail. (Development 
 
 I want to stress the latter point not only because I think it is a pervasive problem among development organizations, but also because I have witnessed it first hand. In the summer of 2007 I had the opportunity to travel to a small town called Sanyang in The Gambia. In this town, a Belgian NGO had erected a rather large solar array to power a water pump for a local health clinic. I was informed that this pump was no longer working. Upon inspection, it appeared that a fuse had blown after the pump voltage surged as a result of running dry in the well. While I cannot confirm this diagnosis, the critical point is that nobody in the community was given any direction whatsoever as to what to do in such a situation by the NGO that built this system. Not even a manual was left behind! The solar array was sitting idle in the sun, and the health clinic was using hand-pumped water carried to the site in buckets. 
 
-The picture below is from that health clinic, and the empty water tank attached to the aforementioned ill-fated water pump is in the background.
-
 <img src="http://photos-h.ak.fbcdn.net/photos-ak-sf2p/v80/40/74/8613867/n8613867_38236767_8584.jpg" alt="health clinic in Gambia" height="50%" width="50%"/>
+The picture above is from that health clinic, and the empty water tank attached to the aforementioned ill-fated water pump is in the background.
 
 Situations like this are all too common in the aftermath of short-sighted development projects, and must be avoided if such efforts are to be taken seriously. A sustainable project is more than the hip photo-op aesthetics of a solar array in a small African town. True sustainability must consider the economic impact of the introduction of technological infrastructure, and have sustainable financing schemes built in to account for both the cost of maintenance and the training of community stakeholders. Anything less is a waste of time and money.
 
