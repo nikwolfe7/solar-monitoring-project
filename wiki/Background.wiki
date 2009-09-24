@@ -44,7 +44,7 @@ In summation, solar arrays have enormous up-front costs that tend to be absorbed
 
 However, there are challenges to overcome in order to sustain development. The economic benefits of a solar power system must account for the costs of maintenance. As the use of a remote monitoring system would become one of those costs, it needs to be inexpensive. Thus, open source technology is the way to go, because under no circumstances will a proprietary system or third-party service ever be cheap enough. Furthermore, using a third-party service creates an unnecessary external dependency and thus undermines the sustainability of the project. The cost of a monitoring system in this case must be little more than the basic fixed cost of communication. That is my intention with this project and here is how I intend to do it. 
 
-=== Personal Experience ===
+=== Personal Insights and Experience ===
 
 So how did this idea occur to me? Well, the answer to that is related to why I was in the Gambia in the summer of 2007 in the first place. I was helping to build a new high school in the town of Sanyang and my primary contribution to the project was the procurement of resources and the training of community stakeholders on the use of a solar power system to provide the school with electricity. I'm sure everything in the preceding paragraphs makes a ton more sense now. 
 
