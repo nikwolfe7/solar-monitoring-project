@@ -16,5 +16,6 @@ This task will be accomplished with the following constraints in mind:
 
 This system can be broken into two main components:
 
-  #) A hardware device that interfaces with the solar controller, polls it for information, processes that information into a format that can be transmitted via some telephony communication protocol (I am leaning towards DTMF for the first iteration) and then transmits that data to a remote server or potentially a specific person. `*`
-  #) A software system that will collect the data transmitted, store it for analysis and historical purposes, and allow system diagnostic information be easily displayed via a web interface. For the purposes of dealing with a potential lack of access to computers in some situations, the system will also relay critical information to system overseers via SMS. 
+1.) A hardware device that interfaces with the solar controller, polls it for information, processes that information into a format that can be transmitted via some telephony communication protocol (I am leaning towards DTMF for the first iteration) and then transmits that data to a remote server or potentially a specific person. 
+
+2.) A software system that will collect the data transmitted, store it for analysis and historical purposes, and allow system diagnostic information be easily displayed via a web interface. For the purposes of dealing with a potential lack of access to computers in some situations, the system will also relay critical information to system overseers via SMS. 
