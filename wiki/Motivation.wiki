@@ -18,7 +18,7 @@ The United States, unfortunately, is far behind Denmark and most of the develope
 
 This project is an attempt to spur thought and innovation on the use of existing out-of-the-box technologies to accomplish the task of remote monitoring. An open-source development approach, furthermore, is preferable in this situation because it is not large companies, government bodies, or utilities that are making respectable strides towards the adoption of renewable energy--by and large, it is still individuals who are leading the way. I want to support these efforts and assist people taking the initiative to go green. 
 
-I discuss my approach to solving the simple case here.
+I discuss my approach to solving this problem [Requirements here].
 
 === Inspirational Background ===
 
