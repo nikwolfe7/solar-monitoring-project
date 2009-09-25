@@ -14,7 +14,7 @@ This task will be accomplished with the following constraints in mind:
   _(`***`) By "generally available", I mean the products are not specific to a given company or manufacturer. They are mass-produced and can be obtained from various sources._
 
   * The system must eliminate after-installation costs specific to monitoring, i.e. it must not rely on the payment of a third party for telemetry services (`*`). 
-  _(`*`) The concept of paying for cellular service or potentially server space are not included in this prohibition because they are not a cost specifically related to monitoring, and more importantly, they are impossible to get around without resorting to illegal measures._
+  _(`*`) The concept of paying for cellular service or potentially server space are not included in this prohibition because they are not costs specifically related to monitoring, and more importantly, they are impossible to get around without resorting to illegal measures._
 
   * The system must be able to be easily configured for any reasonable solar controller providing a serial interface
 
