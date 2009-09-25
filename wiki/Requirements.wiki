@@ -4,7 +4,7 @@ To reiterate, the basic purpose of this project is as follows:
 
 _To design and implement an open-source monitoring system for remote solar energy power systems that can deliver useful diagnostic information to system overseers._ 
 
-=== Contraints ===
+=== Constraints ===
 
 This task will be accomplished with the following constraints in mind:
 
