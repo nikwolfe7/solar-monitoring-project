@@ -26,9 +26,9 @@ This task will be accomplished with the following constraints in mind:
 
 This system can be broken into two main components:
 
-1.) A hardware device that interfaces with the solar controller, polls it for information, processes that information into a format that can be transmitted via some telephony communication protocol (I am leaning towards DTMF for the first iteration) and then transmits that data to a remote server or potentially a specific person. 
+  1.) A hardware device that interfaces with the solar controller, polls it for information, processes that information into a format that can be transmitted via some telephony communication protocol (I am leaning towards DTMF for the first iteration) and then transmits that data to a remote server or potentially a specific person. 
 
-2.) A software system that will collect the data transmitted, store it for analysis and historical purposes, and allow system diagnostic information be easily displayed via a web interface. For the purposes of dealing with a potential lack of access to computers in some situations, the system will also relay critical information to system overseers via SMS. 
+  2.) A software system that will collect the data transmitted, store it for analysis and historical purposes, and allow system diagnostic information be easily displayed via a web interface. For the purposes of dealing with a potential lack of access to computers in some situations, the system will also relay critical information to system overseers via SMS. 
 
 === Itemized Requirements ===
 
@@ -36,28 +36,28 @@ In order to consider this project complete, it must accomplish the following tas
 
 *Hardware Requirements*
 
-1.) The microcontroller can interface with a solar controller through a serial port, and poll the device for information.
+  1.) The microcontroller can interface with a solar controller through a serial port, and poll the device for information.
 
-2.) The microcontroller can parse data obtained from a solar controller and convert it to a format applicable for a telephony communication protocol like DTMF.
+  2.) The microcontroller can parse data obtained from a solar controller and convert it to a format applicable for a telephony communication protocol like DTMF.
 
-3.) The microcontroller can manipulate a cellular transmitter and transfer data wirelessly to a remote server.
+  3.) The microcontroller can manipulate a cellular transmitter and transfer data wirelessly to a remote server.
 
-4.) The microcontroller accomplishes its work in a load-neutral way, meaning it does not represent a draw on the system that requires consideration in the load-profile.
+  4.) The microcontroller accomplishes its work in a load-neutral way, meaning it does not represent a draw on the system that requires consideration in the load-profile.
 
 *Software Requirements*
 
-1.) The software system can call the hardware component and initiate a transmission of diagnostic information from the solar controller.
+  1.) The software system can call the hardware component and initiate a transmission of diagnostic information from the solar controller.
 
-2.) The software system can record the transmission and be able to parse it for the encoded data. 
+  2.) The software system can record the transmission and be able to parse it for the encoded data. 
 
-3.) The software system can store this information in a database
+  3.) The software system can store this information in a database
 
-4.) The software system can display graphical and historical data about the solar power system via a web interface
+  4.) The software system can display graphical and historical data about the solar power system via a web interface
 
-5.) The software system can alert overseers about emergencies via SMS messages.
+  5.) The software system can alert overseers about emergencies via SMS messages.
 
 *Extensibility Requirements*
 
-1.) The system shall not be designed to be specifically compatible with any given communication protocol, but shall be able to easily accommodate the changes required by various cellular controllers. (This anticipates that some devices may use a protocol that requires a new implementation.)
+  1.) The system shall not be designed to be specifically compatible with any given communication protocol, but shall be able to easily accommodate the changes required by various cellular controllers. (This anticipates that some devices may use a protocol that requires a new implementation.)
 
-2.) The system shall use no hardware devices or software idioms that are specific to a given language or microprocessor unless they are completely open-source and complete information can be provided such that the same task could be accomplished with different but equivalent components. 
+  2.) The system shall use no hardware devices or software idioms that are specific to a given language or microprocessor unless they are completely open-source and complete information can be provided such that the same task could be accomplished with different but equivalent components. 
