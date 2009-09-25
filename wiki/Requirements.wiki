@@ -6,8 +6,12 @@ _To design and implement an open-source monitoring system for remote solar energ
 
 This task will be accomplished with the following constraints in mind:
 
-  * The system must not rely on customized hardware*, i.e. the parts it uses must be both generic and generally available to anyone looking to reconstruct this project (i.e. any old microprocessor or cheap cell phone.) 
-    _*** Note: I do not consider the solar charge controller itself to be a part of this monitoring system because it can function independently of any monitoring activity and is a general requirement of a functional solar power system._
+  * The system must not rely on customized hardware`*`, i.e. the parts it uses must be both generic`**` and generally available`***` to anyone looking to reconstruct this project (i.e. any old microprocessor or cheap cell phone.) 
+    _`*` I do not consider the solar charge controller itself to be a part of this monitoring system because it can function independently of any monitoring activity and is a general requirement of a functional solar power system._
+
+    _`**` By "generic", of course, I mean that any adequate microprocessor can accomplish the tasks required by this project. The notion of an I/O pin, an RS-232 port, an SRAM or an EEPROM, for example, are not specific to any individual type of microprocessor, and are generally available as standard features on a variety of products_
+
+    _`***` By "generally available", I mean the products are not specific to a given company or manufacturer. They are mass-produced and can be obtained from various sources._
 
   * The system must eliminate after-installation costs specific to monitoring, i.e. it must not rely on the payment of a third party for telemetry services. The concept of paying for cellular service or potentially server space are not included in this prohibition, as they are impossible to get around without resorting to illegal measures.
 
