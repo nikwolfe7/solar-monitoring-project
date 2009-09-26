@@ -6,9 +6,23 @@ This page is a general recording of various issues and divergent paths that aris
 
 ==What Hardware to Use?==
 
+As [Requirements required] by my specifications, this system needs to be designed with hardware that is essentially generic. I do not intend to use any functionality that can only be obtained through the use of a specific microprocessor and I want this project to be replicable anywhere in the world.
+
 ===Open-Source Hardware===
 
+The Italian hardware company [http://www.arduino.cc/ Arduino] designs microprocessor boards and provides complete part listings and schematic documentation. As stated on their website:
+
+  _"Arduino is an open-source electronics prototyping platform based on flexible, easy-to-use hardware and software. It's intended for artists, designers, hobbyists, and anyone interested in creating interactive objects or environments."_ 
+
+This is a pretty excellent fit for this project, and that is why I have purchased an Arduino [http://arduino.cc/en/Main/ArduinoBoardDuemilanove Duemilanove].
+
+<img src="http://arduino.cc/en/uploads/Main/ArduinoDuemilanove.jpg" alt="Arduino Duemilanove" />
+
+I really like this board. The open-source IDE they provide is incredibly easy to use, and is based on the [http://processing.org/reference/ Processing] language. I was able to get this thing to play a song through a Piezo speaker within 30 minutes of opening the box.  
+
 ===Hack a Phone vs. Use GSM Chip===
+
+GSM chips are $100 bucks flat, and are only really produced by [http://www.telit.com/ Telit]. This violates the [Requirements requirement] that I design this system without using any company-specific or non-generic hardware. I have opted instead to buy a disposable cell phone for $15 and hack it. Details to follow... 
 
 ----
 
@@ -30,9 +44,9 @@ The disadvantages of the pull system are a deal-breaker, in my opinion.
 
 The idea of a "pull" model in this case is the initialization of a data transfer from the remote server. The server would initiate a call to the solar site at predefined intervals and "ask" for information. In this case, the hardware component simply waits to be called. 
 
-*Advantages* The remote server will simply use VoIP services to call the transmitter, and so no further hardware beyond what is contained at the solar site is required. Inquiries can also be initiated at will in this case. 
+*Advantages:* The remote server will simply use VoIP services to call the transmitter, and so no further hardware beyond what is contained at the solar site is required. Inquiries can also be initiated at will in this case. 
 
-*Disadvantages* We need to pay for VoIP services. (Of course, paying for a modem to listen for data requires another cellular account for the SIM card/phone number so this is not exactly a drawback, other than the fact that communication costs money.) Also, we will not know about failures until we initiate a data transfer and get a response from the site. This can lead to lapses during which time solar battery depletion can occur. 
+*Disadvantages:* We need to pay for VoIP services. (Of course, paying for a modem to listen for data requires another cellular account for the SIM card/phone number so this is not exactly a drawback, other than the fact that communication costs money.) Also, we will not know about failures until we initiate a data transfer and get a response from the site. This can lead to lapses during which time solar battery depletion can occur. 
 
 I think the pull model wins on the merits that it is cheaper and allows us to run the software for this system anywhere, as called for by the [Requirements requirements] of this project.
 
