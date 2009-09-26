@@ -18,7 +18,7 @@ This is a pretty excellent fit for this project, and that is why I have purchase
 
 <img src="http://arduino.cc/en/uploads/Main/ArduinoDuemilanove.jpg" alt="Arduino Duemilanove" />
 
-I really like this board. The open-source IDE they provide is incredibly easy to use, and is based on the [http://processing.org/reference/ Processing] language. I was able to get this thing to play a song through a Piezo speaker within 30 minutes of opening the box. Furthermore, the price is right. This gem only costs $30 assembled, and would be much less if you ordered the parts and built it yourself. The processor, for instance, an [http://www.sparkfun.com/commerce/product_info.php?products_id=9217 ATmega328], is a whopping $5 bucks online from [http://www.sparkfun.com/commerce/categories.php Sparkfun].
+I really like this board. The open-source IDE they provide is incredibly easy to use, and is based on the [http://processing.org/reference/ Processing] language. I was able to get this thing to play a song through a Piezo speaker within 30 minutes of opening the box. Furthermore, the price is right. This gem only costs $30 assembled, and would be much less if you ordered the parts and [http://arduino.cc/en/uploads/Main/arduino-duemilanove-schematic.pdf built] it yourself. The processor, for instance, an [http://www.sparkfun.com/commerce/product_info.php?products_id=9217 ATmega328], is a whopping $5 bucks online from [http://www.sparkfun.com/commerce/categories.php Sparkfun].
 
 ===Hack a Phone vs. Use GSM Chip===
 
