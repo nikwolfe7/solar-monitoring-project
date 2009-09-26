@@ -1,3 +1,5 @@
+[http://code.google.com/p/solar-monitoring-project/ <-- Back to Main Page]
+
 == My Original Inspiration ==
 
 In my [Motivation motivation] page I discussed the relevance of remote monitoring in the context of green technology and smart grids. Here, I discuss some of the issues that lead to my original inspiration to create this project. 
