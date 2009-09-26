@@ -18,6 +18,26 @@ There are actually two different ways to accomplish the task of initializing the
 
 ====Push Model====
 
-The idea of a "push" in this case is the initialization of a data transfer from the solar site itself. The microcontroller interfacing with
+The idea of a "push" in this case is the initialization of a data transfer from the solar site itself. The microcontroller interfacing with the solar controller will, at a time of its own choosing, call up the server and complete a data transfer. In this case the remote server simply "waits" for the solar site to send it data. 
+
+*Advantages:* If an emergency triggers an event at the site, system overseers can be notified immediately. It might be easier to minimize power usage if the decision of when to transmit data is in the hands of the transmitter.
+
+*Disadvantages:* Because there is no phone number for an IP address, a cellular transmitter would need to call a modem with a phone number that would then deposit the information on the server. This requires another piece of hardware, and that we have physical access to the server. This violates the [Requirements requirement] that the software system be able to run anywhere. It's also more expensive and completely unnecessary given the fact that VoIP services can call cell phones directly with just an internet connection from the perspective of the client. The exchange between the ISP and the cellular network is for all intensive purposes hidden from the client in this case. 
+
+The disadvantages of the pull system are a deal-breaker, in my opinion.
 
 ====Pull Model====
+
+The idea of a "pull" model in this case is the initialization of a data transfer from the remote server. The server would initiate a call to the solar site at predefined intervals and "ask" for information. In this case, the hardware component simply waits to be called. 
+
+*Advantages* The remote server will simply use VoIP services to call the transmitter, and so no further hardware beyond what is contained at the solar site is required. Inquiries can also be initiated at will in this case. 
+
+*Disadvantages* We need to pay for VoIP services. (Of course, paying for a modem to listen for data requires another cellular account for the SIM card/phone number so this is not exactly a drawback, other than the fact that communication costs money.) Also, we will not know about failures until we initiate a data transfer and get a response from the site. This can lead to lapses during which time solar battery depletion can occur. 
+
+I think the pull model wins on the merit that it allows us to run the software for this system anywhere as called for by the [Requirements requirements] of this project.
+
+====Final Decision====
+
+Pull model.
+
+----
