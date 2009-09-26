@@ -22,7 +22,7 @@ I really like this board. The open-source IDE they provide is incredibly easy to
 
 ===Hack a Phone vs. Use GSM Chip===
 
-GSM chips are $100 bucks flat, and are only really produced by [http://www.telit.com/ Telit]. This violates the [Requirements requirement] that I design this system without using any company-specific or non-generic hardware. I have opted instead to buy a disposable cell phone for $15 and hack it. Details to follow... 
+GSM chips are $100 bucks flat, and are only really sold by themselves without a phone by [http://www.telit.com/ Telit]. This violates the [Requirements requirement] that I design this system without using any company-specific or non-generic hardware. I have opted instead to buy a disposable cell phone for $15 and hack it. Details to follow... 
 
 ----
 
