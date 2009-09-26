@@ -1,4 +1,4 @@
-[http://code.google.com/p/solar-monitoring-project/ <-- Back to Main Page]
+[http://code.google.com/p/solar-monitoring-project/ Back to Main Page]
 
 <img src="http://venturebeat.com/wp-content/uploads/2009/07/solar-panel-1.jpg" alt="Solar Panel" />
 
