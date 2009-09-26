@@ -1,1 +1,23 @@
 == Strategies for Implementation ==
+
+This page is a general recording of various issues and divergent paths that arise in the process of deciding how to ultimately implement this project. The discussions are listed here in no particular order. If something becomes enough of an issue, I'll make a dedicated wiki page for it.
+ 
+----
+
+===What Hardware to Use?===
+
+====Open-Source Hardware====
+
+====Hack a Phone vs. Use GSM Chip====
+
+----
+
+===Discussion: Push or Pull===
+
+There are actually two different ways to accomplish the task of initializing the data transfer from the solar array site to the remote server. 
+
+====Push Model====
+
+The idea of a "push" in this case is the initialization of a data transfer from the solar site itself. The microcontroller interfacing with
+
+====Pull Model====
