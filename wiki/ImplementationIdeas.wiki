@@ -16,7 +16,7 @@ The Italian hardware company [http://www.arduino.cc/ Arduino] designs microproce
 
 This is a pretty excellent fit for this project, and that is why I have purchased an Arduino [http://arduino.cc/en/Main/ArduinoBoardDuemilanove Duemilanove].
 
-<img src="http://arduino.cc/en/uploads/Main/ArduinoDuemilanove.jpg" alt="Arduino Duemilanove" />
+<img src="http://arduino.cc/en/uploads/Main/ArduinoDuemilanove.jpg" alt="Arduino Duemilanove" width="75%" height="75%"/>
 
 I really like this board. The open-source IDE they provide is incredibly easy to use, and is based on the [http://processing.org/reference/ Processing] language. I was able to get this thing to play a song through a Piezo speaker within 30 minutes of opening the box.  
 
