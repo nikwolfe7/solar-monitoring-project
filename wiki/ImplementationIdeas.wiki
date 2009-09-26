@@ -4,19 +4,19 @@ This page is a general recording of various issues and divergent paths that aris
  
 ----
 
-===What Hardware to Use?===
+==What Hardware to Use?==
 
-====Open-Source Hardware====
+===Open-Source Hardware===
 
-====Hack a Phone vs. Use GSM Chip====
+===Hack a Phone vs. Use GSM Chip===
 
 ----
 
-===Discussion: Push or Pull===
+==Discussion: Push or Pull==
 
 There are actually two different ways to accomplish the task of initializing the data transfer from the solar array site to the remote server. 
 
-====Push Model====
+===Push Model===
 
 The idea of a "push" in this case is the initialization of a data transfer from the solar site itself. The microcontroller interfacing with the solar controller will, at a time of its own choosing, call up the server and complete a data transfer. In this case the remote server simply "waits" for the solar site to send it data. 
 
@@ -26,7 +26,7 @@ The idea of a "push" in this case is the initialization of a data transfer from 
 
 The disadvantages of the pull system are a deal-breaker, in my opinion.
 
-====Pull Model====
+===Pull Model===
 
 The idea of a "pull" model in this case is the initialization of a data transfer from the remote server. The server would initiate a call to the solar site at predefined intervals and "ask" for information. In this case, the hardware component simply waits to be called. 
 
@@ -36,7 +36,7 @@ The idea of a "pull" model in this case is the initialization of a data transfer
 
 I think the pull model wins on the merit that it allows us to run the software for this system anywhere as called for by the [Requirements requirements] of this project.
 
-====Final Decision====
+===Final Decision===
 
 Pull model.
 
