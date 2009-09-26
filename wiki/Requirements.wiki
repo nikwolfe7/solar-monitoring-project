@@ -44,7 +44,7 @@ In order to consider this project complete, it must accomplish the following tas
 
   # [http://code.google.com/p/solar-monitoring-project/issues/detail?id=10 (Details)] The software system can call the hardware component and initiate a transmission of diagnostic information from the solar controller. 
   # [http://code.google.com/p/solar-monitoring-project/issues/detail?id=11 (Details)] The software system can record the transmission and be able to parse it for the encoded data. 
-  # [http://code.google.com/p/solar-monitoring-project/issues/detail?id=12 (Details)]The software system can store this information in a database. 
+  # [http://code.google.com/p/solar-monitoring-project/issues/detail?id=12 (Details)] The software system can store this information in a database. 
   # [http://code.google.com/p/solar-monitoring-project/issues/detail?id=13 (Details)] The software system can display graphical and historical data about the solar power system via a web interface. 
   # [http://code.google.com/p/solar-monitoring-project/issues/detail?id=14 (Details)] The software system can alert overseers about emergencies via SMS messages. 
 
