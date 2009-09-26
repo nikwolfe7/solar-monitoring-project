@@ -1,4 +1,4 @@
-[http://code.google.com/p/solar-monitoring-project/ <-- Back to Main Page]
+[http://code.google.com/p/solar-monitoring-project/ Back to Main Page]
 
 == My Original Inspiration ==
 
