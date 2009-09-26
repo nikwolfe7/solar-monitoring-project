@@ -4,6 +4,13 @@ To reiterate, the basic purpose of this project is as follows:
 
 _To design and implement an open-source monitoring system for remote solar energy power systems that can deliver useful diagnostic information to system overseers._ 
 
+=== System Components ===
+
+This system can be broken into two main components:
+
+  # A hardware device that interfaces with the solar controller, polls it for information, processes that information into a format that can be transmitted via some telephony communication protocol (I am leaning towards DTMF for the first iteration) and then transmits that data to a remote server or potentially a specific person. 
+  # A software system that will collect the data transmitted, store it for analysis and historical purposes, and allow system diagnostic information be easily displayed via a web interface. For the purposes of dealing with a potential lack of access to computers in some situations, the system will also relay critical information to system overseers via SMS. 
+
 === Constraints ===
 
 This task will be accomplished with the following constraints in mind:
@@ -21,13 +28,6 @@ This task will be accomplished with the following constraints in mind:
   * *The system must be able to be easily configured for any reasonable solar controller providing a serial interface. [http://code.google.com/p/solar-monitoring-project/issues/detail?id=4 Details]*
 
   * *The system must use only open-source software that can run on any server, anywhere. [http://code.google.com/p/solar-monitoring-project/issues/detail?id=5 Details]* 
-
-=== System Components ===
-
-This system can be broken into two main components:
-
-  # A hardware device that interfaces with the solar controller, polls it for information, processes that information into a format that can be transmitted via some telephony communication protocol (I am leaning towards DTMF for the first iteration) and then transmits that data to a remote server or potentially a specific person. 
-  # A software system that will collect the data transmitted, store it for analysis and historical purposes, and allow system diagnostic information be easily displayed via a web interface. For the purposes of dealing with a potential lack of access to computers in some situations, the system will also relay critical information to system overseers via SMS. 
 
 === Itemized Requirements ===
 
