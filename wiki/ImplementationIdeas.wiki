@@ -34,10 +34,10 @@ The idea of a "pull" model in this case is the initialization of a data transfer
 
 *Disadvantages* We need to pay for VoIP services. (Of course, paying for a modem to listen for data requires another cellular account for the SIM card/phone number so this is not exactly a drawback, other than the fact that communication costs money.) Also, we will not know about failures until we initiate a data transfer and get a response from the site. This can lead to lapses during which time solar battery depletion can occur. 
 
-I think the pull model wins on the merit that it allows us to run the software for this system anywhere as called for by the [Requirements requirements] of this project.
+I think the pull model wins on the merits that it is cheaper and allows us to run the software for this system anywhere, as called for by the [Requirements requirements] of this project.
 
 ===Final Decision===
 
-Pull model.
+Pull Model.
 
 ----
