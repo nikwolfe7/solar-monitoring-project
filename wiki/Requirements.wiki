@@ -36,17 +36,17 @@ In order to consider this project complete, it must accomplish the following tas
 *Hardware Requirements  
 
   # [http://code.google.com/p/solar-monitoring-project/issues/detail?id=6 (Details)] The microcontroller can interface with a solar controller through a serial port, and poll the device for information. 
-  # [http://code.google.com/p/solar-monitoring-project/issues/detail?id=7 (Details)]The microcontroller can parse data obtained from a solar controller and convert it to a format applicable for a telephony communication protocol. 
-  # [http://code.google.com/p/solar-monitoring-project/issues/detail?id=8 (Details)]The microcontroller can manipulate a cellular transmitter and transfer data wirelessly to a remote server. 
-  # [http://code.google.com/p/solar-monitoring-project/issues/detail?id=9 (Details)]The microcontroller accomplishes its work in a load-neutral way, meaning it does not represent a draw on the system that requires consideration in the load-profile. 
+  # [http://code.google.com/p/solar-monitoring-project/issues/detail?id=7 (Details)] The microcontroller can parse data obtained from a solar controller and convert it to a format applicable for a telephony communication protocol. 
+  # [http://code.google.com/p/solar-monitoring-project/issues/detail?id=8 (Details)] The microcontroller can manipulate a cellular transmitter and transfer data wirelessly to a remote server. 
+  # [http://code.google.com/p/solar-monitoring-project/issues/detail?id=9 (Details)] The microcontroller accomplishes its work in a load-neutral way, meaning it does not represent a draw on the system that requires consideration in the load-profile. 
 
 *Software Requirements*
 
-  # [http://code.google.com/p/solar-monitoring-project/issues/detail?id=10 (Details)]The software system can call the hardware component and initiate a transmission of diagnostic information from the solar controller. 
+  # [http://code.google.com/p/solar-monitoring-project/issues/detail?id=10 (Details)] The software system can call the hardware component and initiate a transmission of diagnostic information from the solar controller. 
   # [http://code.google.com/p/solar-monitoring-project/issues/detail?id=11 (Details)] The software system can record the transmission and be able to parse it for the encoded data. 
   # [http://code.google.com/p/solar-monitoring-project/issues/detail?id=12 (Details)]The software system can store this information in a database. 
-  # [http://code.google.com/p/solar-monitoring-project/issues/detail?id=13 (Details)]The software system can display graphical and historical data about the solar power system via a web interface. 
-  # [http://code.google.com/p/solar-monitoring-project/issues/detail?id=14 (Details)]The software system can alert overseers about emergencies via SMS messages. 
+  # [http://code.google.com/p/solar-monitoring-project/issues/detail?id=13 (Details)] The software system can display graphical and historical data about the solar power system via a web interface. 
+  # [http://code.google.com/p/solar-monitoring-project/issues/detail?id=14 (Details)] The software system can alert overseers about emergencies via SMS messages. 
 
 *Extensibility Requirements*
 
