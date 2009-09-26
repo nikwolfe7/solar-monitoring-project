@@ -35,7 +35,7 @@ In order to consider this project complete, it must accomplish the following tas
 
 *Hardware Requirements  
 
-  # The microcontroller can interface with a solar controller through a serial port, and poll the device for information. [http://code.google.com/p/solar-monitoring-project/issues/detail?id=6 Details]
+  # [http://code.google.com/p/solar-monitoring-project/issues/detail?id=6 Details] The microcontroller can interface with a solar controller through a serial port, and poll the device for information. 
   # The microcontroller can parse data obtained from a solar controller and convert it to a format applicable for a telephony communication protocol. [http://code.google.com/p/solar-monitoring-project/issues/detail?id=7 Details]
   # The microcontroller can manipulate a cellular transmitter and transfer data wirelessly to a remote server. [http://code.google.com/p/solar-monitoring-project/issues/detail?id=8 Details]
   # The microcontroller accomplishes its work in a load-neutral way, meaning it does not represent a draw on the system that requires consideration in the load-profile. [http://code.google.com/p/solar-monitoring-project/issues/detail?id=9 Details]
