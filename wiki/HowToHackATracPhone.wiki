@@ -2,8 +2,14 @@
 
 == How to Hack a Cell Phone ==
 
-In this series of pages I will discuss how to successfully "modify" a cellular phone and use it to build a transmitter. In this iteration of the project I am using a [http://www.phonescoop.com/phones/phone.php?p=1535 Motorola W260g]. It costs a whopping $15, so don't worry about screwing up if you decide to follow this guide for your own purposes.
+In this series of pages I will discuss how to modify a cellular phone and use it to build a transmitter. In this iteration of the project I am using a [http://www.phonescoop.com/phones/phone.php?p=1535 Motorola W260g]. It costs a whopping $15, so don't worry about screwing up if you decide to follow this guide for your own purposes.
 
 === Part 1: Take it Apart ===
 
-<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0359.jpg" alt="image" height="50%" width="50%"/>
+So, first we start with our phone on the workbench:
+
+<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0359.jpg" alt="image" height="40%" width="40%"/>
+
+We then remove the back-plate and take the battery out:
+
+<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0360.jpg" alt="image" height="40%" width="40%"/>
