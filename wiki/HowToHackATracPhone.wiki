@@ -32,7 +32,7 @@ Now, the motherboard of the cell phone should be revealed.
 
 Remove the connector to the LCD screen located at the top of the circuit board. It is a flat square connector attached to a flat ribbon wire. 
 
-<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0366.jpg" alt="image" height="40%" width="40%"/>
+<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0366.jpg" alt="image" height="50%" width="50%"/>
 
 
 
