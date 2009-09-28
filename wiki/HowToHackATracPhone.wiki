@@ -6,10 +6,20 @@ In this series of pages I will discuss how to modify a cellular phone and use it
 
 === Part 1: Take it Apart ===
 
-So, first we start with our phone on the workbench:
+So, first place the phone the workbench. (Go figure!)
 
 <img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0359.jpg" alt="image" height="40%" width="40%"/>
 
-We then remove the back-plate and take the battery out:
+Then remove the back-plate and take the battery out.
 
 <img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0360.jpg" alt="image" height="40%" width="40%"/>
+
+Then, using a precision screw-driver, remove the screws from the chassis. This may require using a wrench to get some extra torque because the screws are usually really tight. 
+
+<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0361.jpg" alt="image" height="40%" width="40%"/>
+
+Then take out the SIM-card. It is most likely obstructing the plastic chassis from being removed. 
+
+<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0362.jpg" alt="image" height="40%" width="40%"/>
+
+ 
