@@ -50,9 +50,14 @@ Now you have an exposed keypad with all of the electrical nodes easily accessibl
 
 <img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0370.jpg" alt="image" height="40%" width="40%"/>
 
+Next, we want to take apart the top of the phone in order to remove the LCD screen for later use. First we must remove the screws on the faceplate. There are four, again hidden behind rubber stoppers.
 
+<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0372.jpg" alt="image" height="40%" width="40%"/>
 
+The top of the phone can then be wedged off after these screws have been removed. This requires using a screwdriver or knife to force the plastic plates apart. 
 
+<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0373.jpg" alt="image" height="40%" width="40%"/>
 
+The LCD screen can then be popped out of its metal chassis with any wedging tool.
 
- 
+<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0375.jpg" alt="image" height="40%" width="40%"/>
