@@ -14,7 +14,7 @@ Then remove the back-plate and take the battery out.
 
 <img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0360.jpg" alt="image" height="60%" width="60%"/>
 
-Then, using a precision screw-driver, remove the screws from the chassis. This may require using a wrench to get some extra torque because the screws are usually really tight. In this phone there are six. Four of them are located in the battery section of the chassis and two more are located near the bottom, hidden behind rubber stoppers.
+Then, using a precision screw-driver (in this case a 1.4mm does the trick), remove the screws from the chassis. This may require using a wrench to get some extra torque because the screws are usually really tight. In this phone there are six. Four of them are located in the battery section of the chassis and two more are located near the bottom, hidden behind rubber stoppers.
 
 <img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0361.jpg" alt="image" height="60%" width="60%"/>
 
