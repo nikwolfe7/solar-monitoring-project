@@ -58,6 +58,24 @@ The top of the phone can then be wedged off after these screws have been removed
 
 <img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0373.jpg" alt="image" height="40%" width="40%"/>
 
+Next, remove the other end of the ribbon connector from the LCD screen. 
+
+<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0376.jpg" alt="image" height="40%" width="40%"/>
+
 The LCD screen can then be popped out of its metal chassis with any wedging tool.
 
 <img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0375.jpg" alt="image" height="40%" width="40%"/>
+
+Now, to remove the ribbon connector, we need to cut through the plastic in the way.
+
+<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0378.jpg" alt="image" height="40%" width="40%"/>
+
+Remove the ribbon connector. We can use this later to connect the motherboard to the LCD screen without the original plastic body. 
+
+<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0379.jpg" alt="image" height="40%" width="40%"/>
+
+And there you go! We've now completely disassembled the phone to the point where we have access to all of its component parts and can begin hacking!
+
+<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0382.jpg" alt="image" height="40%" width="40%"/>
+
+Stay tuned for Part 2!
