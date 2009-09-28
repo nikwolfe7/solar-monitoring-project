@@ -14,12 +14,26 @@ Then remove the back-plate and take the battery out.
 
 <img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0360.jpg" alt="image" height="40%" width="40%"/>
 
-Then, using a precision screw-driver, remove the screws from the chassis. This may require using a wrench to get some extra torque because the screws are usually really tight. 
+Then, using a precision screw-driver, remove the screws from the chassis. This may require using a wrench to get some extra torque because the screws are usually really tight. In this phone there are six. Four of them are located in the battery section of the chassis and two more are located near the bottom, hidden behind rubber stoppers.
 
 <img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0361.jpg" alt="image" height="40%" width="40%"/>
 
 Then take out the SIM-card. It is most likely obstructing the plastic chassis from being removed. 
 
 <img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0362.jpg" alt="image" height="40%" width="40%"/>
+
+Then pop off the back chassis. In my experience this requires wedging the bottom of the phone open with a screwdriver or a knife. Once you get under that it's fairly simple to pull out the whole thing.
+
+<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0364.jpg" alt="image" height="40%" width="40%"/>
+
+Now, the motherboard of the cell phone should be revealed.
+
+<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0365.jpg" alt="image" height="40%" width="40%"/>
+
+Remove the connector to the LCD screen located at the top of the circuit board. It is a flat square connector attached to a flat ribbon wire. 
+
+<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0366.jpg" alt="image" height="40%" width="40%"/>
+
+
 
  
