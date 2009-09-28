@@ -22,7 +22,7 @@ Then take out the SIM-card. It is most likely obstructing the plastic chassis fr
 
 <img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0362.jpg" alt="image" height="40%" width="40%"/>
 
-Then pop off the back chassis. In my experience this requires wedging the bottom of the phone open with a screwdriver or a knife. Once you get under that it's fairly simple to pull out the whole thing.
+Then pop off the back chassis. In my experience this requires wedging the bottom of the phone open with a screwdriver or a knife. Once you get under that it's fairly simple to pull out the whole thing. The speaker and vibrator will be inside the chassis. Their connectors are easily visible on the relative position of the motherboard. 
 
 <img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0364.jpg" alt="image" height="40%" width="40%"/>
 
@@ -32,7 +32,26 @@ Now, the motherboard of the cell phone should be revealed.
 
 Remove the connector to the LCD screen located at the top of the circuit board. It is a flat square connector attached to a flat ribbon wire. 
 
-<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0366.jpg" alt="image" height="50%" width="50%"/>
+<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0366.jpg" alt="image" height="40%" width="40%"/>
+
+Then, carefully bending the plastic walls aside that obstruct the external connectors to the USB and the hands-free female jack, pull out the motherboard. 
+
+<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0367.jpg" alt="image" height="40%" width="40%"/>
+
+Now you have the motherboard cleanly separated from the phone. 
+
+<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0368.jpg" alt="image" height="40%" width="40%"/>
+
+Next, carefully peel off the sticker that holds down the button connectors on the keypad. (Try not to rip it or this becomes a nasty process.) 
+
+<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0369.jpg" alt="image" height="40%" width="40%"/>
+
+Now you have an exposed keypad with all of the electrical nodes easily accessible.
+
+<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0370.jpg" alt="image" height="40%" width="40%"/>
+
+
+
 
 
 
