@@ -66,6 +66,10 @@ The LCD screen can then be popped out of its metal chassis with any wedging tool
 
 <img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0375.jpg" alt="image" height="60%" width="60%"/>
 
+Now we've separated the LCD screen from the chassis and can use it later.
+
+<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0377.jpg" alt="image" height="60%" width="60%"/>
+
 Now, to remove the ribbon connector, we need to cut through the plastic in the way.
 
 <img src="http://solar-monitoring-project.googlecode.com/svn/img/th_100_0378.jpg" alt="image" height="60%" width="60%"/>
