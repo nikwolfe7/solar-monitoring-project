@@ -2,7 +2,7 @@
 
 == How to Hack a Cell Phone ==
 
-In this series of pages I will discuss how to modify a cellular phone and use it to build a transmitter. In this iteration of the project I am using a [http://www.phonescoop.com/phones/phone.php?p=1535 Motorola W260g]. It costs a whopping $15, so don't worry about screwing up if you decide to follow this guide for your own purposes.
+In order to implement this project's requirement for inexpensive cellular data transmission, I have spent significant time investigating how to hack a cheap cell phone for use in this context. In this series of pages I will discuss how to modify a cellular phone and use it to build a such a transmitter. In this iteration of the project I am using a [http://www.phonescoop.com/phones/phone.php?p=1535 Motorola W260g]. It costs a whopping $15, so don't worry about screwing up if you decide to follow this guide for your own purposes.
 
 === Part 1: Take it Apart ===
 
