@@ -68,4 +68,6 @@ Pull Model.
 
 This is an issue that I need to elaborate in words, because it has become an increasingly frustrating aspect of my implementation: Why can't I connect the power button control circuit within the same circuitry as the rest of the button controls?
 
-This takes a little description, and at least a picture. 
+This takes a little description, and at least one picture:
+
+<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_keypad.png" alt="image" width="50%" height="75%"/>
