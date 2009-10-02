@@ -1,6 +1,6 @@
 [http://code.google.com/p/solar-monitoring-project/ Back to Main Page]
 
-<wiki:toc max_depth="1"/>
+<wiki:toc max_depth="3"/>
 
 == Strategies for Implementation ==
 
