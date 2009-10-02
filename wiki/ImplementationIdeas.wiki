@@ -88,7 +88,7 @@ Thus with only 7 connections, any key can be pressed on the DTMF keypad. A few o
 
 These buttons can be connected electronically using a [http://en.wikipedia.org/wiki/Three-state_logic tri-state buffer] where the nodes to be connected are the input and output of the buffer and a control signal (from, say, a microprocessor) is the enable. So, you can press any button on the keypad electronically without mechanical energy (i.e. pushing a button).
 
-<img src="http://en.wikipedia.org/wiki/File:Tristate_buffer.svg" alt="tri-state buffer" />
+<img src="http://www.geocities.com/SiliconValley/2072/3statbuf.gif" alt="tri-state buffer" />
 
 There are issues with this, however. [http://www.datasheetcatalog.org/datasheet/philips/74HC_HCT125_CNV_2.pdf Tri-state buffer chips] require power and ground, and in order to connect the power button, you need to ensure that the ground on the buffer chip is connected to the same ground as the cell phone. The problem that arises is the fact that connecting any of the keypad buttons through the same circuit results in Nodes 1-3 being drawn to ground. As a result, when you connect ANY key on the keypad, only a 1, 2, or 3 registers. Nodes 1, 2, and 3 MUST be connected to Nodes A, B, C, and D in order for all of the keys (0-9,`*`,#) to register. If the ground of the circuitry used to electronically connect these nodes is also connected to the ground of the cell phone (as required by the circuitry to connect the "Power" button), the keypad is rendered useless.
 
