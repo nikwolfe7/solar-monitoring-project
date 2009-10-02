@@ -77,6 +77,6 @@ This image is of the keypad nodes on the motherboard of a Motorola W260g. Any bu
 _Buttons Pressed After Connecting Nodes:_
 
 ||        || Node A || Node B || Node C || Node D ||
-|| Node 1 ||   1    ||    4   ||   7    ||   *    ||
+|| Node 1 ||   1    ||    4   ||   7    ||   `*`  ||
 || Node 2 ||   2    ||    5   ||   8    ||   0    ||
 || Node 3 ||   3    ||    6   ||   9    ||   #    ||
