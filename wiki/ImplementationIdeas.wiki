@@ -1,10 +1,10 @@
 [http://code.google.com/p/solar-monitoring-project/ Back to Main Page]
 
-<wiki:toc max_depth="2"/>
-
 == Strategies for Implementation ==
 
 This page is a general recording of various issues and divergent paths that arise in the process of deciding how to ultimately implement this project. The discussions are listed here in no particular order. If something becomes enough of an issue, I'll make a dedicated wiki page for it.
+
+[ImplementationIdeas#hardware]
 
 ----
 
