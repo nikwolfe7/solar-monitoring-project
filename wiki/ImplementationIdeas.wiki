@@ -6,9 +6,9 @@ This page is a general recording of various issues and divergent paths that aris
 
 ===Topics On This Page===
 
-  * [ImplementationIdeas#What_Hardware_to_Use? What Hardware to Use?]
-  * [ImplementationIdeas#Discussion:_Push_or_Pull? Discussion: Push or Pull?]
-  * [ImplementationIdeas#Discussion:_Necessary_or_Sufficient_Controls? Discussion: Necessary or Sufficient Controls?]
+  * [ImplementationIdeas#What_Hardware_to_Use? What Hardware to Use]
+  * [ImplementationIdeas#Discussion:_Push_or_Pull Discussion: Push or Pull]
+  * [ImplementationIdeas#Discussion:_Necessary_or_Sufficient_Controls Discussion: Necessary or Sufficient Controls]
 
 ----
 
