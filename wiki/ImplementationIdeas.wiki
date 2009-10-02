@@ -74,7 +74,9 @@ This takes a little description, and at least one picture:
 
 This image is of the keypad nodes on the motherboard of a Motorola W260g. Any button on this keypad can be pressed by connecting a circuit across the outer and inner circular leads. The nodes are important because the keys are arranged as a grid:
 
+_Buttons Pressed After Connecting Nodes:_
+
 ||        || Node A || Node B || Node C || Node D ||
-|| Node 1 ||     
-|| Node 2 ||
-|| Node 3 ||
+|| Node 1 ||   1    ||    4   ||   7    ||   *    ||
+|| Node 2 ||   2    ||    5   ||   8    ||   0    ||
+|| Node 3 ||   3    ||    6   ||   9    ||   #    ||
