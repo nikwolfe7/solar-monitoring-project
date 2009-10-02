@@ -4,12 +4,12 @@
 
 This page is a general recording of various issues and divergent paths that arise in the process of deciding how to ultimately implement this project. The discussions are listed here in no particular order. If something becomes enough of an issue, I'll make a dedicated wiki page for it.
 
-[ImplementationIdeas#hardware]
+[ImplementationIdeas#What Hardware to Use?]
 [ImplementationIdeas#pushpull]
 
 ----
 
-==[#hardware What Hardware to Use?]==
+==What Hardware to Use?==
 
 As [Requirements required] by my specifications, the hardware component of this system needs to be designed with parts that are essentially generic. I do not intend to use any functionality that can only be obtained through the use of a specific microprocessor and I want this project to be replicable anywhere in the world.
 
