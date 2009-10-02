@@ -82,7 +82,7 @@ _Buttons Pressed After Connecting Nodes:_
 || Node 3 ||   3    ||    6   ||   9    ||   #    ||
 
 Thus with only 7 connections, any key can be pressed on the DTMF keypad. A few other items of information must be noted here:
-  * An incoming call can be connected by completing a circuit between "Node 1" and the node annotated as "On / Accept". 
+  * An incoming call can be connected by completing a circuit across "Node 1" and the node annotated as "On / Accept". 
   * The power button is pressed by completing a circuit across the lead labeled "Power" and the "Ground" node. 
   * The outer edge of the keypad is ground.
 
