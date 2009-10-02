@@ -4,8 +4,11 @@
 
 This page is a general recording of various issues and divergent paths that arise in the process of deciding how to ultimately implement this project. The discussions are listed here in no particular order. If something becomes enough of an issue, I'll make a dedicated wiki page for it.
 
-[ImplementationIdeas#What_Hardware_to_Use?]
-[ImplementationIdeas#Discussion: Push or Pull?]
+===Topics On This Page===
+
+  * [ImplementationIdeas#What_Hardware_to_Use? What Hardware to Use?]
+  * [ImplementationIdeas#Discussion:_Push_or_Pull? Discussion: Push or Pull?]
+  * [ImplementationIdeas#Discussion:_Necessary_or_Sufficient_Controls? Discussion: Necessary or Sufficient Controls?]
 
 ----
 
@@ -61,4 +64,8 @@ Pull Model.
 
 ----
 
-==Discussion:
+==Discussion: Necessary or Sufficient Controls?==
+
+This is an issue that I need to elaborate in words, because it has become an increasingly frustrating aspect of my implementation: Why can't I connect the power button control circuit within the same circuitry as the rest of the button controls?
+
+This takes a little description, and at least a picture. 
