@@ -114,6 +114,8 @@ Regarding the return to home state, this will only become a problem if the phone
 
 ==== Cons of Electronic Control of the Power Button =====
 
+Controlling the power button from the microprocessor has several drawbacks:
+
   # The rest of the keypad becomes useless  
   # No manual override
   # Solving this problem is wasting development time
