@@ -82,6 +82,14 @@ _Buttons Pressed After Connecting Nodes:_
 || Node 3 ||   3    ||    6   ||   9    ||   #    ||
 
 Thus with only 7 connections, any key can be pressed on the DTMF keypad. A few other items of information must be noted here:
-  * A call can be connected by connecting Node 1 with the node annotated as "On / Accept". 
-  * The power button is connected by completing the circuit labeled "Power" and the "Ground" node. 
-  * The outer edge of the keypad is all grounded. 
+  * An incoming call can be connected by completing a circuit between "Node 1" and the node annotated as "On / Accept". 
+  * The power button is pressed by completing a circuit across the lead labeled "Power" and the "Ground" node. 
+  * The outer edge of the keypad is ground.
+
+These buttons can be connected electronically using a [http://en.wikipedia.org/wiki/Three-state_logic tri-state buffer] where the nodes to be connected are the input and output of the buffer and a control signal (from, say, a microprocessor) is the enable. So, you can press any button on the keypad electronically without mechanical energy (i.e. pushing a button).
+
+There are issue with this, however. Tri-state buffer chips require power and ground, and in order to connect the power button, you need to ensure that the ground on the buffer chip is connected to the same ground as the cell phone. The problem that arises is the fact that connecting any of the keypad buttons through the same circuit results in Nodes 1-3 being drawn to ground. As a result, when you connect ANY key on the keypad, only a 1, 2, or 3 registers. Nodes 1, 2, and 3 MUST be connected to Nodes A, B, C, and D in order for all of the keys (0-9,`*`,#) to register. If the ground of the circuitry used to electronically connect these nodes is also connected to the ground of the cell phone (as required by the circuitry to connect the "Power" button), the keypad is rendered useless.
+
+Oddly, all of the keypad's functionality is rendered useless in the interest of electronically connecting the power button. 
+
+=== Question: Why Do We Need The Power Button? ===
