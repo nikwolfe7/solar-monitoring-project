@@ -31,7 +31,7 @@ GSM chips are $100 bucks flat, and are only really sold by themselves without a 
 
 ----
 
-==Discussion:_Push_or_Pull==
+==Discussion: Push or Pull==
 
 There are actually two different ways to accomplish the task of initializing the data transfer from the solar array site to the remote server. 
 
