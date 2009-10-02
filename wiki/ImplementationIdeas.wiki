@@ -86,7 +86,7 @@ Thus with only 7 connections, any key can be pressed on the DTMF keypad. A few o
   * The power button is pressed by completing a circuit across the lead labeled "Power" and the "Ground" node. 
   * The outer edge of the keypad is ground.
 
-These buttons can be connected electronically using a [http://en.wikipedia.org/wiki/Three-state_logic tri-state buffer] where the nodes to be connected are the input and output of the buffer and a control signal (from, say, a microprocessor) is the enable. So, you can press any button on the keypad electronically without mechanical energy (i.e. pushing a button).
+These buttons can be connected electronically using a [http://en.wikipedia.org/wiki/Three-state_logic tri-state buffer] where any two nodes to be connected are the input and output of the buffer and a control signal (from, say, a microprocessor) is the enable. So, you can press any button on the keypad electronically without mechanical energy (i.e. pushing a button).
 
 <img src="http://www.geocities.com/SiliconValley/2072/3statbuf.gif" alt="tri-state buffer" />
 
@@ -96,4 +96,34 @@ Oddly, all of the keypad's functionality is sacrificed in the interest of electr
 
 === Question: Why Do We Need The Power Button? ===
 
-After trying in vain to resolve this problem for more days than I care to admit, I realized yet another consequence of using a [ImplementationIdeas#Discussion:_Push_or_Pull pull] model for this system. If the cell phone is passively waiting for a call at all times, why would you ever want to turn it off?
+After trying in vain to resolve this problem for more days than I care to admit, I realized yet another consequence of using a [ImplementationIdeas#Discussion:_Push_or_Pull pull] model for this system. If the cell phone is passively waiting for a call at all times, why would you ever want to turn it off? Or, for that matter, why can't we just break out the power button as a mechanical switch for an operator to manually override if needed?
+
+==== Pros of Electronic Control of the Power Button =====
+
+The power button is useful for 3 things:
+
+  # Turning the phone on and off
+  # Disconnecting a call
+  # Returning to the home state of the phone
+
+Regarding the turning on and off of a phone, one of the requirements of this project is to develop some circuitry that will periodically recharge the battery along with the power source for the Arduino board. So, ideally, turning the phone on or off shouldn't be that much of a concern. 
+
+Regarding the disconnection of a call, we can accomplish this task either through the use of the power button or from the other end of the call. So, this isn't a dire requirement. A control signal could be sent to the receiver to terminate the call in the form of a key that won't be used for data, like the # or `*` keys, perhaps.
+
+Regarding the return to home state, this will only become a problem if the phone winds up in a state where the electronic controls are no longer of any use. 
+
+==== Cons of Electronic Control of the Power Button =====
+
+  # The rest of the keypad becomes useless  
+  # No manual override
+  # Solving this problem is wasting development time
+
+I attempted to solve the first issue here by generating DTMF tones through the Arduino PWM outputs. I found a [http://code.google.com/p/arduino-tone/ software library] to generate DTMF tones and ran it on the board. The tones were of audibly bad quality, and could not navigate a phone menu. This is not to say that perhaps this library was to blame for the production of poor quality tones. It is to say that generating a reliable library of DTMF tones with the Arduino will probably require some additional hardware, plus the development time required to fine tune the outputs to produce tones that will be recognized as DTMF. Furthermore, the DSP on the cell phone board is of excellent quality and can send high amplitude DTMF signals through a connected phone line. This potential is worthy of consideration.
+
+Next, the connection of the power button ONLY to the microprocessor makes it impossible without recompiling and re-installing the software system for the cell phone to be turned off without manually connecting a wire across the leads and potentially disturbing the wiring on the phone. Furthermore, if someone needed to turn the phone off for any other reason to get a "clean slate" on the phone, a manual push-button could be of use. 
+
+Finally, and most importantly, I have a feeling there is a better solution to this problem, but it is a waste of time to bother much beyond this. Perhaps later when I have a working prototype and I want to make improvements, I will return to this, but not now. At this point, with a manual push button for the power, I can gain full access to the keypad electronically and use the microprocessor to do the work I need. I do not need the power button to be controlled by the microprocessor at this point and struggling with it is costing me precious days. 
+
+==== Resolution ====
+
+I'm making a manual push-button for the power and moving on...
