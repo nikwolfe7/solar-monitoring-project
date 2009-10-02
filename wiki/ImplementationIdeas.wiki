@@ -64,7 +64,7 @@ Pull Model.
 
 ----
 
-==Discussion: Necessary or Sufficient Controls?==
+==Discussion: Necessary or Sufficient Controls==
 
 This is an issue that I need to elaborate in words, because it has become an increasingly frustrating aspect of my implementation: Why can't I connect the power button control circuit within the same circuitry as the rest of the button controls?
 
