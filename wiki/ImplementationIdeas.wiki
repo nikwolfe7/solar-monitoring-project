@@ -3,6 +3,10 @@
 == Strategies for Implementation ==
 
 This page is a general recording of various issues and divergent paths that arise in the process of deciding how to ultimately implement this project. The discussions are listed here in no particular order. If something becomes enough of an issue, I'll make a dedicated wiki page for it.
+
+=== Topics On This Page ===
+
+  [W#hardware]
  
 ----
 
