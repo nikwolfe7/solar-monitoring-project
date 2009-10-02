@@ -71,3 +71,10 @@ This is an issue that I need to elaborate in words, because it has become an inc
 This takes a little description, and at least one picture:
 
 <img src="http://solar-monitoring-project.googlecode.com/svn/img/th_keypad.png" alt="image" width="75%" height="75%"/>
+
+This image is of the keypad nodes on the motherboard of a Motorola W260g. Any button on this keypad can be pressed by connecting a circuit across the outer and inner circular leads. The nodes are important because the keys are arranged as a grid:
+
+||        || Node A || Node B || Node C || Node D ||
+|| Node 1 ||     
+|| Node 2 ||
+|| Node 3 ||
