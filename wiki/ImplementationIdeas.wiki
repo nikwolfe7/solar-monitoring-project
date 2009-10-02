@@ -70,4 +70,4 @@ This is an issue that I need to elaborate in words, because it has become an inc
 
 This takes a little description, and at least one picture:
 
-<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_keypad.png" alt="image" />
+<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_keypad.png" alt="image" width="75%" height="75%"/>
