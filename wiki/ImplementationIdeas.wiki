@@ -234,7 +234,7 @@ There is a lot of data in the above table, if we wanted to transfer it verbatim.
 
 ||18.75||15.50||12.40||12.30||25.00||1275.60||
 
-Of course, how should we indicate the decimal points? Continuing with our emphasis on simplicity, I submit that the following string can be considered equivalent to the above:
+Here, the receiving end of the transfer would simply map the first value as corresponding to the panel voltage, the second the amperage, and so on. Of course, how should we indicate the decimal points? Continuing with our emphasis on simplicity, I submit that the following string can be considered equivalent to the above:
 
 ||1875||1550||1240||1230||2500||127560||
 
