@@ -177,7 +177,7 @@ There are problems with this system, however. The DTMF tones A, B, C, D are not 
 
 So assuming we opted to only use tones on the standard keypad, (a plus for systems that use digital switches to electronically push the keys on a phone) the next option would be to use an octal number base, where 8 tones are used to encode every combination of 3 binary bits. 
 
-The issue with this is that bytes don't break down evenly. To encode a byte with an octal-based DTMF mapping, we would need 3 tones, which would correspond to 9 bits (i.e. DTMF: 0,1,2 => Octal-Binary: 000, 001, 010 => Byte: 00001010). In this case, the decoding process would have to chop one bit off of the sequence created by every 3 sequential tones. Unless we made special use of this last bit or planned to reserve this space for some future use, the use of an octal-encoding seems a little awkward to me.
+The issue with this is that bytes don't break down evenly. To encode a byte with an octal-based DTMF mapping, we would need 3 tones, which would correspond to 9 bits (i.e. DTMF: 0,1,2 => Octal-Binary: 000, 001, 010 => Byte: 00001010). In this case, the decoding process would have to chop one bit off of the sequence created by every 3 transmitted tones. Unless we made special use of this last bit or planned to reserve this space for some future use, the use of an octal-encoding seems a little awkward to me.
 
 The next system would be a 4-tone 2-bit binary encoding, such as:
 
@@ -204,3 +204,111 @@ The only truly compelling reason to use binary is the ability to translate the e
 I believe that in order to simplify the job of the most volatile part of this system, the data transmitter itself, we should defer the processing of information to the data collector, in this case a remote server. The transmitter should only store the least possible information and should do little if any analysis. 
 
 The benefit of this approach is that we can just transfer numbers. Dumb, simple, unprocessed, raw data. There is no reason to introduce the need for letters. At least, not in the simplest case, which is what I am concerned with here. So, when we examine any given cellular keypad, what do we have the most obvious access to? Numbers! So why not just input numeric values directly?
+
+In this case the translation becomes trivial:
+
+|| DTMF Tones || Decimal Translation ||
+|| 1          || 1                   ||
+|| 2          || 2                   ||
+|| 3          || 3                   ||
+|| 4          || 4                   ||
+|| etc...     || etc...              ||
+
+But what about fractional values? Or indicating the magnitude and units of numbers? Or indicating the starting and stopping points of a transmission? I've given some thought to the encoding of decimal values and I think the following system could work...
+
+====DTMF Decimal-Encoded Data Frames====
+
+The primary motivation for using a decimal system is the fact that data can be encoded directly, and fewer digits need to be used. I discuss these concerns in more detail in the [ImplementationIdeas#Reliable_Transfer Reliable Transfer] section. Now, to explain my idea for a decimal encoded system... 
+
+Let's assume for a moment that we wanted to transmit the following values for a hypothetical solar power system:
+
+|| Time              || 10:00 AM    ||
+|| Panel Voltage     || 18.75 V     ||
+|| Panel Amperage    || 15.50 A     ||
+|| Battery Voltage   || 13.40 V     ||
+|| Battery Amperage  || 12.30 A     ||
+|| Battery Temp      || 25.00 C     ||
+|| Total Kilowatt-Hrs|| 1275.60 KWH ||
+
+There is a lot of data in the above table, if we wanted to transfer it verbatim. Off the bat, we don't care about time. That can be easily enough determined by the time the transfer is initiated, or can be calculated if bulk data were being transmitted a given time based on a sampling rate. Furthermore, we don't need any of these labels if we know the order in which they occur. The character string "Panel Voltage" is rendered utterly meaningless if we simply establish that the first value, 18.75V, corresponds to the voltage of the solar panels. Secondly, we already know that voltage is measured in Volts, so we don't need that information either. We can establish the units based on the ordering. Knocking all of the unnecessary characters out of the picture (the need for total kilowatt-hours is debatable), we could transmit this entire table as the following string of numbers:
+
+||18.75||15.50||12.40||12.30||25.00||1275.60||
+
+Of course, how should we indicate the decimal points? Continuing with our emphasis on simplicity, I submit that the following string can be considered equivalent to the above:
+
+||1875||1550||1240||1230||2500||127560||
+
+The problem with the above is the fact that there's no notion of where one number starts and the next begins. On what order of magnitude are these numbers? How many places after the decimal point are there? In this case, since the values of all the first five numbers are on the order of 10^1, and the last number is on the order of 10^3, I'm going to make an exception in order to continue my explanation: Let's consider the last number a special case and drop it completely. Now, since all of the first five numbers are of the same order of magnitude, let's put at "2" at the beginning of the string to indicate the number of digits on either side of the decimal point. (You could also argue that a "1" should be used to indicate the power of 10, but 2 decimal places is 10^-2, so I think a 2 is more descriptive in this case.)
+
+Now, the string becomes:
+
+||2||1875||1550||1240||1230||2500||
+
+With the 2 at the beginning of this string, we now know that each of the encoded numbers are composed of 4 total digits, with 2 before the decimal and two after. We can decode this string and get all of the original information back. (This is of course with the knowledge that we elided the total kilowatt hours value as a special case. The basic point still stands.)
+
+There are obvious variations on this idea. What if for some odd reason the voltage were 110 volts? How would a system only capable of indicating 2 places in front of the decimal be able to represent this number? Well, fortunately, this is not a realistic concern. Most solar panels operate in the range of 12-48 Volts, and unless they were struck by lightning at the exact instant they were being monitored, the voltage would never be on the order of 10^2. It is almost ALWAYS going to be the case that the maximum expected voltage will be knowable to within an order of magnitude.
+
+Solar panels can be strung in series to create higher voltages, of course. If this were the case, the first number would simply be increased to a magnitude that can represent any expected value. 
+
+But in the latter situation, assuming we kept with the convention of having equal numbers on either side of the decimal place, digits after the decimal point beyond the hundreds place are sort of useless. What if we are monitoring a 250V solar power system? Despite the fact that you'd probably use a more high-octane monitoring system than this for such a system, we don't need 3 decimal places. Milli-amps are not exactly useful units when it comes to power generation!
+
+So, a useful variation might be to just allocate 2 numbers after the decimal place and make the first number correspond to the power of 10 in front of the decimal place. So, assuming we wanted to represent the previous string, it'd become the following:
+
+||1||1875||1550||1240||1230||2500||
+
+In this case we'd assume that all of the numbers are accurate to within 2 decimal places and no value will ever be greater than 99. So, each number can be determined to be 4 digits long, and all of the original information can be recovered. If, for example, we decided that we might have a 1000V spike during the day (highly unlikely, but a number on the order of 10^3), we'd create the following string:
+
+||3||001875||001550||001240||001230||002500||
+
+In this case, each value is expected to be composed of 6 digits, 4 in front of the decimal and 2 after. We'd then take a 6-digit slice of this string, say 001875, multiply it by 10^-2, and voila we'd get 18.75V for the panel voltage back. 
+
+Ensuring a reliable transfer of data is slightly more tricksy...
+
+====Reliable Transfer====
+
+What about data integrity? In my experience thus far, I have noticed some unpromising things about using a microprocessor to dial numbers on a keypad electronically. Digits are sent out of order, or potentially not at all. While I think this can be tweaked by improving the dialing software, one of the things that must be realized about using a phone to dial a tone is the fact that a phone buffers tones that are pressed via the keypad and releases them at pre-defined intervals. 
+
+So, since we can't control the speed, we have to control the quality, because air-time is money. The interest of minimizing cost compels us to minimize the number of digits we have to send. This is part of the reason I think decimal is a better number base than binary in this case. Consider the following example...
+
+Assuming we wanted to transfer the table referred to in the previous section with the most efficient possible DTMF encoding, hexadecimal. The table, again, was:
+
+|| Time              || 10:00 AM    ||
+|| Panel Voltage     || 18.75 V     ||
+|| Panel Amperage    || 15.50 A     ||
+|| Battery Voltage   || 13.40 V     ||
+|| Battery Amperage  || 12.30 A     ||
+|| Battery Temp      || 25.00 C     ||
+|| Total Kilowatt-Hrs|| 1275.60 KWH ||
+
+Assuming we streamlined the data into a single-dimension vector and eliminated time and total kilowatt-hours, the table becomes:
+
+||18.75||15.50||13.40||12.30||25.00||
+
+In binary, these numbers are doubles, which means they require a standard IEEE-754 32-bit encoding. So, each value requires 4 bytes, and each byte requires 2 tones. 
+
+5 doubles * 4 bytes per double * 2 DTMF tones per byte = 40 total tones.
+
+In comparison, the previous system I proposed using a decimal number base with the same data only uses 21 total tones, which is basically half. The following table lays out the comparisons using the above data for various number bases:
+
+|| Number Base || Total Tones Required ||
+|| Hex         || 40                   ||
+|| Oct         || 60                   ||
+|| Quad        || 80                   ||
+|| Dec         || 21                   ||
+
+Clearly the use of a decimal system is preferable for simple number transfers where the magnitude of the values is known in advance. Of course, using a hexadecimal encoding requires using the Arduino to generate the tones because you can't dial A, B, C, or D on a standard keypad. In such a situation, the speed of the transfer can be increased, but this requires additional digital-to-analog conversion hardware. Furthermore, being able to generate tones with the Arduino only would only improve the attractiveness of using a decimal system, (although the use of ASCII is enabled by using a hexadecimal encoding.)
+
+So, assuming we were still dialing keys on the keypad electronically, we have to worry about things like keys being dialed out of order or not at all (these are limitations of not being able to control the reliability of disposable cell-phone hardware). A reliable transfer protocol should be able to detect when such failures occur. 
+
+The recourse for dealing with a failure to transmit data correctly in this case is relatively limited. Unless we want to implement an acknowledgement 
+
+
+
+
+
+
+
+
+
+
+
