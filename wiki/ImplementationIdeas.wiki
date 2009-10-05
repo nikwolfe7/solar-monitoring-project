@@ -15,7 +15,7 @@ This page is a general recording of various issues and divergent paths that aris
 
 ==What Hardware to Use?==
 
-[ImplementationIdeas Top]
+[ImplementationIdeas << Top]
 
 As [Requirements required] by my specifications, the hardware component of this system needs to be designed with parts that are essentially generic. I do not intend to use any functionality that can only be obtained through the use of a specific microprocessor and I want this project to be replicable anywhere in the world.
 
@@ -38,6 +38,8 @@ GSM chips are $100 bucks flat, and are only really sold by themselves without a 
 ----
 
 ==Discussion: Push or Pull==
+
+[ImplementationIdeas << Top]
 
 There are actually two different ways to accomplish the task of initializing the data transfer from the solar array site to the remote server. 
 
@@ -68,6 +70,8 @@ Pull Model.
 ----
 
 ==Discussion: Necessary or Sufficient Controls==
+
+[ImplementationIdeas << Top]
 
 This is an issue that I need to elaborate in words, because it has become an increasingly frustrating aspect of my implementation: Why can't I connect the power button control circuit to the same circuitry as the rest of the button controls?
 
@@ -133,7 +137,11 @@ Finally, and most importantly, I have a feeling there is a better solution to th
 
 I'm making a manual push-button for the power and moving on...
 
+----
+
 ==Discussion: Transfer Protocols==
+
+[ImplementationIdeas << Top]
 
 In order to wirelessly transmit data about the performance of a given solar power system to a remote server, we need some sort of [http://en.wikipedia.org/wiki/Communications_protocol transfer protocol]. One of the critical aspects of using a hacked cellular phone and DTMF tones as a means of transferring data via audio is the development of an appropriate and effective protocol. Tones have to correspond to data and must be able to represent any possible value that might need to be transferred. 
 
