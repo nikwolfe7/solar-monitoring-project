@@ -143,7 +143,7 @@ I'm making a manual push-button for the power and moving on...
 
 [ImplementationIdeas << Top]
 
-In order to wirelessly transmit data about the performance of a given solar power system to a remote server, we need some sort of [http://en.wikipedia.org/wiki/Communications_protocol transfer protocol]. One of the critical aspects of using a hacked cellular phone and DTMF tones as a means of transferring data via audio is the development of an appropriate and effective protocol. Tones have to correspond to data and must be able to represent any possible value that might need to be transferred. 
+In order to wirelessly transmit data about the performance of a solar power system to a remote server, we need some sort of [http://en.wikipedia.org/wiki/Communications_protocol transfer protocol]. One of the critical aspects of using a hacked cellular phone and DTMF tones as a means of transferring data via audio is the development of an appropriate and effective protocol. Tones have to correspond to data and must be able to represent any possible value that might need to be transferred. 
 
 ===One Approach: Binary Encoding===
 
@@ -301,8 +301,6 @@ Clearly the use of a decimal system is preferable for simple number transfers wh
 So, assuming we were still dialing keys on the keypad electronically, we have to worry about things like keys being dialed out of order or not at all--these are limitations of not being able to control the reliability of disposable cell-phone hardware. A reliable transfer protocol should be able to detect when such failures occur. 
 
 The recourse for dealing with a failure to transmit data correctly in this case is relatively limited. Unless we want to implement an acknowledgement hand-shaking mechanism that occurs during the course of a call, we simply have to detect a failure and begin the transfer again. Since this is not a performance-centric transfer protocol, we might as well just focus on error detection.
-
-
 
 
 
