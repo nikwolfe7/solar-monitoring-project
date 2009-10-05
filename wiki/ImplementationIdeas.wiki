@@ -149,23 +149,23 @@ In order to wirelessly transmit data about the performance of a solar power syst
 
 One of the useful things about DTMF is the fact that the existence of 16 distinct tones provides an easy translation to hexadecimal values, which can each represent 4 bits of binary information. Such a system would work as follows:
 
-|| DTMF Tones  || Binary Translation ||
-|| 0           || 0000               ||
-|| 1           || 0001               ||
-|| 2           || 0010               ||
-|| 3           || 0011               ||
-|| 4           || 0100               ||
-|| 5           || 0101               ||
-|| 6           || 0110               ||
-|| 7           || 0111               ||
-|| 8           || 1000               ||
-|| 9           || 1001               ||
-|| A           || 1010               ||
-|| B           || 1011               ||
-|| C           || 1100               ||
-|| D           || 1101               ||
-|| `*`         || 1110               ||
-|| #           || 1111               ||
+|| DTMF Tones  || Hex Value  || Binary Translation ||
+|| 0           || 0          || 0000               ||
+|| 1           || 1          || 0001               ||
+|| 2           || 2          || 0010               ||
+|| 3           || 3          || 0011               ||
+|| 4           || 4          || 0100               ||
+|| 5           || 5          || 0101               ||
+|| 6           || 6          || 0110               ||
+|| 7           || 7          || 0111               ||
+|| 8           || 8          || 1000               ||
+|| 9           || 9          || 1001               ||
+|| A           || A          || 1010               ||
+|| B           || B          || 1011               ||
+|| C           || C          || 1100               ||
+|| D           || D          || 1101               ||
+|| `*`         || E          || 1110               ||
+|| #           || F          || 1111               ||
 
 This system would allow any binary string to be encoded as DTMF tones, where each byte is the conjunction of two tones in sequence. The software that receives a transmission of audio information in such a format would simply decode the audio tones and map them to the appropriate binary values. 
 
@@ -301,8 +301,6 @@ Clearly the use of a decimal system is preferable for simple number transfers wh
 So, assuming we were still dialing keys on the keypad electronically, we have to worry about things like keys being dialed out of order or not at all--these are limitations of not being able to control the reliability of disposable cell-phone hardware. A reliable transfer protocol should be able to detect when such failures occur. 
 
 The recourse for dealing with a failure to transmit data correctly in this case is relatively limited. Unless we want to implement an acknowledgement hand-shaking mechanism that occurs during the course of a call, we simply have to detect a failure and begin the transfer again. Since this is not a performance-centric transfer protocol, we might as well just focus on error detection.
-
-
 
 
 
