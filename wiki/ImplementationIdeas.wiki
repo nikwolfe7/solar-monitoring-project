@@ -218,7 +218,7 @@ But what about fractional values? Or indicating the magnitude and units of numbe
 
 ====DTMF Decimal-Encoded Data Frames====
 
-The primary motivation for using a decimal system is the fact that data can be encoded directly, and fewer digits need to be used. I discuss these concerns in more detail in the [ImplementationIdeas#Reliable_Transfer Reliable Transfer] section. Now, to explain my idea for a decimal encoded system... 
+The primary motivation for using a decimal system is the fact that data can be encoded directly, and it requires fewer digits. I discuss these concerns in more detail in the [ImplementationIdeas#Reliable_Transfer Reliable Transfer] section. Now, to explain my idea for a decimal encoded system... 
 
 Let's assume for a moment that we wanted to transmit the following values for a hypothetical solar power system:
 
