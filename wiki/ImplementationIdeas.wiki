@@ -320,7 +320,7 @@ One way to catch errors is to force certain signature digits to occur first and 
 
 This might seem trivial, but we can deduce a lot of information from the addition of these two tones. First, when the receiver software detects the first tone, it ensures that it is a "#" tone, or it terminates the call and tries again. Likewise, if the transmission does not end with a "#", we know there is a problem. But supposing the "#" key were to arrive out of order and we terminated the call before all of our data had been transferred? Well, the arrival of the second "#" indicates that we must analyze the number of tones we received based on the first number. If, in this case, we received a 1 first, we know that number of tones in the rest of the sequence must divide evenly by 4. If this is not the case, we throw out the data and try again. 
 
-If a transfer contains both "#" keys at the right positions, and the number of tones in the sequence after the initial digit divides evenly, we know that we have ALL of the tones that we should expect in our sequence. This does not ensure that they are in order or correct, however. Such error checking requires some additional processing.
+If a transfer contains both "#" keys at the right positions, and the number of tones in the sequence after the initial digit divides evenly (assuming of course that there are as many data fields as we expect), we know that we have ALL of the tones that we should expect in our sequence. This does not ensure that they are in order or correct, however. Such error checking requires some additional processing.
 
 ====Interpolation As Error-Checking====
 
