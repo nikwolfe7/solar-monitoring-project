@@ -199,7 +199,7 @@ Why use binary to encode the data we're trying to transfer? Well, there are seve
   # May be more intuitive to future users
   # I can't think of anything else
 
-The only truly compelling reason to use binary is the ability to translate the entire ASCII table. But what is the application in this case? All that we are interested in are numbers corresponding to things like the voltage and amperage of solar panels, batteries, and so on. The order and the format in which they are encoded is arbitrary!
+The only truly compelling reason to use binary is the ability to translate the entire ASCII table. But what is the application in this case? All that we are interested in are numbers corresponding to things like the voltage and amperage of solar panels, batteries, and so on. The order and the format in which they are encoded are arbitrary!
 
 I believe that in order to simplify the job of the most volatile part of this system, the data transmitter itself, we should defer the processing of information to the data collector, in this case a remote server. The transmitter should only store the least possible information and should do little if any analysis. 
 
@@ -301,4 +301,3 @@ Clearly the use of a decimal system is preferable for simple number transfers wh
 So, assuming we were still dialing keys on the keypad electronically, we have to worry about things like keys being dialed out of order or not at all--these are limitations of not being able to control the reliability of disposable cell-phone hardware. A reliable transfer protocol should be able to detect when such failures occur. 
 
 The recourse for dealing with a failure to transmit data correctly in this case is relatively limited. Unless we want to implement an acknowledgement hand-shaking mechanism that occurs during the course of a call, we simply have to detect a failure and begin the transfer again. Since this is not a performance-centric transfer protocol, we might as well just focus on error detection.
-
