@@ -238,7 +238,7 @@ Here, the receiving end of the transfer would simply map the first value as corr
 
 ||1875||1550||1240||1230||2500||127560||
 
-The problem with the above is the fact that there's no notion of where one number starts and the next begins. On what order of magnitude are these numbers? How many places after the decimal point are there? In this case, since the values of all the first five numbers are on the order of 10^(1) and the last number is on the order of 10^(3), I'm going to make an exception in order to continue my explanation: Let's consider the last number a special case and drop it completely. Now, since all of the first five numbers are of the same order of magnitude, let's put at "2" at the beginning of the string to indicate the number of digits on either side of the decimal point. (You could also argue that a "1" should be used to indicate the power of 10, but 2 decimal places is 10^(-2), so I think a 2 is more descriptive in this case.)
+The problem with the above is the fact that there's no notion of where one number starts and the next begins. On what order of magnitude are these numbers? How many places after the decimal point are there? In this case, since the values of all the first five numbers are on the order of 10^1^ and the last number is on the order of 10^3^, I'm going to make an exception in order to continue my explanation: Let's consider the last number a special case and drop it completely. Now, since all of the first five numbers are of the same order of magnitude, let's put at "2" at the beginning of the string to indicate the number of digits on either side of the decimal point. (You could also argue that a "1" should be used to indicate the power of 10, but 2 decimal places is 10^-2^, so I think a 2 is more descriptive in this case.)
 
 Now, the string becomes:
 
@@ -246,11 +246,11 @@ Now, the string becomes:
 
 With the 2 at the beginning of this string, we now know that each of the encoded numbers are composed of 4 total digits, with 2 before the decimal and two after. We can decode this string and get all of the original information back. (This is of course with the knowledge that we elided the total kilowatt hours value as a special case. The basic point still stands.)
 
-There are obvious variations on this idea. What if for some odd reason the voltage were 110 volts? How would a system only capable of indicating 2 places in front of the decimal be able to represent this number? Well, fortunately, this is not a realistic concern. Most solar panels operate in the range of 12-48 Volts, and unless they were struck by lightning at the exact instant they were being monitored, the voltage would never be on the order of 10^(2). It is almost ALWAYS going to be the case that the maximum expected voltage will be knowable to within an order of magnitude.
+There are obvious variations on this idea. What if for some odd reason the voltage were 110 volts? How would a system only capable of indicating 2 places in front of the decimal be able to represent this number? Well, fortunately, this is not a realistic concern. Most solar panels operate in the range of 12-48 Volts, and unless struck by lightning at the exact instant of measurement, the voltage of any single solar panel will never be on the order of 10^2^. It is almost ALWAYS going to be the case that the maximum expected voltage will be knowable to within an order of magnitude.
 
-Solar panels can be strung in series to create higher voltages, of course. If this were the case, the first number would simply be increased to a magnitude that can represent any expected value. 
+Solar panels can be strung in series to create higher voltages, of course. If this were the case, the first number would simply be increased to a magnitude that can represent any expected value. For instance, some current [http://en.wikipedia.org/wiki/Grid_tie_inverter grid-tied systems] have panel voltages on the order of 700V. Values of this magnitude could be represented with one extra digit.
 
-But in the latter situation, assuming we kept with the convention of having equal numbers on either side of the decimal place, digits after the decimal point beyond the hundreds place are sort of useless. What if we are monitoring a 250V solar power system? Despite the fact that you'd probably use a more high-octane monitoring system than this for such a system, we don't need 3 decimal places. Milli-amps are not exactly useful units when it comes to power generation!
+But in this latter situation, assuming we kept with the convention of having equal numbers on either side of the decimal place, digits beyond the hundredths place are sort of useless. What if we are monitoring a 250V solar power system? Despite the fact that you'd probably use a more high-octane monitoring system than this for such a system, we don't need 3 decimal places. Milli-volts are not exactly useful units when it comes to power generation!
 
 So, a useful variation might be to just allocate 2 numbers after the decimal place and make the first number correspond to the power of 10 in front of the decimal place. So, assuming we wanted to represent the previous string, it'd become the following:
 
@@ -260,13 +260,17 @@ In this case we'd assume that all of the numbers are accurate to within 2 decima
 
 ||3||001875||001550||001240||001230||002500||
 
-In this case, each value is expected to be composed of 6 digits, 4 in front of the decimal and 2 after. We'd then take a 6-digit slice of this string, say 001875, multiply it by 10^(-2), and voila we'd get 18.75V for the panel voltage back. 
+In this case, each value is expected to be composed of 6 digits, 4 in front of the decimal and 2 after. We'd then take a 6-digit slice of this string, say 001875, multiply it by 10^-2^, and voila we'd get 18.75V for the panel voltage back. 
 
 Ensuring a reliable transfer of data is slightly more tricksy...
 
 ====Reliable Transfer====
 
-What about data integrity? In my experience thus far, I have noticed some unpromising things about using a microprocessor to dial numbers on a keypad electronically. Digits are sent out of order, or potentially not at all. While I think this can be tweaked by improving the dialing software, one of the things that must be realized about using a phone to dial a tone is the fact that a phone buffers tones that are pressed via the keypad and releases them at pre-defined intervals. 
+What about data integrity? In my experience thus far, I have noticed some unpromising things about using a microprocessor to dial numbers on a keypad electronically. Digits are sent out of order, or potentially not at all. Below is a picture of my wiring and the output of a program I wrote to press the middle string of digits twice in sequence. In this case the output is correct but many times it is not.  
+
+<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_dialtones.png" alt="image" width="75%" height="75%"/>
+
+While I think that out-of-order tone problems can be mitigated by improving the dialing software, one of the things that must be realized about using a physical keypad to dial tones is the fact that a phone buffers the values of the keys that are pressed and releases them at pre-defined intervals. 
 
 So, since we can't control the speed, we have to control the quality, because air-time is money. The interest of minimizing cost compels us to minimize the number of digits we have to send. This is part of the reason I think decimal is a better number base than binary in this case. Consider the following example...
 
@@ -301,3 +305,38 @@ Clearly the use of a decimal system is preferable for simple number transfers wh
 So, assuming we were still dialing keys on the keypad electronically, we have to worry about things like keys being dialed out of order or not at all--these are limitations of not being able to control the reliability of disposable cell-phone hardware. A reliable transfer protocol should be able to detect when such failures occur. 
 
 The recourse for dealing with a failure to transmit data correctly in this case is relatively limited. Unless we want to implement an acknowledgement hand-shaking mechanism that occurs during the course of a call, we simply have to detect a failure and begin the transfer again. Since this is not a performance-centric transfer protocol, we might as well just focus on error detection.
+
+One way to catch errors is to force certain signature digits to occur first and last. This is similar to the way binary serial protocols ensure the integrity of byte transfers with start, stop, and parity bits. In this case, start and stop digits should not be numeric, because then they could be confused for being out of order. Fortunately, DTMF provides us with the "`*`" and "#" keys. We could simply provide that any transmission starts and ends with a # key, such that in the previous example of using a decimal-encoded system we would wind up with the following:
+
+||#||1||1875||1550||1240||1230||2500||#||
+
+This might seem trivial, but we can deduce a lot of information from the addition of these two tones. First, when the receiver software detects the first tone, it ensures that it is a "#" tone, or it terminates the call and tries again. Likewise, if the transmission does not end with a "#", we know there is a problem. But supposing the "#" key were to arrive out of order and we terminated the call before all of our data had been transferred? Well, the arrival of the second "#" indicates that we must analyze the number of tones we received based on the first number. If, in this case, we received a 1 first, we know that number of tones in the rest of the sequence must divide evenly by 4. If this is not the case, we throw out the data and try again. 
+
+If a transfer contains both "#" keys at the right positions, and the number of tones in the sequence after the initial digit divides evenly, we know that we have ALL of the tones that we should expect in our sequence. This does not ensure that they are in order or correct, however. Such error checking requires some additional processing.
+
+====Interpolation As Error Checking====
+
+A pessimistic approach to evaluating the integrity of a given data transfer would argue that if any item of data does not correspond to an "expected" or "normal" value, then it should be thrown out. 
+
+Consider the performance of a solar power system over the long term. Panel voltage and current should be at or near zero at night, and whatever the expected value is during the day. These things follow very well defined patterns. Let's say we're using a 12V system: Peak panel voltage should be in the range of 17-21V during the brightest hours of the day. The output actually follows a well-defined bell curve. So, once we have reliable performance data for a given solar power system, (such data is readily available and/or easily derived) we can perform error calculations on any items of data that we read in. If we know, for instance, that between the hours of 9:00 and 10:00 AM the voltage of our power system ought to be between 12V and 16V, if we receive a value like 21V or 61V, we have just reason to doubt the validity of our data transfer, and can justify a re-try.  
+
+This sort of error checking can be accomplished using [http://en.wikipedia.org/wiki/Interpolation interpolation]. We can check each value we receive against an expected value, and provided it does not deviate significantly from an interpolated curve that we derive from historical data, we can argue for trusting the received value as accurate. This goes back to the lazy engineer's mantra of what is "good enough". Our accuracy does not have to be perfect, but we can also take one step further...
+
+Let's assume we get bad data once, and we can detect it. Let's say our luck fails us and we get bad data upon retrying. And again, and again. Let's assume then that our system is designed to quit trying after 3 failed attempts. We mark a given update time as being "unspecified" and wait until the next scheduled update. Then, when the next update time arrives, assuming we get trustworthy data, we have two data points in time on either side of our failed attempt. We also have historical data that indicates what we "should" expect. Assuming something extreme has not occurred, in which case we must take other action, we can interpolate the values for a failed update time. It is a fairly safe assumption that if we have normal data at two separate times during the day that the time our system screwed up was not some outlandish skyrocket of power output or a lightning strike. 
+
+One issue of concern would be a low-voltage shut-off warning to a system overseer. If the battery voltage of 12V system drops anywhere below 11V, the electrolyte of the batteries is being depleted and the system must be shut off. So, supposing a value of 12.10V gets jumbled and becomes 11.02V or some variation. This would trigger an alert. Supposing it were a false alarm, no real harm has been done. If however, the system misinterpreted a signal of 10.12V as 12.10V, this does create a serious pickle. But, interpolating based on later information should reveal this value as being inconsistent and a warning message would be triggered. This system is a total failure if it cannot ensure any more reliable information than this.
+
+Things like rain and cloud-cover can cause trouble, but nothing that cannot be reasonably and intelligently designed against. In cases where all else fails, calling upon human intervention is a great option if you can get away with it. 
+
+====Decimal Transfer Protocol Summary====
+
+In summation, the DTMF encoding that I am proposing for this system utilizes the following data frame:
+
+|| Start Tone || Decimal Exponent || Data Item 1 || Data Item 2 || etc ... || Stop Tone ||
+|| #          || e.g. 1           || e.g. 1875   || e.g. 1650   || etc ... || #         ||
+
+The starting tone will always be a "#" key, followed by a single digit corresponding to the the decimal magnitude of the subsequent values. (This is obviously based on what the highest magnitude value is going to be, which should be determined during the configuration phase of any monitoring system.) A string of data items (in this case it can be arbitrary) follows the exponent, and we wait until a "#" key arrives corresponding to the end of the sequence in which case we do error checking, and either accept the data or reject it. If an error occurs at any time during the process, we reject the entire transfer and try again until we get valid data, or until we decide to stop trying and wait for the next update to retro-analyze the situation.
+
+Comments on this are welcome. This is just my idea.
+
+---- 
