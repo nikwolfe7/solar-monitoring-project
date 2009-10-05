@@ -296,7 +296,7 @@ Assuming we streamlined the data into a single-dimension vector and eliminated t
 
 ||18.75||15.50||13.40||12.30||25.00||
 
-In binary, these numbers are doubles, which means they require a standard IEEE-754 32-bit encoding. So, each value requires 4 bytes, and each byte requires 2 tones. 
+In binary, these numbers are doubles, which means they require a standard [http://en.wikipedia.org/wiki/IEEE_754-2008 IEEE-754] 32-bit encoding. So, each value requires 4 bytes, and each byte requires 2 tones. 
 
 5 doubles X 4 bytes per double X 2 DTMF tones per byte = 40 total tones.
 
