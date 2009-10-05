@@ -9,6 +9,7 @@ This page is a general recording of various issues and divergent paths that aris
   * [ImplementationIdeas#What_Hardware_to_Use? What Hardware to Use]
   * [ImplementationIdeas#Discussion:_Push_or_Pull Discussion: Push or Pull]
   * [ImplementationIdeas#Discussion:_Necessary_or_Sufficient_Controls Discussion: Necessary or Sufficient Controls]
+  * [ImplementationIdeas#Discussion:_Transfer_Protocols Discussion: Transfer Protocols]
 
 ----
 
@@ -129,3 +130,7 @@ Finally, and most importantly, I have a feeling there is a better solution to th
 ==== Resolution ====
 
 I'm making a manual push-button for the power and moving on...
+
+==Discussion: Transfer Protocols==
+
+
