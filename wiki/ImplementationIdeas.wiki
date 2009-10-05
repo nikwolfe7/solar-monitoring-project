@@ -143,6 +143,11 @@ I'm making a manual push-button for the power and moving on...
 
 [ImplementationIdeas << Top]
 
+====Contents====
+====[ImplementationIdeas#One_Approach:_Binary_Encoding Binary Encoding]====
+====[ImplementationIdeas#Another_Approach:_Decimal_Encoding Decimal Encoding]====
+====[ImplementationIdeas#Decimal_Transfer_Protocol_Summary Article Summary]====
+
 In order to wirelessly transmit data about the performance of a solar power system to a remote server, we need some sort of [http://en.wikipedia.org/wiki/Communications_protocol transfer protocol]. One of the critical aspects of using a hacked cellular phone and DTMF tones as a means of transferring data via audio is the development of an appropriate and effective protocol. Tones have to correspond to data and must be able to represent any possible value that might need to be transferred. 
 
 ===One Approach: Binary Encoding===
@@ -290,7 +295,7 @@ Assuming we streamlined the data into a single-dimension vector and eliminated t
 
 In binary, these numbers are doubles, which means they require a standard IEEE-754 32-bit encoding. So, each value requires 4 bytes, and each byte requires 2 tones. 
 
-5 doubles * 4 bytes per double * 2 DTMF tones per byte = 40 total tones.
+5 doubles X 4 bytes per double X 2 DTMF tones per byte = 40 total tones.
 
 In comparison, the previous system I proposed using a decimal number base with the same data only uses 21 total tones, which is basically half. The following table lays out the comparisons using the above data for various number bases:
 
@@ -328,7 +333,7 @@ One issue of concern would be a low-voltage shut-off warning to a system oversee
 
 Things like rain and cloud-cover can cause trouble, but nothing that cannot be reasonably and intelligently designed against. In cases where all else fails, calling upon human intervention is a great option if you can get away with it. 
 
-====Decimal Transfer Protocol Summary====
+===Decimal Transfer Protocol Summary===
 
 In summation, the DTMF encoding that I am proposing for this system utilizes the following data frame:
 
