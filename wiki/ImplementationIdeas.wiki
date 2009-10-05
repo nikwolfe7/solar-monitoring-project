@@ -129,7 +129,7 @@ Controlling the power button from the microprocessor has several drawbacks:
 
 I attempted to solve the first issue here by generating DTMF tones through the Arduino PWM outputs. I found a [http://code.google.com/p/arduino-tone/ software library] to generate DTMF tones and ran it on the board. The tones were of audibly bad quality, and could not navigate a phone menu. This is not to say that perhaps this library was to blame for the production of poor quality tones. It is to say that generating a reliable library of DTMF tones with the Arduino will probably require some additional hardware, plus the development time required to fine tune the outputs to produce tones that will be recognized as DTMF. Furthermore, the DSP on the cell phone board is of excellent quality and can send high amplitude DTMF signals through a connected phone line. This potential is worthy of consideration.
 
-Next, the connection of the power button ONLY to the microprocessor makes it impossible without recompiling and re-installing the software system for the cell phone to be turned off without manually connecting a wire across the leads and potentially disturbing the wiring on the phone. Furthermore, if someone needed to turn the phone off for any other reason to get a "clean slate" on the phone, a manual push-button could be of use. 
+Next, the connection of the power button to the microprocessor only makes it impossible without recompiling and re-installing the software system for the cell phone to be turned off without manually connecting a wire across the leads and potentially disturbing the wiring on the phone. Furthermore, if someone needed to turn the phone off for any other reason to get a "clean slate" on the phone, a manual push-button could be of use. 
 
 Finally, and most importantly, I have a feeling there is a better solution to this problem, but it is a waste of time to bother much beyond this. Perhaps later when I have a working prototype and I want to make improvements, I will return to this, but not now. At this point, with a manual push button for the power, I can gain full access to the keypad electronically and use the microprocessor to do the work I need. I do not need the power button to be controlled by the microprocessor at this point and struggling with it is costing me precious days. 
 
@@ -301,8 +301,6 @@ Clearly the use of a decimal system is preferable for simple number transfers wh
 So, assuming we were still dialing keys on the keypad electronically, we have to worry about things like keys being dialed out of order or not at all--these are limitations of not being able to control the reliability of disposable cell-phone hardware. A reliable transfer protocol should be able to detect when such failures occur. 
 
 The recourse for dealing with a failure to transmit data correctly in this case is relatively limited. Unless we want to implement an acknowledgement hand-shaking mechanism that occurs during the course of a call, we simply have to detect a failure and begin the transfer again. Since this is not a performance-centric transfer protocol, we might as well just focus on error detection.
-
-
 
 
 
