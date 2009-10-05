@@ -203,7 +203,7 @@ The only truly compelling reason to use binary is the ability to translate the e
 
 I believe that in order to simplify the job of the most volatile part of this system, the data transmitter itself, we should defer the processing of information to the data collector, in this case a remote server. The transmitter should only store the least possible information and should do little if any analysis. 
 
-The benefit of this approach is that we can just transfer numbers--dumb, simple, unprocessed, raw data. There is no reason to introduce the need for letters. At least, not in the simplest case, which is what I am concerned with here. So, when we examine any given cellular keypad, what do we have the most obvious access to? Numbers! So why not just input numeric values directly?
+The benefit of this approach is that we can just transfer numbers--dumb, simple, unprocessed raw data. There is no reason to introduce a need for letters. At least, not in the simplest case, which is what I am concerned with here. So, when we examine any given cellular keypad, what do we have the most obvious access to? Numbers! So why not just input numeric values directly?
 
 In this case the translation becomes trivial:
 
