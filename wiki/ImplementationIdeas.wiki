@@ -199,7 +199,7 @@ Why use binary to encode the data we're trying to transfer? Well, there are seve
   # May be more intuitive to future users
   # I can't think of anything else
 
-The only truly compelling reason to use binary is the ability to translate the entire ASCII table. But what is the application in this case? All that we are interested in are numbers corresponding to things like the voltage and amperage of solar panels, batteries, and so on. The order and the format in which they are encoded are arbitrary!
+The only truly compelling reason to use binary is the ability to translate the entire ASCII table. But what is the application in this case? All that we are interested in are numbers corresponding to things like the voltage and amperage of solar panels, batteries, and so on. The order and format in which these numbers are encoded is arbitrary!
 
 I believe that in order to simplify the job of the most volatile part of this system, the data transmitter itself, we should defer the processing of information to the data collector, in this case a remote server. The transmitter should only store the least possible information and should do little if any analysis. 
 
