@@ -298,9 +298,13 @@ In comparison, the previous system I proposed using a decimal number base with t
 
 Clearly the use of a decimal system is preferable for simple number transfers where the magnitude of the values is known in advance. Of course, using a hexadecimal encoding requires using the Arduino to generate the tones because you can't dial A, B, C, or D on a standard keypad. In such a situation, the speed of the transfer can be increased, but this requires additional digital-to-analog conversion hardware. Furthermore, being able to generate tones with the Arduino only would only improve the attractiveness of using a decimal system, (although the use of ASCII is enabled by using a hexadecimal encoding.)
 
-So, assuming we were still dialing keys on the keypad electronically, we have to worry about things like keys being dialed out of order or not at all (these are limitations of not being able to control the reliability of disposable cell-phone hardware). A reliable transfer protocol should be able to detect when such failures occur. 
+So, assuming we were still dialing keys on the keypad electronically, we have to worry about things like keys being dialed out of order or not at all--these are limitations of not being able to control the reliability of disposable cell-phone hardware. A reliable transfer protocol should be able to detect when such failures occur. 
 
-The recourse for dealing with a failure to transmit data correctly in this case is relatively limited. Unless we want to implement an acknowledgement 
+The recourse for dealing with a failure to transmit data correctly in this case is relatively limited. Unless we want to implement an acknowledgement hand-shaking mechanism that occurs during the course of a call, we simply have to detect a failure and begin the transfer again. Since this is not a performance-centric transfer protocol, we might as well just focus on error detection.
+
+
+
+
 
 
 
