@@ -268,7 +268,7 @@ Ensuring a reliable transfer of data is slightly more tricksy...
 
 What about data integrity? In my experience thus far, I have noticed some unpromising things about using a microprocessor to dial numbers on a keypad electronically. Digits are sent out of order, or potentially not at all. Below is a picture of my wiring and the output of a program I wrote to press the middle string of digits twice in sequence. In this case the output is correct but many times it is not.  
 
-<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_dialtones.png" alt="image" width="50%" height="50%"/>
+<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_dialtones.png" alt="image" width="60%" height="60%"/>
 
 While I think that out-of-order tone problems can be mitigated by improving the dialing software, one of the things that must be realized about using a physical keypad to dial tones is the fact that a phone buffers the values of the keys that are pressed and releases them at pre-defined intervals. 
 
