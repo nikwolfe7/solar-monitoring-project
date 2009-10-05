@@ -144,9 +144,9 @@ I'm making a manual push-button for the power and moving on...
 [ImplementationIdeas << Top]
 
 ====Contents====
-====[ImplementationIdeas#One_Approach:_Binary_Encoding Binary Encoding]====
-====[ImplementationIdeas#Another_Approach:_Decimal_Encoding Decimal Encoding]====
-====[ImplementationIdeas#Decimal_Transfer_Protocol_Summary Article Summary]====
+  * ====[ImplementationIdeas#One_Approach:_Binary_Encoding Binary Encoding]====
+  * ====[ImplementationIdeas#Another_Approach:_Decimal_Encoding Decimal Encoding]====
+  * ====[ImplementationIdeas#Decimal_Transfer_Protocol_Summary Article Summary]====
 
 In order to wirelessly transmit data about the performance of a solar power system to a remote server, we need some sort of [http://en.wikipedia.org/wiki/Communications_protocol transfer protocol]. One of the critical aspects of using a hacked cellular phone and DTMF tones as a means of transferring data via audio is the development of an appropriate and effective protocol. Tones have to correspond to data and must be able to represent any possible value that might need to be transferred. 
 
@@ -344,4 +344,4 @@ The starting tone will always be a "#" key, followed by a single digit correspon
 
 Comments on this are welcome. This is just my idea.
 
----- 
+----- 
