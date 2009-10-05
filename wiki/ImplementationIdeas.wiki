@@ -148,8 +148,7 @@ I'm making a manual push-button for the power and moving on...
   * [ImplementationIdeas#Another_Approach:_Decimal_Encoding Decimal Encoding]
   * [ImplementationIdeas#DTMF_Decimal-Encoded_Data_Frames DTMF Decimal-Encoded Data Frames]
   * [ImplementationIdeas#Reliable_Transfer Reliable Transfer]
-  * [ImplementationIdeas#Interpolation_As_Error-Checking
-Interpolation As Error-Checking]
+  * [ImplementationIdeas#Interpolation_As_Error-Checking Interpolation As Error-Checking]
   * [ImplementationIdeas#Decimal_Transfer_Protocol_Summary Article Summary]
 
 In order to wirelessly transmit data about the performance of a solar power system to a remote server, we need some sort of [http://en.wikipedia.org/wiki/Communications_protocol transfer protocol]. One of the critical aspects of using a hacked cellular phone and DTMF tones as a means of transferring data via audio is the development of an appropriate and effective protocol. Tones have to correspond to data and must be able to represent any possible value that might need to be transferred. 
