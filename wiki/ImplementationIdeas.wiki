@@ -144,9 +144,13 @@ I'm making a manual push-button for the power and moving on...
 [ImplementationIdeas << Top]
 
 ====Contents====
-  * ====[ImplementationIdeas#One_Approach:_Binary_Encoding Binary Encoding]====
-  * ====[ImplementationIdeas#Another_Approach:_Decimal_Encoding Decimal Encoding]====
-  * ====[ImplementationIdeas#Decimal_Transfer_Protocol_Summary Article Summary]====
+  * [ImplementationIdeas#One_Approach:_Binary_Encoding Binary Encoding]
+  * [ImplementationIdeas#Another_Approach:_Decimal_Encoding Decimal Encoding]
+  * [ImplementationIdeas#DTMF_Decimal-Encoded_Data_Frames DTMF Decimal-Encoded Data Frames]
+  * [ImplementationIdeas#Reliable_Transfer Reliable Transfer]
+  * [ImplementationIdeas#Interpolation_As_Error-Checking
+Interpolation As Error-Checking]
+  * [ImplementationIdeas#Decimal_Transfer_Protocol_Summary Article Summary]
 
 In order to wirelessly transmit data about the performance of a solar power system to a remote server, we need some sort of [http://en.wikipedia.org/wiki/Communications_protocol transfer protocol]. One of the critical aspects of using a hacked cellular phone and DTMF tones as a means of transferring data via audio is the development of an appropriate and effective protocol. Tones have to correspond to data and must be able to represent any possible value that might need to be transferred. 
 
@@ -261,7 +265,7 @@ So, a useful variation might be to just allocate 2 numbers after the decimal pla
 
 ||1||1875||1550||1240||1230||2500||
 
-In this case we'd assume that all of the numbers are accurate to within 2 decimal places and no value will ever be greater than 99. So, each number can be determined to be 4 digits long, and all of the original information can be recovered. If, for example, we decided that we might have a 1000V spike during the day (highly unlikely, but a number on the order of 10^(3)), we'd create the following string:
+In this case we'd assume that all of the numbers are accurate to within 2 decimal places and no value will ever be greater than 99. So, each number can be determined to be 4 digits long, and all of the original information can be recovered. If, for example, we decided that we might have a 1000V spike during the day (highly unlikely, but a number on the order of 10^3^), we'd create the following string:
 
 ||3||001875||001550||001240||001230||002500||
 
@@ -319,7 +323,7 @@ This might seem trivial, but we can deduce a lot of information from the additio
 
 If a transfer contains both "#" keys at the right positions, and the number of tones in the sequence after the initial digit divides evenly, we know that we have ALL of the tones that we should expect in our sequence. This does not ensure that they are in order or correct, however. Such error checking requires some additional processing.
 
-====Interpolation As Error Checking====
+====Interpolation As Error-Checking====
 
 A pessimistic approach to evaluating the integrity of a given data transfer would argue that if any item of data does not correspond to an "expected" or "normal" value, then it should be thrown out. 
 
