@@ -238,7 +238,7 @@ Of course, how should we indicate the decimal points? Continuing with our emphas
 
 ||1875||1550||1240||1230||2500||127560||
 
-The problem with the above is the fact that there's no notion of where one number starts and the next begins. On what order of magnitude are these numbers? How many places after the decimal point are there? In this case, since the values of all the first five numbers are on the order of 10^1, and the last number is on the order of 10^3, I'm going to make an exception in order to continue my explanation: Let's consider the last number a special case and drop it completely. Now, since all of the first five numbers are of the same order of magnitude, let's put at "2" at the beginning of the string to indicate the number of digits on either side of the decimal point. (You could also argue that a "1" should be used to indicate the power of 10, but 2 decimal places is 10^-2, so I think a 2 is more descriptive in this case.)
+The problem with the above is the fact that there's no notion of where one number starts and the next begins. On what order of magnitude are these numbers? How many places after the decimal point are there? In this case, since the values of all the first five numbers are on the order of 10^(1), and the last number is on the order of 10^(3), I'm going to make an exception in order to continue my explanation: Let's consider the last number a special case and drop it completely. Now, since all of the first five numbers are of the same order of magnitude, let's put at "2" at the beginning of the string to indicate the number of digits on either side of the decimal point. (You could also argue that a "1" should be used to indicate the power of 10, but 2 decimal places is 10^(-2), so I think a 2 is more descriptive in this case.)
 
 Now, the string becomes:
 
@@ -246,7 +246,7 @@ Now, the string becomes:
 
 With the 2 at the beginning of this string, we now know that each of the encoded numbers are composed of 4 total digits, with 2 before the decimal and two after. We can decode this string and get all of the original information back. (This is of course with the knowledge that we elided the total kilowatt hours value as a special case. The basic point still stands.)
 
-There are obvious variations on this idea. What if for some odd reason the voltage were 110 volts? How would a system only capable of indicating 2 places in front of the decimal be able to represent this number? Well, fortunately, this is not a realistic concern. Most solar panels operate in the range of 12-48 Volts, and unless they were struck by lightning at the exact instant they were being monitored, the voltage would never be on the order of 10^2. It is almost ALWAYS going to be the case that the maximum expected voltage will be knowable to within an order of magnitude.
+There are obvious variations on this idea. What if for some odd reason the voltage were 110 volts? How would a system only capable of indicating 2 places in front of the decimal be able to represent this number? Well, fortunately, this is not a realistic concern. Most solar panels operate in the range of 12-48 Volts, and unless they were struck by lightning at the exact instant they were being monitored, the voltage would never be on the order of 10^(2). It is almost ALWAYS going to be the case that the maximum expected voltage will be knowable to within an order of magnitude.
 
 Solar panels can be strung in series to create higher voltages, of course. If this were the case, the first number would simply be increased to a magnitude that can represent any expected value. 
 
@@ -256,11 +256,11 @@ So, a useful variation might be to just allocate 2 numbers after the decimal pla
 
 ||1||1875||1550||1240||1230||2500||
 
-In this case we'd assume that all of the numbers are accurate to within 2 decimal places and no value will ever be greater than 99. So, each number can be determined to be 4 digits long, and all of the original information can be recovered. If, for example, we decided that we might have a 1000V spike during the day (highly unlikely, but a number on the order of 10^3), we'd create the following string:
+In this case we'd assume that all of the numbers are accurate to within 2 decimal places and no value will ever be greater than 99. So, each number can be determined to be 4 digits long, and all of the original information can be recovered. If, for example, we decided that we might have a 1000V spike during the day (highly unlikely, but a number on the order of 10^(3)), we'd create the following string:
 
 ||3||001875||001550||001240||001230||002500||
 
-In this case, each value is expected to be composed of 6 digits, 4 in front of the decimal and 2 after. We'd then take a 6-digit slice of this string, say 001875, multiply it by 10^-2, and voila we'd get 18.75V for the panel voltage back. 
+In this case, each value is expected to be composed of 6 digits, 4 in front of the decimal and 2 after. We'd then take a 6-digit slice of this string, say 001875, multiply it by 10^(-2), and voila we'd get 18.75V for the panel voltage back. 
 
 Ensuring a reliable transfer of data is slightly more tricksy...
 
@@ -301,8 +301,6 @@ Clearly the use of a decimal system is preferable for simple number transfers wh
 So, assuming we were still dialing keys on the keypad electronically, we have to worry about things like keys being dialed out of order or not at all--these are limitations of not being able to control the reliability of disposable cell-phone hardware. A reliable transfer protocol should be able to detect when such failures occur. 
 
 The recourse for dealing with a failure to transmit data correctly in this case is relatively limited. Unless we want to implement an acknowledgement hand-shaking mechanism that occurs during the course of a call, we simply have to detect a failure and begin the transfer again. Since this is not a performance-centric transfer protocol, we might as well just focus on error detection.
-
-
 
 
 
