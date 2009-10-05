@@ -177,7 +177,7 @@ There are problems with this system, however. The DTMF tones A, B, C, D are not 
 
 So assuming we opted to only use tones on the standard keypad, (a plus for systems that use digital switches to electronically push the keys on a phone) the next option would be to use an octal number base, where 8 tones are used to encode every combination of 3 binary bits. 
 
-The issue with this is that bytes don't break down evenly. To encode a byte with an octal-based DTMF mapping, we would need 3 tones, which would correspond to 9 bits (i.e. DTMF: 0,1,2 => Octal-Binary: 000, 001, 010 => Byte: 00001010). In this case, the decoding process would have to chop one bit off of the sequence created by every 3 transmitted tones. Unless we made special use of this last bit or planned to reserve this space for some future use, the use of an octal-encoding seems a little awkward to me.
+The issue with this is that bytes don't break down evenly. To encode a byte with an octal-based DTMF mapping, we would need 3 tones, which would correspond to 9 bits (i.e. DTMF: 0,1,2 => Octal-Binary: 000, 001, 010 => Byte: 00001010). In this case, the decoding process would have to chop one bit off the end of every third tone transmitted. Unless we made special use of this last bit or planned to reserve this space for some future purpose, the use of octal-encoding seems a little awkward to me.
 
 The next system would be a 4-tone 2-bit binary encoding, such as:
 
@@ -301,8 +301,6 @@ Clearly the use of a decimal system is preferable for simple number transfers wh
 So, assuming we were still dialing keys on the keypad electronically, we have to worry about things like keys being dialed out of order or not at all--these are limitations of not being able to control the reliability of disposable cell-phone hardware. A reliable transfer protocol should be able to detect when such failures occur. 
 
 The recourse for dealing with a failure to transmit data correctly in this case is relatively limited. Unless we want to implement an acknowledgement hand-shaking mechanism that occurs during the course of a call, we simply have to detect a failure and begin the transfer again. Since this is not a performance-centric transfer protocol, we might as well just focus on error detection.
-
-
 
 
 
