@@ -258,7 +258,7 @@ There are obvious variations on this idea. What if for some odd reason the volta
 
 Solar panels can be strung in series to create higher voltages, of course. If this were the case, the first number would simply be increased to a magnitude that can represent any expected value. For instance, some current [http://en.wikipedia.org/wiki/Grid_tie_inverter grid-tied systems] have panel voltages on the order of 700V. Values of this magnitude could be represented with one extra digit.
 
-But in this latter situation, assuming we kept with the convention of having equal numbers on either side of the decimal place, digits beyond the hundredths place are sort of useless. What if we are monitoring a 250V solar power system? Despite the fact that you'd probably use a more high-octane monitoring system than this for such a system, we don't need 3 decimal places. Milli-volts are not exactly useful units when it comes to power generation!
+But in this latter situation, assuming we kept with the convention of having equal numbers on either side of the decimal place, digits beyond the hundredths place are sort of useless. What if we are monitoring a 250V solar power system? Despite the fact that you'd probably use a more high-octane monitoring system than this for such an array, we don't need 3 decimal places. Milli-volts are not exactly useful units when it comes to power generation!
 
 So, a useful variation might be to just allocate 2 numbers after the decimal place and make the first number correspond to the power of 10 in front of the decimal place. So, assuming we wanted to represent the previous string, it'd become the following:
 
