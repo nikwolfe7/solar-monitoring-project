@@ -280,7 +280,7 @@ What about data integrity? In my experience thus far, I have noticed some unprom
 
 While I think that out-of-order tone problems can be mitigated by improving the dialing software, one of the things that must be realized about using a physical keypad to dial tones is the fact that a phone buffers the values of the keys that are pressed and releases them at pre-defined intervals. 
 
-So, since we can't control the speed, we have to control the quality, because air-time is money. The interest of minimizing cost compels us to minimize the number of digits we have to send. This is part of the reason I think decimal is a better number base than binary in this case. Consider the following example...
+So, since we can't control speed, we have to attempt to control reliability, because air-time is money. The interest of minimizing cost, furthermore, compels us to minimize the number of digits we have to send. This is part of the reason I think decimal is a better number base than binary in this case. Consider the following example...
 
 Assuming we wanted to transfer the table referred to in the previous section with the most efficient possible DTMF encoding, hexadecimal. The table, again, was:
 
