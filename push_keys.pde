@@ -146,6 +146,7 @@ void outputField( int num )
 {
    while( num > 0 ) {
      
+     togglePin( FIVE );
      
    } 
 }
