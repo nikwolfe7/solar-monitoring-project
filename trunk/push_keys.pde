@@ -77,6 +77,14 @@ const int decimalArray[] = {  ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIG
 const int ledPin = 13;
 boolean isRun = false;
 
+/* TEST VALUES!! */
+double panelVoltage = 25.883;
+double panelAmperage = 36.095;
+double batteryVoltage = 25.996;
+double batteryAmperage = 05.639;
+double temperature = 89.352; 
+double valArr[] = { panelVoltage, panelAmperage, batteryVoltage, batteryAmperage, temperature };
+
 /*=====================================================================
   ARDUINO CONTROL METHODS
   
@@ -101,16 +109,15 @@ void setup()
 
 void loop()
 {
-  double val = 636925.80;
   while( !isRun ) 
   {
-    for(int i = 0; i < 1; ++i )
+    for(int i = 0; i < 5; ++i )
     {
-      togglePin( POUND );
-      outputField( val );
-      togglePin( POUND );
+      togglePin( POUND ); // indicate initialize
+      outputField( valArr[i] ); // test values!!
       indicateInitialize( 1, 100 );
     }
+    togglePin( POUND ); // indicate finished
     isRun = true;
   }
 }
@@ -153,9 +160,9 @@ void initializeOutputPinStates()
   //digitalWrite( SEVEN, HIGH );    
 }
 
-// takes a positive number, outputs it to the keypad
 void outputField( double num )
 { 
+  // takes a positive number, outputs it to the keypad
   if( num > 0 ) // ensure positive range
   {
     // first, we convert from double to long, preserving
