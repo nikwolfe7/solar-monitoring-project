@@ -55,10 +55,20 @@ const int TWO = 6;
 const int FIVE = 7; 
 const int EIGHT = 8;
 const int ZERO = 9;
-//const int ONE = ;
-//const int FOUR = ;
-//const int SEVEN = ;
+const int ONE = 10;
+const int FOUR = 11;
+const int SEVEN = 12;
 //const int STAR = ;
+
+/*===================================================================== 
+  INT ARRAY FOR NUMBER PAD
+  
+  This array can be used anywhere to obtain the pin number of a given 
+  key using an integer. This is useful when translating data inputs into
+  output values. The values for # and * are not included here. 
+  =====================================================================
+*/
+const int decimalArray[] = {  ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE };
 
 /*=====================================================================
   OTHER VARIABLES
@@ -91,12 +101,13 @@ void setup()
 
 void loop()
 {
+  double val = 636925.80;
   while( !isRun ) 
   {
-    for(int i = 0; i < 2; ++i )
+    for(int i = 0; i < 1; ++i )
     {
       togglePin( POUND );
-      outputField( 523 );
+      outputField( val );
       togglePin( POUND );
       indicateInitialize( 1, 100 );
     }
@@ -142,13 +153,45 @@ void initializeOutputPinStates()
   //digitalWrite( SEVEN, HIGH );    
 }
 
-void outputField( int num )
-{
-   while( num > 0 ) {
-     
-     togglePin( FIVE );
-     
-   } 
+// takes a positive number, outputs it to the keypad
+void outputField( double num )
+{ 
+  if( num > 0 ) // ensure positive range
+  {
+    // first, we convert from double to long, preserving
+    // TWO decimal places by multiplying 10^2.
+    unsigned long val = long( num * 100 );
+    
+    // figure out the size of num
+    unsigned long temp = val;
+    int digitCount = 0; 
+    while ( temp > 0 )
+    {
+      digitCount += 1;
+      temp = temp / 10; // chop off one digit at a time
+    }
+    
+    // break the number into an array of digits
+    if( digitCount > 0 ) 
+    {
+      int digit;
+      int i = digitCount - 1 ; // start at the end of the array
+      int buffer[ digitCount ];
+      while( val > 0 ) 
+      {
+        digit = val % 10; // grab the one's place
+        buffer[ i-- ] = digit; // store the digit in the array
+        val = val / 10; // chop off the one's place.
+      } 
+      
+      // output the value to the keypad
+      for( i = 0; i < digitCount; ++i )
+      { 
+        int decimalVal = buffer[ i ];
+        togglePin( decimalArray[ decimalVal ] );
+      }
+    }
+  }  
 }
 
 void setOutputPins()
@@ -171,8 +214,9 @@ void setOutputPins()
 void togglePin( int pin )
 {
   digitalWrite( pin, LOW );   // assert pin low
-  delay( 150 );               // time required for gate delay / pin debouncing
+  delay( 100 );               // time required for gate delay / pin debouncing
   digitalWrite( pin, HIGH );  // reassert pin high
+  delay( 150 );               // time required for gate delay / pin debouncing 
 }
 
 
