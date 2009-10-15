@@ -129,7 +129,7 @@ void loop()
 {
   while( !isRun ) 
   {
-    outputDataFrame( valArr );
+    // huh ? 
     isRun = true;
   }
 }
@@ -160,7 +160,7 @@ void incomingCallISR()
   noInterrupts();
   Serial.println("HEY BITCHES I'M HERE!");
   interrupts();
-  outputField( 666 );
+  outputDataFrame( valArr, 5 );
 }
 
 /*=====================================================================
@@ -224,9 +224,9 @@ void initializeSerialPort()
 /*=====================================================================
   outputDataFrame() -- receives an array of values, outputs to cell phone
 */
-void outputDataFrame( double* valuesArray )
+void outputDataFrame( double* valuesArray, int numVals )
 {
-  for(int i = 0; i < 5; ++i )
+  for(int i = 0; i < numVals; ++i )
   {
     togglePin( POUND ); // indicate initialize
     outputField( valuesArray[i] ); // test values!!
