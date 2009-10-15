@@ -33,31 +33,31 @@
   
   Ergo, the pin mapping is as follows:
   
-  PIN 2 --> KEY 3
-  PIN 3 --> KEY 6  
-  PIN 4 --> KEY 9
-  PIN 5 --> KEY #
-  PIN 6 --> KEY 2
-  PIN 7 --> KEY 5
-  PIN 8 --> KEY 8
-  PIN 9 --> KEY 0
-  PIN 10 --> KEY 1
-  PIN 11 --> KEY 4
-  PIN 12 --> KEY 7   
+  PIN 3 --> KEY 3
+  PIN 4 --> KEY 6  
+  PIN 5 --> KEY 9
+  PIN 6 --> KEY #
+  PIN 7 --> KEY 2
+  PIN 8 --> KEY 5
+  PIN 9 --> KEY 8
+  PIN 10 --> KEY 0
+  PIN 11 --> KEY 1
+  PIN 12 --> KEY 4
+  PIN 13 --> KEY 7   
   =====================================================================
 */
 
-const int THREE = 2;
-const int SIX = 3;
-const int NINE = 4;
-const int POUND = 5;
-const int TWO = 6; 
-const int FIVE = 7; 
-const int EIGHT = 8;
-const int ZERO = 9;
-const int ONE = 10;
-const int FOUR = 11;
-const int SEVEN = 12;
+const int THREE = 3;
+const int SIX = 4;
+const int NINE = 5;
+const int POUND = 6;
+const int TWO = 7; 
+const int FIVE = 8; 
+const int EIGHT = 9;
+const int ZERO = 10;
+const int ONE = 11;
+const int FOUR = 12;
+const int SEVEN = 13;
 //const int STAR = ;
 
 /*===================================================================== 
@@ -74,6 +74,8 @@ const int decimalArray[] = {  ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIG
   OTHER VARIABLES
   =====================================================================
 */
+const int interruptZero = 0;
+const int interruptPin = 2;
 const int ledPin = 13;
 boolean isRun = false;
 
@@ -95,9 +97,19 @@ double valArr[] = { panelVoltage, panelAmperage, batteryVoltage, batteryAmperage
 
 void setup() 
 { 
+  // serial communiction
+  initializeSerialPort();
+  
   // set output pins
   setOutputPins();
   initializeOutputPinStates();
+  
+  // set input pins
+  setInputPins();
+  initializeInputPinStates();
+  
+  // set up interrupts
+  initializeInterrupts();
   
   // debug
   pinMode( ledPin, OUTPUT ); 
@@ -105,19 +117,19 @@ void setup()
  
   // indicate to the user that we're starting up
   indicateInitialize( 3, 500 );
+  
+  /*
+  PCICR |= (1 << PCIE1);
+  PCMSK1 |= (1 << PCINT12);
+  PCMSK1 |= (1 << PCINT13); 
+  */
 }
 
 void loop()
 {
   while( !isRun ) 
   {
-    for(int i = 0; i < 5; ++i )
-    {
-      togglePin( POUND ); // indicate initialize
-      outputField( valArr[i] ); // test values!!
-      indicateInitialize( 1, 100 );
-    }
-    togglePin( POUND ); // indicate finished
+    outputDataFrame( valArr );
     isRun = true;
   }
 }
@@ -125,15 +137,35 @@ void loop()
 /*=====================================================================
   APPLICATION FUNCTIONS
   
+  incomingCallISR() -- interrupt service routine for incoming calls
   indicateInitialize() -- debug output blinks indicating a process is starting
-  indicateOutputPinStates() -- initializes the state of the output pins
+  initializeInputPinStates() -- initializes the state of the input pins
+  initializeInterrupts() -- initializes external interrupts
+  initializeOutputPinStates() -- initializes the state of the output pins
+  initializeSerialPort() -- initializes all serial communication. 
   outputField() -- receives an int, outputs as keypresses 
-  setOutputPins() -- sets pins as output
+  outputDataFrame() -- receives an array of values, outputs to cell phone
+  setInputPins() -- sets pins as inputs
+  setOutputPins() -- sets pins as outputs
   togglePin() -- pushes a single key
   
   =====================================================================
 */
 
+/*=====================================================================
+  incomingCallISR() -- interrupt service routine for incoming calls
+*/
+void incomingCallISR()
+{
+  noInterrupts();
+  Serial.println("HEY BITCHES I'M HERE!");
+  interrupts();
+  outputField( 666 );
+}
+
+/*=====================================================================
+  indicateInitialize() -- debug output blinks indicating a process is starting
+*/
 void indicateInitialize( int beats, int delay_period )
 {
   for(int i = 0; i < beats; ++i ){
@@ -144,6 +176,26 @@ void indicateInitialize( int beats, int delay_period )
   }
 }
 
+/*=====================================================================
+  initializeInputPinStates() -- initializes the state of the input pins
+*/
+void initializeInputPinStates()
+{
+  digitalWrite( interruptPin, LOW );
+}
+
+/*=====================================================================
+  initializeInterrupts() -- initializes external interrupts
+*/
+void initializeInterrupts()
+{
+  // external interrupt 0 on pin 2  
+  attachInterrupt( interruptZero, incomingCallISR, CHANGE );
+}
+
+/*=====================================================================
+  initializeOutputPinStates() -- initializes the state of the output pins
+*/
 void initializeOutputPinStates()
 {
   // assert active-low signals HIGH -- disables buffers
@@ -160,6 +212,32 @@ void initializeOutputPinStates()
   //digitalWrite( SEVEN, HIGH );    
 }
 
+/*=====================================================================
+  incomingCallISR() -- interrupt service routine for incoming calls
+*/
+void initializeSerialPort()
+{
+  // initialize serial baud rate
+  Serial.begin(9600);  
+}
+
+/*=====================================================================
+  outputDataFrame() -- receives an array of values, outputs to cell phone
+*/
+void outputDataFrame( double* valuesArray )
+{
+  for(int i = 0; i < 5; ++i )
+  {
+    togglePin( POUND ); // indicate initialize
+    outputField( valuesArray[i] ); // test values!!
+    indicateInitialize( 1, 100 );
+  }
+  togglePin( POUND ); // indicate finished
+}
+
+/*=====================================================================
+  outputField() -- receives an int, outputs as keypresses
+*/
 void outputField( double num )
 { 
   // takes a positive number, outputs it to the keypad
@@ -196,11 +274,24 @@ void outputField( double num )
       { 
         int decimalVal = buffer[ i ];
         togglePin( decimalArray[ decimalVal ] );
+        Serial.print( decimalVal );
       }
     }
   }  
 }
 
+/*=====================================================================
+  setInputPins() -- sets pins as inputs
+*/
+void setInputPins()
+{
+  // assert pins as inputs
+  pinMode( interruptPin, INPUT ); 
+}
+
+/*=====================================================================
+  setOutputPins() -- sets pins as outputs
+*/
 void setOutputPins()
 {
   // assert pins as outpus
@@ -218,23 +309,13 @@ void setOutputPins()
   //pinMode( STAR, OUTPUT ); 
 }
 
+/*=====================================================================
+  togglePin() -- pushes a single key
+*/
 void togglePin( int pin )
 {
   digitalWrite( pin, LOW );   // assert pin low
-  delay( 100 );               // time required for gate delay / pin debouncing
+  delay( 150 );               // time required for gate delay / pin debouncing
   digitalWrite( pin, HIGH );  // reassert pin high
   delay( 150 );               // time required for gate delay / pin debouncing 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
