@@ -84,7 +84,7 @@ double panelVoltage = 25.883;
 double panelAmperage = 36.095;
 double batteryVoltage = 25.996;
 double batteryAmperage = 05.639;
-double temperature = 89.352; 
+double temperature = 36.25; 
 double valArr[] = { panelVoltage, panelAmperage, batteryVoltage, batteryAmperage, temperature };
 
 /*=====================================================================
@@ -108,8 +108,8 @@ void setup()
   setInputPins();
   initializeInputPinStates();
   
-  // set up interrupts
-  initializeInterrupts();
+  // set up interrupt 0
+  initializeInterrupt();
   
   // debug
   pinMode( ledPin, OUTPUT ); 
@@ -127,10 +127,9 @@ void setup()
 
 void loop()
 {
-  while( !isRun ) 
+  if( Serial.available() > 0 ) // there is data in the buffer
   {
-    // huh ? 
-    isRun = true;
+     Serial.println( Serial.read(), DEC ); // output data read... 
   }
 }
 
@@ -157,10 +156,25 @@ void loop()
 */
 void incomingCallISR()
 {
-  noInterrupts();
-  Serial.println("HEY BITCHES I'M HERE!");
-  interrupts();
-  outputDataFrame( valArr, 5 );
+  static int mutex = 1;
+  
+  if( mutex == 1 )
+  {  
+    noInterrupts();  // disable interrupts for critical section
+    --mutex;         // toggle the mutex -- stops other execution
+    //Serial.print( "Mutex value: " );
+    //Serial.println( mutex );
+    interrupts();    // re-enable interrupts, restores delay() 
+    
+    // output our data frame
+    outputDataFrame( valArr, 5 );
+    
+    noInterrupts();
+    ++mutex;         // toggle the mutex -- releases control
+    //Serial.print( "Mutex value: " );
+    //Serial.println( mutex );
+    interrupts();
+  }
 }
 
 /*=====================================================================
@@ -187,7 +201,7 @@ void initializeInputPinStates()
 /*=====================================================================
   initializeInterrupts() -- initializes external interrupts
 */
-void initializeInterrupts()
+void initializeInterrupt()
 {
   // external interrupt 0 on pin 2  
   attachInterrupt( interruptZero, incomingCallISR, CHANGE );
@@ -207,9 +221,9 @@ void initializeOutputPinStates()
   digitalWrite( FIVE, HIGH );
   digitalWrite( ZERO, HIGH );
   digitalWrite( EIGHT, HIGH );
-  //digitalWrite( ONE, HIGH );
-  //digitalWrite( FOUR, HIGH );
-  //digitalWrite( SEVEN, HIGH );    
+  digitalWrite( ONE, HIGH );
+  digitalWrite( FOUR, HIGH );
+  digitalWrite( SEVEN, HIGH );    
 }
 
 /*=====================================================================
@@ -225,14 +239,19 @@ void initializeSerialPort()
   outputDataFrame() -- receives an array of values, outputs to cell phone
 */
 void outputDataFrame( double* valuesArray, int numVals )
-{
+{ 
+  // output the array
   for(int i = 0; i < numVals; ++i )
-  {
+  { 
+    Serial.print( "#" );
     togglePin( POUND ); // indicate initialize
     outputField( valuesArray[i] ); // test values!!
     indicateInitialize( 1, 100 );
   }
-  togglePin( POUND ); // indicate finished
+  // indicate finished
+  Serial.print( "#" );
+  togglePin( POUND );  
+  Serial.println();
 }
 
 /*=====================================================================
@@ -303,9 +322,9 @@ void setOutputPins()
   pinMode( FIVE, OUTPUT );
   pinMode( EIGHT, OUTPUT );
   pinMode( ZERO, OUTPUT );
-  //pinMode( ONE, OUTPUT );
-  //pinMode( FOUR, OUTPUT );
-  //pinMode( SEVEN, OUTPUT );
+  pinMode( ONE, OUTPUT );
+  pinMode( FOUR, OUTPUT );
+  pinMode( SEVEN, OUTPUT );
   //pinMode( STAR, OUTPUT ); 
 }
 
