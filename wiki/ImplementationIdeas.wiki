@@ -35,6 +35,14 @@ I really like this board. The open-source IDE they provide is incredibly easy to
 
 GSM chips are $100 bucks flat, and are only really sold by themselves without a phone by [http://www.telit.com/ Telit]. This violates the [Requirements requirement] that I design this system without using any company-specific or non-generic hardware. I have opted instead to buy a disposable cell phone for $15 and hack it. Details to follow... 
 
+===Freeduino vs. Arduino===
+
+One of the requirements for this project is that the complete design must be able to be reproduced anywhere, assuming some basic infrastructure exists to get ahold of things like generic chips, resistors, capacitors, etc. Thus, it may become somewhat of a complication to assume that anyone can obtain a completely assembled microprocessor board from an [www.arduino.cc Arduino] distributor. Furthermore, it's conceivable that the generic parts required to build an Arduino board are more readily available separately than as a finished product. Fortunately, Arduino is open-source and there are clones available with assembly guides, as well as replicas of older Arduino boards. To explore the feasibility of using Arduino clones, I have purchased a [http://www.freeduino.org/index.html Freeduino] MaxSerial board.
+
+This is perhaps one of the most interesting sides of open-source hardware, I think. The availability of Arduino part listings and schematic files allows anyone with the ability to construct a board to build their own copy and/or modification of a given design. For instance, most Arduino distributors do not build the version of the Diecimila board that has an RS-232 serial, because only cavemen use RS-232 anymore. Well, cavemen and a particular kind of [http://www.morningstarcorp.com/en/home Morningstar] solar controller that I want to design for!
+
+
+
 ----
 
 ==Discussion: Push or Pull==
