@@ -1,6 +1,6 @@
 =Fun With Freeduino=
 
-===Building a Freeduino MaxSerial Board===
+===Building a Freeduino `MaxSerial` Board===
 
 This page is dedicated to describing my experience with my newly obtained Freeduino MaxSerial board. Here, I provide a complete description of this board's construction as well as part listings and schematic files. These resources are also available at the Fundamental Logic [http://store.fundamentallogic.com/ecom/index.php?main_page=product_info&products_id=3 website].
 
