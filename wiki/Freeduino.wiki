@@ -7,7 +7,7 @@ This page is dedicated to describing my experience with my newly obtained Freedu
 ===Parts You Need===
 
 || Part Name                     || Quantity || Datasheet or Info || Photo ||
-|| MaxSerial PCB                 || 1        || [http://www.freeduino.org/files/duino232/Duino232-2.png board], [http://solar-monitoring-project.googlecode.com/files/MaxSerial.2008-04-09.zip schematic/board files]                  ||       ||
+|| MaxSerial PCB                 || 1        || [http://www.freeduino.org/files/duino232/Duino232-2.png design], [http://solar-monitoring-project.googlecode.com/files/MaxSerial.2008-04-09.zip schematic/board files]                  ||       ||
 || Max232 16-pin Socket          || 1        ||                   ||       ||
 || 6-pin Female Headers          || 2        ||                   ||       ||
 || 8-pin Female Header           || 2        ||                   ||       ||
