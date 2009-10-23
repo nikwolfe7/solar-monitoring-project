@@ -38,7 +38,13 @@ This page is dedicated to describing my experience with my newly obtained Freedu
 
 [Freeduino << Top]
 
-Now that we have all the parts, we can construct the board. In order to do this, you will need a soldering iron, solder, a multi-meter with continuity beep, and in order to power the board you'll need a center-positive 7-20V DC power source. 
+Now that we have all the parts, we can construct the board. In order to do this, you will need:
+
+  * a soldering iron
+  * solder 
+  * a multi-meter with continuity beep
+  * a center-positive 7-20V DC power source
+  * wire-cutters  
 
 || Step || Description || Diagram ||
 || 1 || Place the *10 kilo-Ohm resistor*. Bend the leads as close to the ceramic as you can. Insert into the location marked *`R1`* on the PCB board. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 020.jpg" alt="image" height="75%" width="75%"/> ||
