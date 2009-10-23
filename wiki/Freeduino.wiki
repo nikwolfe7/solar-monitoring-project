@@ -4,6 +4,7 @@
 
   * [Freeduino#Parts_You_Need Parts You Need]
   * [Freeduino#Constructing_the_Board Constructing the Board]
+  * [Freeduino#Using_the_Freeduino Using the Freeduino]
 
 ===Building a Freeduino Max Serial Board===
 
@@ -53,11 +54,30 @@ Now that we have all the parts, we can construct the board. In order to do this,
 || 11 || Solder the pins of the voltage regulator. Clip off the excess. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 052.jpg" alt="image" height="75%" width="75%"/> ||
 || 12 || Insert the *Electrolytic Caps*. Ensure that the longer of the pins is inserted into the hole with the plus (+) sign. Another way to verify that these are correctly inserted is to make the black stripe point down. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 056.jpg" alt="image" height="75%" width="75%"/> ||
 || 13 || Verify that your board matches *this* picture at this point. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 057.jpg" alt="image" height="75%" width="75%"/> ||
-|| 13 || Install the *reset button*. The pins should match the orientation of the holes on the board. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 060.jpg" alt="image" height="75%" width="75%"/> ||
-|| 13 || Verify your soldering connections. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 061.jpg" alt="image" height="75%" width="75%"/> ||
-|| 13 || Insert and solder the *16-MHz Resonator* in the location next to the 28-pin socket. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 062.jpg" alt="image" height="75%" width="75%"/> ||
-|| 13 || Install the *power LED* and the *pin 13 LED* in their respective locations. Orient the longer lead DOWN. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 067.jpg" alt="image" height="75%" width="75%"/> ||
-|| 13 || Install the *8-pin* and *6-pin headers*. Also, solder the ICSP using 3 2-pin header segments.||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 071.jpg" alt="image" height="75%" width="75%"/> ||
-|| 13 || Solder the *power socket* and the *female DB9 RS-232 connector*. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 077.jpg" alt="image" height="75%" width="75%"/> ||
-|| 13 || Install the *3.3V Regulator*. Make sure the flat face of the regulator is facing up, following the markings on the PCB board. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 085.jpg" alt="image" height="75%" width="75%"/> ||
-|| 13 || Insert the *Max232 Line Driver* into the 16-pin socket. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 086.jpg" alt="image" height="75%" width="75%"/> ||
+|| 14 || Install the *reset button*. The pins should match the orientation of the holes on the board. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 060.jpg" alt="image" height="75%" width="75%"/> ||
+|| 15 || Verify your soldering connections. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 061.jpg" alt="image" height="75%" width="75%"/> ||
+|| 16 || Insert and solder the *16-MHz Resonator* in the location next to the 28-pin socket. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 062.jpg" alt="image" height="75%" width="75%"/> ||
+|| 17 || Install the *power LED* and the *pin 13 LED* in their respective locations. Orient the longer lead DOWN. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 067.jpg" alt="image" height="75%" width="75%"/> ||
+|| 18 || Install the *8-pin* and *6-pin headers*. Also, solder the ICSP using 3 2-pin header segments.||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 071.jpg" alt="image" height="75%" width="75%"/> ||
+|| 19 || Solder the *power socket* and the *female DB9 RS-232 connector*. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 077.jpg" alt="image" height="75%" width="75%"/> ||
+|| 20 || Install the *3.3V Regulator*. Make sure the flat face of the regulator is facing up, following the markings on the PCB board. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 085.jpg" alt="image" height="75%" width="75%"/> ||
+|| 21 || Insert the *Max232 Line Driver* into the 16-pin socket. Be careful to line up the notch on the socket with the notch on the chip! ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 086.jpg" alt="image" height="75%" width="75%"/> ||
+|| 22 || Insert the *ATMega328 Microprocessor* into the 28-pin socket. Be careful to line up the notch on the socket with the notch on the chip!||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 090.jpg" alt="image" height="75%" width="75%"/> ||
+|| 23 || Verify that all joints are soldered well and that there are no obvious blobs, stray solder, or noticeably bad connections. Now is the time to fix suspicious solder joints before testing the board.||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 091.jpg" alt="image" height="75%" width="75%"/> ||
+|| 24 || Relish in the finished product!||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 099.jpg" alt="image" height="75%" width="75%"/> ||
+
+----
+
+===Using the Freeduino===
+
+Congratulations! 
+
+<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 104.jpg" alt="image" height="75%" width="75%"/>
+
+You have successfully constructed the Freeduino [http://store.fundamentallogic.com/ecom/index.php?main_page=index&cPath=3 MaxSerial] board, a fully compatible Arduino Decimilia clone. The only obvious difference (besides the colors) between these boards is the fact that the Arduino Duemilanove (Blue, below) uses a USB as the primary input / programming interface, whereas the Freeduino (top) uses an RS-232 serial port. If you have a proper Serial-to-USB converter (or, less likely, your computer actually has an RS-232 port!), programming the Freeduino and running your existing Arduino code is as simple as plugging power to the board, connecting the RS-232 Serial cable to your computer, opening up the [http://www.arduino.cc/en/Main/Software Arduino IDE], and clicking "upload". 
+
+If you have not used any of these technologies before and you are programming your Freeduino cold and for the first time, simply follow the Arduino [http://arduino.cc/en/Guide/HomePage tutorial]. All of the same rules as the Arduino Decimilia and Duemilanove apply, so simply select your operating system and follow the appropriate guide. 
+
+Yay open-source hardware!
+
+
