@@ -32,17 +32,17 @@ This page is dedicated to describing my experience with my newly obtained Freedu
 Now that we have all the parts, we can construct the board. In order to do this, you will need a soldering iron, solder, a multi-meter with continuity beep, and in order to power the board you'll need a center-positive 7-20V DC power source. 
 
 || Step || Description || Diagram ||
-|| 1 || || ||
-|| 2 || || ||
-|| 3 || || ||
-|| 4 || || ||
-|| 5 || || ||
-|| 6 || || ||
-|| 7 || || ||
-|| 8 || || ||
-|| 9 || || ||
-|| 10 || || ||
-|| 11 || || ||
-|| 12 || || ||
-|| 13 || || ||
+|| 1 || ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 018.jpg" alt="image" height="60%" width="60%"/> ||
+|| 2 || ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 018.jpg" alt="image" height="60%" width="60%"/> ||
+|| 3 || ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 018.jpg" alt="image" height="60%" width="60%"/> ||
+|| 4 || ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 018.jpg" alt="image" height="60%" width="60%"/>||
+|| 5 || ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 018.jpg" alt="image" height="60%" width="60%"/> ||
+|| 6 || ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 018.jpg" alt="image" height="60%" width="60%"/> ||
+|| 7 || ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 018.jpg" alt="image" height="60%" width="60%"/> ||
+|| 8 || ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 018.jpg" alt="image" height="60%" width="60%"/> ||
+|| 9 || ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 018.jpg" alt="image" height="60%" width="60%"/> ||
+|| 10 || ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 018.jpg" alt="image" height="60%" width="60%"/> ||
+|| 11 || ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 018.jpg" alt="image" height="60%" width="60%"/> ||
+|| 12 || ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 018.jpg" alt="image" height="60%" width="60%"/> ||
+|| 13 || ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 018.jpg" alt="image" height="60%" width="60%"/> ||
 
