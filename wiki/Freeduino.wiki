@@ -2,6 +2,9 @@
 
 =Fun With Freeduino=
 
+  * [Freeduino#Parts_You_Need Parts You Need]
+  * [Freeduino#Constructing_the_Board Constructing the Board]
+
 ===Building a Freeduino Max Serial Board===
 
 This page is dedicated to describing my experience with my newly obtained Freeduino [http://store.fundamentallogic.com/ecom/index.php?main_page=index&cPath=3 MaxSerial] board. Here, I provide a complete description of this board's construction as well as part listings and schematic files. These resources are also available at the Fundamental Logic [http://store.fundamentallogic.com/ecom/index.php?main_page=product_info&products_id=3 website].
@@ -33,17 +36,24 @@ This page is dedicated to describing my experience with my newly obtained Freedu
 Now that we have all the parts, we can construct the board. In order to do this, you will need a soldering iron, solder, a multi-meter with continuity beep, and in order to power the board you'll need a center-positive 7-20V DC power source. 
 
 || Step || Description || Diagram ||
-|| 1 || Solder the *10 kilo-Ohm resistor*. Bend the leads as close to the ceramic as you can. Insert into the location marked *`R1`* on the PCB board. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 020.jpg" alt="image" height="75%" width="75%"/> ||
-|| 2 || Solder the *1 kilo-Ohm resistors*. Bend the leads as close to the ceramic as you can. Insert into the 4 locations marked with *R*'s. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 023.jpg" alt="image" height="75%" width="75%"/> ||
-|| 3 || ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 018.jpg" alt="image" height="75%" width="75%"/> ||
-|| 4 || ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 018.jpg" alt="image" height="75%" width="75%"/>||
-|| 5 || ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 018.jpg" alt="image" height="75%" width="75%"/> ||
-|| 6 || ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 018.jpg" alt="image" height="75%" width="75%"/> ||
-|| 7 || ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 018.jpg" alt="image" height="75%" width="75%"/> ||
-|| 8 || ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 018.jpg" alt="image" height="75%" width="75%"/> ||
-|| 9 || ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 018.jpg" alt="image" height="75%" width="75%"/> ||
-|| 10 || ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 018.jpg" alt="image" height="75%" width="75%"/> ||
-|| 11 || ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 018.jpg" alt="image" height="75%" width="75%"/> ||
-|| 12 || ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 018.jpg" alt="image" height="75%" width="75%"/> ||
-|| 13 || ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 018.jpg" alt="image" height="75%" width="75%"/> ||
-
+|| 1 || Place the *10 kilo-Ohm resistor*. Bend the leads as close to the ceramic as you can. Insert into the location marked *`R1`* on the PCB board. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 020.jpg" alt="image" height="75%" width="75%"/> ||
+|| 2 || Place the *1 kilo-Ohm resistors*. Bend the leads as close to the ceramic as you can. Insert into the 4 locations marked with *R*'s. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 023.jpg" alt="image" height="75%" width="75%"/> ||
+|| 3 || Solder the resistor leads. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 024.jpg" alt="image" height="75%" width="75%"/> ||
+|| 4 || Clip off the excess resistor leads. Cut as close to the PCB board as you can. Do *NOT* scratch the board, as you run the risk of cutting a connection. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 026.jpg" alt="image" height="75%" width="75%"/>||
+|| 5 || Place the *diode* into the location marked with the diode symbol. Solder and clip the excess leads. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 034.jpg" alt="image" height="75%" width="75%"/> ||
+|| 6 || Place the *16-pin* and *28-pin sockets* into their respective locations. *Make sure* the notches align with the markings on the board.||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 039.jpg" alt="image" height="75%" width="75%"/> ||
+|| 7 || Take a moment to verify your solder joints. Do this periodically to avoid having to re-solder any joints later on. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 042.jpg" alt="image" height="75%" width="75%"/> ||
+|| 8 || Place the 10 *0.1 uF Ceramic Caps* into their respective locations on the board. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 045.jpg" alt="image" height="75%" width="75%"/> ||
+|| 9 || Verify your soldering connections. *Note:* Unless you are installing the *3.3 Volt Regulator*, you may leave location *`C8`* empty. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 047.jpg" alt="image" height="75%" width="75%"/> ||
+|| 10 || Insert the *7805 Voltage Regulator*. Bend the pins so that the metal underside lays flat on the PCB board. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 055.jpg" alt="image" height="75%" width="75%"/> ||
+|| 11 || Solder the pins of the voltage regulator. Clip off the excess. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 052.jpg" alt="image" height="75%" width="75%"/> ||
+|| 12 || Insert the *Electrolytic Caps*. Ensure that the longer of the pins is inserted into the hole with the plus (+) sign. Another way to verify that these are correctly inserted is to make the black stripe point down. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 056.jpg" alt="image" height="75%" width="75%"/> ||
+|| 13 || Verify that your board matches *this* picture at this point. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 057.jpg" alt="image" height="75%" width="75%"/> ||
+|| 13 || Install the *reset button*. The pins should match the orientation of the holes on the board. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 060.jpg" alt="image" height="75%" width="75%"/> ||
+|| 13 || Verify your soldering connections. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 061.jpg" alt="image" height="75%" width="75%"/> ||
+|| 13 || Insert and solder the *16-MHz Resonator* in the location next to the 28-pin socket. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 062.jpg" alt="image" height="75%" width="75%"/> ||
+|| 13 || Install the *power LED* and the *pin 13 LED* in their respective locations. Orient the longer lead DOWN. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 067.jpg" alt="image" height="75%" width="75%"/> ||
+|| 13 || Install the *8-pin* and *6-pin headers*. Also, solder the ICSP using 3 2-pin header segments.||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 071.jpg" alt="image" height="75%" width="75%"/> ||
+|| 13 || Solder the *power socket* and the *female DB9 RS-232 connector*. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 077.jpg" alt="image" height="75%" width="75%"/> ||
+|| 13 || Install the *3.3V Regulator*. Make sure the flat face of the regulator is facing up, following the markings on the PCB board. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 085.jpg" alt="image" height="75%" width="75%"/> ||
+|| 13 || Insert the *Max232 Line Driver* into the 16-pin socket. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 086.jpg" alt="image" height="75%" width="75%"/> ||
