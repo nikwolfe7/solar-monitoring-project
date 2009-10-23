@@ -26,13 +26,14 @@ This page is dedicated to describing my experience with my newly obtained Freedu
 || 0.1 micro-Farad Ceramic Caps  || 10       || [http://www.sparkfun.com/commerce/product_info.php?products_id=8375 Capacitor]                  ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 013.jpg" alt="image" height="60%" width="60%"/>       ||
 || Female RA DB9                 || 1        || [http://futurlec.com/Connectors/DSUBPCF9.shtml DB9]                  ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 018.jpg" alt="image" height="60%" width="60%"/>       ||
 
+-----
 
 ===Constructing the Board===
 
 Now that we have all the parts, we can construct the board. In order to do this, you will need a soldering iron, solder, a multi-meter with continuity beep, and in order to power the board you'll need a center-positive 7-20V DC power source. 
 
 || Step || Description || Diagram ||
-|| 1 || Solder the *10 kilo-Ohm resistor*. Bend the leads as close to the ceramic as you can. Insert into the location marked *R1* on the PCB board. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 020.jpg" alt="image" height="75%" width="75%"/> ||
+|| 1 || Solder the *10 kilo-Ohm resistor*. Bend the leads as close to the ceramic as you can. Insert into the location marked `*R1*` on the PCB board. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 020.jpg" alt="image" height="75%" width="75%"/> ||
 || 2 || Solder the *1 kilo-Ohm resistors*. Bend the leads as close to the ceramic as you can. Insert into the 4 locations marked with *R*'s. ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 023.jpg" alt="image" height="75%" width="75%"/> ||
 || 3 || ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 018.jpg" alt="image" height="75%" width="75%"/> ||
 || 4 || ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 018.jpg" alt="image" height="75%" width="75%"/>||
