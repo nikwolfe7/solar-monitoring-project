@@ -70,6 +70,8 @@ Now that we have all the parts, we can construct the board. In order to do this,
 
 ===Using the Freeduino===
 
+[Freeduino << Top]
+
 Congratulations! 
 
 <img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 104.jpg" alt="image" height="75%" width="75%"/>
