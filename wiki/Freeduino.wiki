@@ -18,7 +18,7 @@ This page is dedicated to describing my experience with my newly obtained Freedu
 || Electrolytic Cap              || 2        ||                   ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 010.jpg" alt="image" height="60%" width="60%"/>       ||
 || 3mm LED                       || 2        ||                   ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 015.jpg" alt="image" height="60%" width="60%"/>       ||
 || Push-Button Reset Switch      || 1        ||                   ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 016.jpg" alt="image" height="60%" width="60%"/>       ||
-|| 7805 Voltage Regulator        || 1        ||                   ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 012.jpg" alt="image" height="60%" width="60%"/>       ||
+|| 7805 Voltage Regulator        || 1        || [http://www.datasheetcatalog.org/datasheets/228/390068_DS.pdf 7805]                  ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 012.jpg" alt="image" height="60%" width="60%"/>       ||
 || Power Socket                  || 1        ||                   ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 011.jpg" alt="image" height="60%" width="60%"/>      ||
 || 16 MHz Resonator              || 1        ||                   ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 009.jpg" alt="image" height="60%" width="60%"/>       ||
 || 0.1 micro-Farad Ceramic Caps  || 10       ||                   ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 013.jpg" alt="image" height="60%" width="60%"/>       ||
