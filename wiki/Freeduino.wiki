@@ -8,8 +8,8 @@ This page is dedicated to describing my experience with my newly obtained Freedu
 
 || Part Name                     || Quantity || Datasheet or Info || Photo ||
 || [http://store.fundamentallogic.com/ecom/index.php?main_page=index&cPath=3 MaxSerial] PCB|| 1|| [http://www.freeduino.org/files/duino232/Duino232-2.png design], [http://solar-monitoring-project.googlecode.com/files/MaxSerial.2008-04-09.zip schematic/board files]||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 006.jpg" alt="image" height="60%" width="60%"/>||
-|| Max232, 16-pin Socket          || 1        ||                   ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 006.jpg" alt="image" height="60%" width="60%"/>       ||
-|| ATMega 328, 28-pin Socket     || 1        ||                   ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 006.jpg" alt="image" height="60%" width="60%"/>       ||
+|| Max232, 16-pin Socket          || 1        ||                   ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 005.jpg" alt="image" height="60%" width="60%"/>       ||
+|| ATMega 328, 28-pin Socket     || 1        ||                   ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 005.jpg" alt="image" height="60%" width="60%"/>       ||
 || 6-pin Female Headers          || 2        ||                   ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 005.jpg" alt="image" height="60%" width="60%"/>      ||
 || 8-pin Female Header           || 2        ||                   ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 006.jpg" alt="image" height="60%" width="60%"/>       ||
 || 10 kilo-Ohm Resistor          || 1        ||                   ||<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_Freeduino 006.jpg" alt="image" height="60%" width="60%"/>       ||
