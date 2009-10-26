@@ -77,6 +77,8 @@ const int decimalArray[] = {  ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIG
 const int interruptZero = 0;
 const int interruptPin = 2;
 const int ledPin = 13;
+
+boolean executeDataTransfer = false;
 boolean isRun = false;
 
 /* TEST VALUES!! */
@@ -102,11 +104,12 @@ void setup()
   
   // set output pins
   setOutputPins();
-  initializeOutputPinStates();
-  
+ 
   // set input pins
   setInputPins();
-  initializeInputPinStates();
+  
+  // set output pin states
+  initializeOutputPinStates();
   
   // set up interrupt 0
   initializeInterrupt();
@@ -127,10 +130,18 @@ void setup()
 
 void loop()
 {
+  if( executeDataTransfer )
+  {
+    // output our data frame
+    outputDataFrame( valArr, 5 );
+    executeDataTransfer = false;
+  }
+  /*
   if( Serial.available() > 0 ) // there is data in the buffer
   {
      Serial.println( Serial.read(), DEC ); // output data read... 
   }
+  */
 }
 
 /*=====================================================================
@@ -138,8 +149,7 @@ void loop()
   
   incomingCallISR() -- interrupt service routine for incoming calls
   indicateInitialize() -- debug output blinks indicating a process is starting
-  initializeInputPinStates() -- initializes the state of the input pins
-  initializeInterrupts() -- initializes external interrupts
+  initializeInterrupt() -- initializes external interrupts
   initializeOutputPinStates() -- initializes the state of the output pins
   initializeSerialPort() -- initializes all serial communication. 
   outputField() -- receives an int, outputs as keypresses 
@@ -157,22 +167,12 @@ void loop()
 void incomingCallISR()
 {
   static int mutex = 1;
-  
   if( mutex == 1 )
   {  
-    noInterrupts();  // disable interrupts for critical section
-    --mutex;         // toggle the mutex -- stops other execution
-    //Serial.print( "Mutex value: " );
-    //Serial.println( mutex );
-    interrupts();    // re-enable interrupts, restores delay() 
-    
-    // output our data frame
-    outputDataFrame( valArr, 5 );
-    
-    noInterrupts();
-    ++mutex;         // toggle the mutex -- releases control
-    //Serial.print( "Mutex value: " );
-    //Serial.println( mutex );
+    noInterrupts();              // disable interrupts for critical section
+    --mutex;                     // toggle the mutex -- stops other execution
+    executeDataTransfer = true;  // enable data transfer from main control loop
+    ++mutex;                     // toggle the mutex -- releases control
     interrupts();
   }
 }
@@ -188,14 +188,6 @@ void indicateInitialize( int beats, int delay_period )
     digitalWrite( ledPin, LOW );    // set the LED off
     delay( delay_period );
   }
-}
-
-/*=====================================================================
-  initializeInputPinStates() -- initializes the state of the input pins
-*/
-void initializeInputPinStates()
-{
-  digitalWrite( interruptPin, LOW );
 }
 
 /*=====================================================================
