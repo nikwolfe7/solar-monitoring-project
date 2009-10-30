@@ -103,6 +103,8 @@ double panelAmperage = 456.789;
 double batteryVoltage = 012.234;
 double batteryAmperage = 456.987;
 double temperature = 908.102; 
+// should work out to 30 tones
+
 double valArr[] = { panelVoltage, panelAmperage, batteryVoltage, batteryAmperage, temperature };
 
 /*=====================================================================
@@ -119,7 +121,7 @@ void setup()
   setOutputPins();
   setInputPins();
   initializeOutputPinStates();
-  initializeInterrupt();      // enable interrupt
+  initializeInterrupt();      
   
   // debug
   pinMode( LED_PIN, OUTPUT ); 
@@ -128,7 +130,7 @@ void setup()
   // indicate to the user that we're starting up
   indicateInitialize( 3, 500 );
   togglePower();
-  delay( 20000 );             // wait 20 secs for startup
+  delay( 20000 ); // wait 20 secs for startup
 }
 
 void loop()
@@ -138,8 +140,6 @@ void loop()
     // output our data frame
     acceptCall();
     outputDataFrame( valArr, 5 );
-    
-    delay( 1000 );
     terminateCall();
     executeDataTransfer = false;
   }
@@ -260,6 +260,9 @@ void outputDataFrame( double* valuesArray, int numVals )
   Serial.print( "#" );
   pushKey( POUND );  
   Serial.println();
+  
+  // wait 2 seconds for buffered tones 
+  delay( 2000 );
 }
 
 /*=====================================================================
@@ -314,10 +317,10 @@ void pushKey( const int* key )
 {
   digitalWrite( key[0], HIGH );   // assert pin 1 HIGH
   digitalWrite( key[1], HIGH );   // assert pin 2 HIGH
-  delay( 125 );                   // time required for transistor delay / pin debouncing
+  delay( 250 );                   // time required for transistor delay / pin debouncing
   digitalWrite( key[0], LOW );    // reassert pin 1 LOW
   digitalWrite( key[1], LOW );    // reassert pin 2 LOW
-  delay( 125 );                   // time required for transistor delay / pin debouncing 
+  delay( 250 );                   // time required for transistor delay / pin debouncing 
 }
 
 /*=====================================================================
