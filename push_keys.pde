@@ -141,7 +141,7 @@ void loop()
     acceptCall();
     outputDataFrame( valArr, 5 );
     terminateCall();
-    executeDataTransfer = false;
+    setExecuteTransfer( false );
   }
   /*
   if( Serial.available() > 0 ) // there is data in the buffer
@@ -163,6 +163,7 @@ void loop()
   outputField() -- receives an int, outputs as keypresses 
   outputDataFrame() -- receives an array of values, outputs to cell phone
   pushKey() -- pushes a single key
+  setExecuteTransfer() -- toggles the flag that initiates a data transfer
   setInputPins() -- sets pins as inputs
   setOutputPins() -- sets pins as outputs
   terminateCall() -- terminates a current call 
@@ -190,7 +191,7 @@ void incomingCallISR()
   {  
     noInterrupts();              // disable interrupts for critical section
     --mutex;                     // toggle the mutex -- stops other execution
-    executeDataTransfer = true;  // enable data transfer from main control loop
+    setExecuteTransfer( true );  // enable data transfer from main control loop
     ++mutex;                     // toggle the mutex -- releases control
     interrupts();
   }
@@ -260,9 +261,6 @@ void outputDataFrame( double* valuesArray, int numVals )
   Serial.print( "#" );
   pushKey( POUND );  
   Serial.println();
-  
-  // wait 2 seconds for buffered tones 
-  delay( 2000 );
 }
 
 /*=====================================================================
@@ -317,10 +315,18 @@ void pushKey( const int* key )
 {
   digitalWrite( key[0], HIGH );   // assert pin 1 HIGH
   digitalWrite( key[1], HIGH );   // assert pin 2 HIGH
-  delay( 250 );                   // time required for transistor delay / pin debouncing
+  delay( 300 );                   // time required for transistor delay / pin debouncing
   digitalWrite( key[0], LOW );    // reassert pin 1 LOW
   digitalWrite( key[1], LOW );    // reassert pin 2 LOW
-  delay( 250 );                   // time required for transistor delay / pin debouncing 
+  delay( 300 );                   // time required for transistor delay / pin debouncing 
+}
+
+/*=====================================================================
+  setExecuteTransfer() -- toggles the flag that initiates a data transfer
+*/
+void setExecuteTransfer( boolean value )
+{
+  executeDataTransfer = value;
 }
 
 /*=====================================================================
