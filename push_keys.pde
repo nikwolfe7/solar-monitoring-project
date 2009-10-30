@@ -115,20 +115,11 @@ double valArr[] = { panelVoltage, panelAmperage, batteryVoltage, batteryAmperage
 
 void setup() 
 { 
-  // serial communiction
   initializeSerialPort();
-  
-  // set output pins
   setOutputPins();
- 
-  // set input pins
   setInputPins();
-  
-  // set output pin states
   initializeOutputPinStates();
-  
-  // set up interrupt 0
-  initializeInterrupt();
+  initializeInterrupt();      // enable interrupt
   
   // debug
   pinMode( LED_PIN, OUTPUT ); 
@@ -136,6 +127,8 @@ void setup()
  
   // indicate to the user that we're starting up
   indicateInitialize( 3, 500 );
+  togglePower();
+  delay( 20000 );             // wait 20 secs for startup
 }
 
 void loop()
@@ -143,11 +136,11 @@ void loop()
   if( executeDataTransfer )
   {
     // output our data frame
-    pushKey( ACCEPT_CALL );
-    delay( 1000 );
+    acceptCall();
     outputDataFrame( valArr, 5 );
+    
     delay( 1000 );
-    pushKey( POWER );
+    terminateCall();
     executeDataTransfer = false;
   }
   /*
@@ -161,6 +154,7 @@ void loop()
 /*=====================================================================
   APPLICATION FUNCTIONS
   
+  acceptCall() -- accepts an incoming call
   incomingCallISR() -- interrupt service routine for incoming calls
   indicateInitialize() -- debug output blinks indicating a process is starting
   initializeInterrupt() -- initializes external interrupts
@@ -168,12 +162,23 @@ void loop()
   initializeSerialPort() -- initializes all serial communication. 
   outputField() -- receives an int, outputs as keypresses 
   outputDataFrame() -- receives an array of values, outputs to cell phone
+  pushKey() -- pushes a single key
   setInputPins() -- sets pins as inputs
   setOutputPins() -- sets pins as outputs
-  pushKey() -- pushes a single key
-  
+  terminateCall() -- terminates a current call 
+  togglePower() -- turns power on and off
+ 
   =====================================================================
 */
+
+/*=====================================================================
+  acceptCall() -- accepts an incoming call
+*/
+void acceptCall()
+{
+  pushKey( ACCEPT_CALL );  // accept the call (assumes interrupt fired)
+  delay( 1000 );           // wait 1 second for call to begin
+}
 
 /*=====================================================================
   incomingCallISR() -- interrupt service routine for incoming calls
@@ -303,6 +308,19 @@ void outputField( double num )
 }
 
 /*=====================================================================
+  pushKey() -- pushes a single key
+*/
+void pushKey( const int* key )
+{
+  digitalWrite( key[0], HIGH );   // assert pin 1 HIGH
+  digitalWrite( key[1], HIGH );   // assert pin 2 HIGH
+  delay( 125 );                   // time required for transistor delay / pin debouncing
+  digitalWrite( key[0], LOW );    // reassert pin 1 LOW
+  digitalWrite( key[1], LOW );    // reassert pin 2 LOW
+  delay( 125 );                   // time required for transistor delay / pin debouncing 
+}
+
+/*=====================================================================
   setInputPins() -- sets pins as inputs
 */
 void setInputPins()
@@ -329,14 +347,22 @@ void setOutputPins()
 }
 
 /*=====================================================================
-  pushKey() -- pushes a single key
+  terminateCall() -- terminates a current call 
 */
-void pushKey( const int* key )
+void terminateCall()
 {
-  digitalWrite( key[0], HIGH );   // assert pin 1 HIGH
-  digitalWrite( key[1], HIGH );   // assert pin 2 HIGH
-  delay( 125 );                   // time required for transistor delay / pin debouncing
-  digitalWrite( key[0], LOW );    // reassert pin 1 LOW
-  digitalWrite( key[1], LOW );    // reassert pin 2 LOW
-  delay( 125 );                   // time required for transistor delay / pin debouncing 
+  pushKey( POWER ); // hit the power button to end a call
 }
+
+/*=====================================================================
+  togglePower() -- turns power on and off 
+*/
+void togglePower()
+{
+  digitalWrite( POWER[0], HIGH );
+  digitalWrite( POWER[1], HIGH );
+  delay( 4000 ); // delay 4 seconds
+  digitalWrite( POWER[0], LOW );
+  digitalWrite( POWER[1], LOW ); 
+}
+
