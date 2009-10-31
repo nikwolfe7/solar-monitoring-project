@@ -177,8 +177,8 @@ void loop()
 */
 void acceptCall()
 {
-  pushKey( ACCEPT_CALL );  // accept the call (assumes interrupt fired)
-  delay( 1000 );           // wait 1 second for call to begin
+  pushKey( ACCEPT_CALL );        // accept the call (assumes interrupt fired)
+  delay( 1000 );                 // wait 1 second for call to begin
 }
 
 /*=====================================================================
@@ -203,9 +203,9 @@ void incomingCallISR()
 void indicateInitialize( int beats, int delay_period )
 {
   for(int i = 0; i < beats; ++i ){
-    digitalWrite( LED_PIN, HIGH );   // set the LED on
-    delay( delay_period );          // wait
-    digitalWrite( LED_PIN, LOW );    // set the LED off
+    digitalWrite( LED_PIN, HIGH );    // set the LED on
+    delay( delay_period );            // wait
+    digitalWrite( LED_PIN, LOW );     // set the LED off
     delay( delay_period );
   }
 }
@@ -252,15 +252,12 @@ void outputDataFrame( double* valuesArray, int numVals )
   // output the array
   for(int i = 0; i < numVals; ++i )
   { 
-    Serial.print( "#" );
-    pushKey( POUND ); // indicate initialize
-    outputField( valuesArray[i] ); // test values!!
-    indicateInitialize( 1, 100 );
+    indicateInitialize( 1, 30 );       // blink to indicate separation
+    pushKey( POUND );                  // indicate field separator
+    outputField( valuesArray[i] );     // test values!!
   }
-  // indicate finished
-  Serial.print( "#" );
+  indicateInitialize( 1, 30 );         // blink to indicate separation
   pushKey( POUND );  
-  Serial.println();
 }
 
 /*=====================================================================
@@ -302,7 +299,6 @@ void outputField( double num )
       { 
         int decimalVal = buffer[ i ];
         pushKey( decimalArray[ decimalVal ] );
-        Serial.print( decimalVal );
       }
     }
   }  
@@ -369,9 +365,7 @@ void terminateCall()
 void togglePower()
 {
   digitalWrite( POWER[0], HIGH );
-  digitalWrite( POWER[1], HIGH );
   delay( 4000 ); // delay 4 seconds
-  digitalWrite( POWER[0], LOW );
-  digitalWrite( POWER[1], LOW ); 
+  digitalWrite( POWER[0], LOW ); 
 }
 
