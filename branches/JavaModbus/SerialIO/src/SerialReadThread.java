@@ -6,7 +6,7 @@ public class SerialReadThread implements Runnable, SerialPortEventListener
 	private InputStream inputStream;
 	private SerialPort serialPort;
 	private CommPortIdentifier portId;
-	
+	private byte[] readBuffer;
 	
 	public SerialReadThread( CommPortIdentifier pi )
 	{
@@ -16,6 +16,7 @@ public class SerialReadThread implements Runnable, SerialPortEventListener
 	
 	private void setup()
 	{
+		this.readBuffer = new byte[1];
 		try {
 			this.serialPort = (SerialPort)portId.open( "COM5", 2000 );
 			this.inputStream = serialPort.getInputStream();
@@ -49,6 +50,9 @@ public class SerialReadThread implements Runnable, SerialPortEventListener
 				Thread.currentThread().interrupt();
 			};
 		}
+		serialPort.notifyOnDataAvailable(false);
+		serialPort.removeEventListener();
+		serialPort.close();
 		System.out.println("Goodbye!");
 	}
 
@@ -67,7 +71,6 @@ public class SerialReadThread implements Runnable, SerialPortEventListener
 			case SerialPortEvent.OUTPUT_BUFFER_EMPTY:
 				break;
 			case SerialPortEvent.DATA_AVAILABLE:
-				byte[] readBuffer = new byte[1];
 				try {
 					while( inputStream.available() > 0 ) {
 						inputStream.read(readBuffer);

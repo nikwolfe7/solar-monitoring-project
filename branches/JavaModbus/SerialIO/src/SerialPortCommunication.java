@@ -29,6 +29,7 @@ public class SerialPortCommunication
 	private static CommPortIdentifier 	portIdentifier;
 	private static Enumeration			portList;
 	private static ArrayList<Thread>	threadList;
+	private static final String COM5 =  "COM5";
 	
 	public static void main(String[] args) throws InterruptedException
 	{
@@ -39,8 +40,11 @@ public class SerialPortCommunication
 			portIdentifier = (CommPortIdentifier)portList.nextElement();
 			if( portIdentifier.getPortType() == CommPortIdentifier.PORT_SERIAL )
 			{
-				System.out.println("Found port: " + portIdentifier.getName() );
-				threadList.add( new Thread( new SerialReadThread( portIdentifier )) );
+//				if( portIdentifier.getName().equals(COM5) )
+//				{
+					System.out.println("Found port: " + portIdentifier.getName() );
+					threadList.add( new Thread( new SerialReadThread( portIdentifier )) );
+//				}
 			}
 		}
 		Thread timer = new Thread( new PortTimer() );
@@ -59,7 +63,7 @@ public class SerialPortCommunication
 			}
 			try {
 				System.out.println( "Port Timer sleeping...");
-				Thread.sleep( 5000 );
+				Thread.sleep( 10000 );
 				System.out.println( "Port Timer awake...");
 			} 
 			catch (InterruptedException e) {
