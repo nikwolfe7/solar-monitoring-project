@@ -4,7 +4,7 @@ _Orientation is from left to right_
 
 ==Vertical Node 6-Pin Bus==
 
-This is the bus connected to the positive center nodes of the cell phone, the board ground, and the accept/start keys.
+This is the bus connected to the positive center nodes of the cell phone, the board ground, and the start key.
 
 || Pin || Value  ||
 || 0   || GND    ||
