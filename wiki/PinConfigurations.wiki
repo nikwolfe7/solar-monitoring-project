@@ -7,8 +7,8 @@ _Orientation is from left to right_
 This is the bus connected to the positive center nodes of the cell phone, the board ground, and the start key.
 
 || Pin || Value  ||
-|| 0   || GND    ||
-|| 1   || PWR    ||
+|| 0   || Ground ||
+|| 1   || Power  ||
 || 2   || Node 3 ||
 || 3   || Node 2 ||
 || 4   || Node 1 ||
