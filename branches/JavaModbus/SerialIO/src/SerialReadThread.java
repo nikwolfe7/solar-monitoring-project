@@ -1,21 +1,80 @@
 import java.io.*;
-import java.util.*;
 import javax.comm.*;
 
 public class SerialReadThread implements Runnable, SerialPortEventListener
 {
-
+	private InputStream inputStream;
+	private SerialPort serialPort;
+	private CommPortIdentifier portId;
+	
+	
+	public SerialReadThread( CommPortIdentifier pi )
+	{
+		this.portId = pi;
+		setup();
+	}
+	
+	private void setup()
+	{
+		try {
+			this.serialPort = (SerialPort)portId.open( "COM5", 2000 );
+			this.inputStream = serialPort.getInputStream();
+			serialPort.addEventListener( this );
+			serialPort.notifyOnDataAvailable( true );
+			serialPort.setSerialPortParams(
+					9600, 
+					SerialPort.DATABITS_8, 
+					SerialPort.STOPBITS_2, 
+					SerialPort.PARITY_NONE );
+		} catch ( Exception e ) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	@Override
 	public void run()
 	{
-		// TODO Auto-generated method stub
-		
+		System.out.println("By golly I've started!");
+		while( !Thread.interrupted() )
+		{
+			try {
+				synchronized( this )
+				{
+					this.wait();
+				}
+			} 
+			catch ( InterruptedException e ) {
+				System.out.println("Bloody hell... interrupted!");
+				Thread.currentThread().interrupt();
+			};
+		}
+		System.out.println("Goodbye!");
 	}
 
 	@Override
-	public void serialEvent(SerialPortEvent arg0)
+	public void serialEvent( SerialPortEvent event )
 	{
-		// TODO Auto-generated method stub
-		
+		switch( event.getEventType() ){
+			case SerialPortEvent.BI:
+			case SerialPortEvent.OE:
+			case SerialPortEvent.FE:
+			case SerialPortEvent.PE:
+			case SerialPortEvent.CD:
+			case SerialPortEvent.CTS:
+			case SerialPortEvent.DSR:
+			case SerialPortEvent.RI:
+			case SerialPortEvent.OUTPUT_BUFFER_EMPTY:
+				break;
+			case SerialPortEvent.DATA_AVAILABLE:
+				byte[] readBuffer = new byte[1];
+				try {
+					while( inputStream.available() > 0 ) {
+						inputStream.read(readBuffer);
+					}
+					System.out.print(new String(readBuffer));
+				} catch ( IOException e ) {}
+				break;
+		}
 	}
 }

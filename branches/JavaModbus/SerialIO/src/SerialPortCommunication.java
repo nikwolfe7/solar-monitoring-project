@@ -1,5 +1,7 @@
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.Iterator;
 
 import javax.comm.CommPortIdentifier;
 import javax.comm.SerialPort;
@@ -26,11 +28,11 @@ public class SerialPortCommunication
 {
 	private static CommPortIdentifier 	portIdentifier;
 	private static Enumeration			portList;
-	private InputStream					inputStream;
-	private SerialPort					serialPort;
+	private static ArrayList<Thread>	threadList;
 	
-	public static void main(String[] args)
+	public static void main(String[] args) throws InterruptedException
 	{
+		threadList = new ArrayList<Thread>();
 		portList = CommPortIdentifier.getPortIdentifiers();
 		while( portList.hasMoreElements() )
 		{
@@ -38,7 +40,37 @@ public class SerialPortCommunication
 			if( portIdentifier.getPortType() == CommPortIdentifier.PORT_SERIAL )
 			{
 				System.out.println("Found port: " + portIdentifier.getName() );
+				threadList.add( new Thread( new SerialReadThread( portIdentifier )) );
 			}
+		}
+		Thread timer = new Thread( new PortTimer() );
+		timer.start();
+	}
+	
+	private static class PortTimer implements Runnable 
+	{
+		@Override
+		public void run()
+		{
+			Iterator<Thread> iter = threadList.iterator();
+			while( iter.hasNext() )
+			{
+				iter.next().start();
+			}
+			try {
+				System.out.println( "Port Timer sleeping...");
+				Thread.sleep( 5000 );
+				System.out.println( "Port Timer awake...");
+			} 
+			catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			iter = threadList.iterator();
+			while( iter.hasNext() )
+			{
+				iter.next().interrupt();
+			}
+			System.out.println("Goodbye!");
 		}
 	}
 }
