@@ -54,7 +54,7 @@ public class SerialReadWriteThread implements Runnable, SerialPortEventListener
 				synchronized( this )
 				{
 					this.wait( 1000 );
-					outputStream.write( "hello".getBytes() );
+					outputStream.write( "HELLO".getBytes() );
 				}
 			} catch ( Exception e) {
 				Thread.currentThread().interrupt();
@@ -86,7 +86,8 @@ public class SerialReadWriteThread implements Runnable, SerialPortEventListener
 					while( inputStream.available() > 0 ) {
 						inputStream.read(readBuffer);
 					}
-					System.out.print(new String(readBuffer));
+					char c = (char)readBuffer[0];
+					System.out.print(new String("" + c));
 				} catch ( IOException e ) {}
 				break;
 		}
