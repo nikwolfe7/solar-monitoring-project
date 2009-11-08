@@ -16,6 +16,8 @@ public class SerialReadWriteThread implements Runnable, SerialPortEventListener
 	private CommPortIdentifier portId;
 	private byte[] readBuffer;
 	private String portName;
+	private byte[] commandArr;
+	
 	
 	public SerialReadWriteThread( CommPortIdentifier pi )
 	{
@@ -27,6 +29,7 @@ public class SerialReadWriteThread implements Runnable, SerialPortEventListener
 	private void setup()
 	{
 		this.readBuffer = new byte[1];
+		this.commandArr = new byte[4];
 		try {
 			this.serialPort = (SerialPort)portId.open( portName, 2000 );
 			this.inputStream = serialPort.getInputStream();
@@ -58,7 +61,9 @@ public class SerialReadWriteThread implements Runnable, SerialPortEventListener
 		try {
 			delay( 2000 ); // allows board to reboot
 		} 
-		catch (InterruptedException e1){}
+		catch (InterruptedException e1){ 
+			Thread.currentThread().interrupt(); 
+		}
 		System.out.println("By golly I've started!");
 		while (!Thread.interrupted())
 		{
