@@ -1,15 +1,23 @@
-import java.io.*;
-import javax.comm.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
-public class SerialReadThread implements Runnable, SerialPortEventListener
+import javax.comm.CommPortIdentifier;
+import javax.comm.SerialPort;
+import javax.comm.SerialPortEvent;
+import javax.comm.SerialPortEventListener;
+
+
+public class SerialReadWriteThread implements Runnable, SerialPortEventListener
 {
 	private InputStream inputStream;
+	private OutputStream outputStream;
 	private SerialPort serialPort;
 	private CommPortIdentifier portId;
 	private byte[] readBuffer;
 	private String portName;
 	
-	public SerialReadThread( CommPortIdentifier pi )
+	public SerialReadWriteThread( CommPortIdentifier pi )
 	{
 		this.portId = pi;
 		this.portName = pi.getName();
@@ -22,19 +30,20 @@ public class SerialReadThread implements Runnable, SerialPortEventListener
 		try {
 			this.serialPort = (SerialPort)portId.open( portName, 2000 );
 			this.inputStream = serialPort.getInputStream();
+			this.outputStream = serialPort.getOutputStream();
 			serialPort.addEventListener( this );
 			serialPort.notifyOnDataAvailable( true );
+			serialPort.notifyOnOutputEmpty( true );
 			serialPort.setSerialPortParams(
 					9600, 
-					SerialPort.DATABITS_8, 
-					SerialPort.STOPBITS_2, 
+					SerialPort.DATABITS_8,
+					SerialPort.STOPBITS_2,
 					SerialPort.PARITY_NONE );
 		} catch ( Exception e ) {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	@Override
 	public void run()
 	{
@@ -44,15 +53,15 @@ public class SerialReadThread implements Runnable, SerialPortEventListener
 			try {
 				synchronized( this )
 				{
-					this.wait();
+					this.wait( 1000 );
+					outputStream.write( "hello".getBytes() );
 				}
-			} 
-			catch ( InterruptedException e ) {
-				System.out.println("Bloody hell... interrupted!");
+			} catch ( Exception e) {
 				Thread.currentThread().interrupt();
-			};
+			}
 		}
-		serialPort.notifyOnDataAvailable(false);
+		serialPort.notifyOnDataAvailable( false );
+		serialPort.notifyOnOutputEmpty( false );
 		serialPort.removeEventListener();
 		serialPort.close();
 		System.out.println("Goodbye!");

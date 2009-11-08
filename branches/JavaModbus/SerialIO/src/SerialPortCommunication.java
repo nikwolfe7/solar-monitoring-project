@@ -40,11 +40,13 @@ public class SerialPortCommunication
 			portIdentifier = (CommPortIdentifier)portList.nextElement();
 			if( portIdentifier.getPortType() == CommPortIdentifier.PORT_SERIAL )
 			{
-//				if( portIdentifier.getName().equals(COM5) )
-//				{
+				if( portIdentifier.getName().equals( COM5 ))
+				{
 					System.out.println("Found port: " + portIdentifier.getName() );
-					threadList.add( new Thread( new SerialReadThread( portIdentifier )) );
-//				}
+					//threadList.add( new Thread( new SerialReadThread( portIdentifier )));
+					//threadList.add( new Thread( new SerialWriteThread( portIdentifier )));
+					threadList.add( new Thread( new SerialReadWriteThread( portIdentifier )));
+				}
 			}
 		}
 		Thread timer = new Thread( new PortTimer() );
@@ -63,7 +65,7 @@ public class SerialPortCommunication
 			}
 			try {
 				System.out.println( "Port Timer sleeping...");
-				Thread.sleep( 10000 );
+				Thread.sleep( 5000 );
 				System.out.println( "Port Timer awake...");
 			} 
 			catch (InterruptedException e) {
