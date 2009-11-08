@@ -43,25 +43,34 @@ public class SerialReadWriteThread implements Runnable, SerialPortEventListener
 			e.printStackTrace();
 		}
 	}
+	
+	private void delay( int millis ) throws InterruptedException
+	{
+		synchronized( this )
+		{
+			this.wait( millis );
+		}
+	}
 
 	@Override
 	public void run()
 	{
+		try {
+			delay( 2000 ); // allows board to reboot
+		} 
+		catch (InterruptedException e1){}
 		System.out.println("By golly I've started!");
-		while( !Thread.interrupted() )
+		while (!Thread.interrupted())
 		{
 			try {
-				synchronized( this )
-				{
-					this.wait( 1000 );
-					outputStream.write( "HELLO".getBytes() );
-				}
-			} catch ( Exception e) {
+				delay(1000);
+				outputStream.write("HELLO".getBytes());
+			} catch (Exception e) {
 				Thread.currentThread().interrupt();
 			}
 		}
-		serialPort.notifyOnDataAvailable( false );
-		serialPort.notifyOnOutputEmpty( false );
+		serialPort.notifyOnDataAvailable(false);
+		serialPort.notifyOnOutputEmpty(false);
 		serialPort.removeEventListener();
 		serialPort.close();
 		System.out.println("Goodbye!");
