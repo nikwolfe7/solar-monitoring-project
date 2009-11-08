@@ -2,9 +2,12 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Iterator;
+import java.util.Scanner;
 
 import javax.comm.CommPortIdentifier;
 import javax.comm.SerialPort;
+
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 /*
  * Serial Communication Program in Java
@@ -55,6 +58,7 @@ public class SerialPortCommunication
 	
 	private static class PortTimer implements Runnable 
 	{
+		Scanner scn = new Scanner( System.in );
 		@Override
 		public void run()
 		{
@@ -64,11 +68,11 @@ public class SerialPortCommunication
 				iter.next().start();
 			}
 			try {
-				System.out.println( "Port Timer sleeping...");
-				Thread.sleep( 5000 );
+				System.out.println( "Port Timer sleeping... Press any key to wake me up!");
+				scn.nextLine(); // waits for a keypress
 				System.out.println( "Port Timer awake...");
 			} 
-			catch (InterruptedException e) {
+			catch ( Exception e) {
 				e.printStackTrace();
 			}
 			iter = threadList.iterator();
