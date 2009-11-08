@@ -46,8 +46,6 @@ public class SerialPortCommunication
 				if( portIdentifier.getName().equals( COM5 ))
 				{
 					System.out.println("Found port: " + portIdentifier.getName() );
-					//threadList.add( new Thread( new SerialReadThread( portIdentifier )));
-					//threadList.add( new Thread( new SerialWriteThread( portIdentifier )));
 					threadList.add( new Thread( new SerialReadWriteThread( portIdentifier )));
 				}
 			}
