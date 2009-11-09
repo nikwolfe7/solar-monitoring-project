@@ -2,6 +2,5 @@
 # Keyword Definition
 ########################
 
-ModbusRTU	KEYWORD1
-generateCRC_16	KEYWORD2
-getChar	KEYWORD2
+TransferProtocol	KEYWORD1
+transferData	KEYWORD2

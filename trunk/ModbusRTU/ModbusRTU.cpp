@@ -1,12 +1,11 @@
 /*
-  ModbusRTU.cpp
+  ModbusRTU.cpp 
   Implementation of MODBUS RTU protocol for a TS-45 Solar controller
 */
 
 #include "WProgram.h"
-#include "ModbusRTU.h"
+#include "TransferProtocol.h"
 
-private:
 static const unsigned char auchCRCHi[] = { 
 	0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41, 0x01, 0xC0, 0x80, 0x41, 0x00, 0xC1, 0x81,
 	0x40, 0x01, 0xC0, 0x80, 0x41, 0x00, 0xC1, 0x81, 0x40, 0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0,
@@ -49,7 +48,7 @@ static const unsigned char auchCRCLo[] = {
 	0x40
 };
 
-unsigned short ModbusRTU::generateCRC_16( unsigned char* data_frame, unsigned short data_length )
+unsigned short generateCRC_16( unsigned char* data_frame, unsigned short data_length )
 {
 	unsigned char	uchCRCHi = 0xFF;				/* start with register being 0xFFFF */
 	unsigned char	uchCRCLo = 0xFF;
@@ -66,11 +65,9 @@ unsigned short ModbusRTU::generateCRC_16( unsigned char* data_frame, unsigned sh
 	//return ( uchCRCLo << 8 | uchCRCHi );							/* combine high and low bytes into CRC, return */
 }
 
-public: 
-void transferData( unsigned char* data_frame, unsigned short data_length )
+void TransferProtocol::transferData( unsigned char* data_frame, unsigned short data_length )
 {
 	unsigned short CRC;
-	unsigned char arr[] = { 0x03, 0x05, 0x04, 0x02 };
-	CRC = generateCRC_16( arr, 4 );
-	Serial.println( CRC, Hex );
+	CRC = generateCRC_16( data_frame, data_length );
+	Serial.println( CRC, HEX );
 }
