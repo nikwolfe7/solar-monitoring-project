@@ -3,16 +3,15 @@
   communication with the TS-45 solar controller
 */
 
-#ifndef ModbusRTU_h
-#define ModbusRTU_h
+#ifndef TransferProtocol_h
+#define TransferProtocol_h
 
 #include "WProgram.h"
 
-class ModbusRTU
+class TransferProtocol
 {
 	public:
-		ModbusRTU();
-		char getChar( int val );
+		void transferData( unsigned char* data_frame, unsigned short data_length );
 	private:
 		unsigned short generateCRC_16( unsigned char* data_frame, unsigned short data_length );
 };
