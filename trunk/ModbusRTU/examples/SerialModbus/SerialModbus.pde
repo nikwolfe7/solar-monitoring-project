@@ -3,6 +3,10 @@
 int LED = 13;
 ModbusRTU mrtu;
 
+/* This program interacts with the 
+   output of SerialPortCommunication.java
+*/
+
 void setup()
 {
   mrtu = ModbusRTU();
@@ -13,12 +17,11 @@ void setup()
 void loop()
 {
   digitalWrite( LED, LOW );
-  if (Serial.available() > 0) {
+  while (Serial.available() > 0) {
     unsigned char c = char(Serial.read());
     unsigned char arr[] = { c };
     unsigned short s = mrtu.generateCRC_16( arr, 1 ); 
-    Serial.println( s );
+    Serial.println( s, HEX );
     digitalWrite( LED, HIGH );
-    //delay( 30 );   
   }
 }
