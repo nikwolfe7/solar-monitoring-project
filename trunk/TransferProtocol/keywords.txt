@@ -1,0 +1,7 @@
+########################
+# Keyword Definition
+########################
+
+TransferProtocol	KEYWORD1
+transferData	KEYWORD2
+getBatteryVoltage	KEYWORD2
