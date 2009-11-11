@@ -16,6 +16,9 @@ class ControllerTransferProtocol
 {
 	public:
 	
+		/* Constructor */
+		ControllerTransferProtocol();
+	
 		/* Get the voltage of the system, e.g. 6V, 12V, 24V, 48V */
 		double getSystemVoltage();
 	
