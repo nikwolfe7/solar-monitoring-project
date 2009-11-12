@@ -162,11 +162,11 @@ void setup()
   //debug
   Serial.println("A");
   
-  //togglePower();
-  //delay( 20000 ); // wait 20 secs for startup
-  
-  //debug
+  // initialize data array
   constructDataFrame( controller );
+  
+  //togglePower();
+  //delay( 20000 ); // wait 20 secs for startup 
 }
 
 void loop()
@@ -174,7 +174,7 @@ void loop()
   if( executeDataTransfer )
   {
     // build and output our data frame
-    //constructDataFrame( controller );
+    constructDataFrame( controller );
     acceptCall();
     outputDataFrame( valArr, NUM_DIAGNOSTIC_PARAMS );
     terminateCall();
@@ -219,11 +219,21 @@ void acceptCall()
 */
 void constructDataFrame( ControllerTransferProtocol ctp )
 {
-  //panelVoltage = ctp.getPwrSrcVoltage();
-  //panelAmperage = ctp.getChargeCurrent();
+   //debug
+    Serial.println("A");
+  panelVoltage = ctp.getPwrSrcVoltage();
+   //debug
+    Serial.println("A");
+  panelAmperage = ctp.getChargeCurrent();
+   //debug
+    Serial.println("A");
   batteryVoltage = ctp.getBatteryVoltage();
-  //batteryAmperage = ctp.getLoadCurrent();
-  //temperature = ctp.getBatteryTemp(); 
+   //debug
+    Serial.println("A");
+  batteryAmperage = ctp.getLoadCurrent();
+   //debug
+    Serial.println("A");
+  temperature = ctp.getBatteryTemp(); 
   
   // repopulate data array
   valArr[0] = panelVoltage;
@@ -268,7 +278,7 @@ void indicateInitialize( int beats, int delay_period )
 void initializeController()
 {
    // initialize the controller
-   controller = ControllerTransferProtocol();
+   controller = ControllerTransferProtocol();   
 }
  
 /*=====================================================================
