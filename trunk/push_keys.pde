@@ -41,6 +41,7 @@
   
   =====================================================================
 */
+#include <ControllerTransferProtocol.h>
 
 /*=====================================================================
   THESE MAY CHANGE...
@@ -78,14 +79,12 @@ const int NINE[]         = { NODE_3, NODE_C };
   output values. The values for # and * are not included here. 
   =====================================================================
 */
-
 const int* decimalArray[] = {  ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE };
 
 /*=====================================================================
   OTHER VARIABLES
   =====================================================================
 */
-
 const int STAR[]        = { NODE_1, NODE_D };
 const int POUND[]       = { NODE_3, NODE_D };
 const int ACCEPT_CALL[] = { NODE_1, ACCEPT };
@@ -97,15 +96,44 @@ const int interruptZero = 0;
 boolean executeDataTransfer = false;
 boolean isRun = false;
 
-/* TEST VALUES!! */
-double panelVoltage = 123.456;
-double panelAmperage = 456.789;
-double batteryVoltage = 012.234;
-double batteryAmperage = 456.987;
-double temperature = 908.102; 
-// should work out to 30 tones
+/*===================================================================== 
+  DIAGNOSTIC PARAMETERS
+  
+  These are the doubles which polled for transfer
+  =====================================================================
+*/
+double panelVoltage = 0;
+double panelAmperage = 0;
+double batteryVoltage = 0;
+double batteryAmperage = 0;
+double temperature = 0; 
 
-double valArr[] = { panelVoltage, panelAmperage, batteryVoltage, batteryAmperage, temperature };
+/*===================================================================== 
+  CURRENT DATA FRAME
+  
+  This array is populated by polling the controller for these values over
+  a serial transfer protocol. 
+  =====================================================================
+*/
+double valArr[] = { 
+  panelVoltage, 
+  panelAmperage, 
+  batteryVoltage, 
+  batteryAmperage, 
+  temperature 
+};
+
+/* size of the data frame */
+const int NUM_DIAGNOSTIC_PARAMS = 5;
+
+/*===================================================================== 
+  Controller Handle
+  
+  This is a reference to a ControllerTransferProtocol object. It is
+  used to poll the controller and populate the data array
+  =====================================================================
+*/
+ControllerTransferProtocol controller;
 
 /*=====================================================================
   ARDUINO CONTROL METHODS
@@ -117,6 +145,7 @@ double valArr[] = { panelVoltage, panelAmperage, batteryVoltage, batteryAmperage
 
 void setup() 
 { 
+  initializeController();
   initializeSerialPort();
   setOutputPins();
   setInputPins();
@@ -129,34 +158,38 @@ void setup()
  
   // indicate to the user that we're starting up
   indicateInitialize( 3, 500 );
-  togglePower();
-  delay( 20000 ); // wait 20 secs for startup
+  
+  //debug
+  Serial.println("A");
+  
+  //togglePower();
+  //delay( 20000 ); // wait 20 secs for startup
+  
+  //debug
+  constructDataFrame( controller );
 }
 
 void loop()
 {
   if( executeDataTransfer )
   {
-    // output our data frame
+    // build and output our data frame
+    //constructDataFrame( controller );
     acceptCall();
-    outputDataFrame( valArr, 5 );
+    outputDataFrame( valArr, NUM_DIAGNOSTIC_PARAMS );
     terminateCall();
     setExecuteTransfer( false );
   }
-  /*
-  if( Serial.available() > 0 ) // there is data in the buffer
-  {
-     Serial.println( Serial.read(), DEC ); // output data read... 
-  }
-  */
 }
 
 /*=====================================================================
   APPLICATION FUNCTIONS
   
   acceptCall() -- accepts an incoming call
+  constructDataFrame() -- polls the controller and populates the data array to transfer
   incomingCallISR() -- interrupt service routine for incoming calls
   indicateInitialize() -- debug output blinks indicating a process is starting
+  initializeController() -- initializes the controller transfer protocol object
   initializeInterrupt() -- initializes external interrupts
   initializeOutputPinStates() -- initializes the state of the output pins
   initializeSerialPort() -- initializes all serial communication. 
@@ -173,12 +206,31 @@ void loop()
 */
 
 /*=====================================================================
-  acceptCall() -- accepts an incoming call
+  acceptCall() -- polls the controller and populates the data array 
 */
 void acceptCall()
 {
   pushKey( ACCEPT_CALL );        // accept the call (assumes interrupt fired)
   delay( 1000 );                 // wait 1 second for call to begin
+}
+
+/*=====================================================================
+  constructDataFrame() -- accepts an incoming call
+*/
+void constructDataFrame( ControllerTransferProtocol ctp )
+{
+  //panelVoltage = ctp.getPwrSrcVoltage();
+  //panelAmperage = ctp.getChargeCurrent();
+  batteryVoltage = ctp.getBatteryVoltage();
+  //batteryAmperage = ctp.getLoadCurrent();
+  //temperature = ctp.getBatteryTemp(); 
+  
+  // repopulate data array
+  valArr[0] = panelVoltage;
+  valArr[1] = panelAmperage;
+  valArr[2] = batteryVoltage;
+  valArr[3] = batteryAmperage;
+  valArr[4] = temperature;
 }
 
 /*=====================================================================
@@ -210,6 +262,15 @@ void indicateInitialize( int beats, int delay_period )
   }
 }
 
+/*=====================================================================
+  initializeController() -- initializes the controller transfer protocol object
+*/
+void initializeController()
+{
+   // initialize the controller
+   controller = ControllerTransferProtocol();
+}
+ 
 /*=====================================================================
   initializeInterrupts() -- initializes external interrupts
 */
@@ -302,6 +363,13 @@ void outputField( double num )
       }
     }
   }  
+  else { 
+    for( int i = 0; i < 3; ++i )
+    {
+      // zero value outputs 3 zeros
+      pushKey( decimalArray[ 0 ] );
+    }    
+  }
 }
 
 /*=====================================================================
