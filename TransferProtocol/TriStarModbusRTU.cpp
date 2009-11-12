@@ -6,6 +6,14 @@
 #include "WProgram.h"
 #include "ControllerTransferProtocol.h"
 
+/* Method declaration */
+void constructAndSendQuery( unsigned char* arr, unsigned short cmd_length );
+void sendQuery( unsigned char* arr, unsigned short cmd_length );
+double getIncomingValue( double scalar, unsigned short num_bytes_exp );
+int readSerialBuffer( unsigned char* arr, unsigned short num_bytes_exp );
+bool validateReceivedBuffer( unsigned char* buffer, unsigned short num_bytes );
+unsigned short generateCRC_16( unsigned char* data_frame, unsigned short data_length );
+
 /* Constants used in most commands */
 static unsigned char TriStarDevAddr = 0x01;
 static unsigned char cmdReadHoldingRegs = 0x03;
@@ -117,7 +125,7 @@ static unsigned char totalKilowattHours[] = {
 	singleRegHigh,   		// No. of Registers High
 	singleRegLow   			// No. of Registers Low
 };
-static double totalKilowatthoursScalar = 1;
+static double totalKilowattHoursScalar = 1;
 
 /* Get Total Amp Hours */
 static unsigned char totalAmpHours[] = { 
@@ -174,8 +182,152 @@ static const unsigned char auchCRCLo[] = {
 	0x40
 };
 
+/*============================================================================
+   PRIVATE CLASS METHODS
+   ============================================================================
+*/
+/* Builds and sends a Modbus query */
+void constructAndSendQuery( unsigned char* arr, unsigned short cmd_length )
+{
+	int i;
+	unsigned short CRC;
+	unsigned char messageArray[cmd_length+2]; 
+	
+	/* Get CRC value */
+	CRC = generateCRC_16( arr, cmd_length );
+	
+	/* Populate message array */
+	for( i = 0; i < cmd_length; ++i )
+	{
+		messageArray[i] = arr[i];
+	}
+	
+	/* Concatenate CRC onto message Array: This code was deduced from observations of the
+	    TS-45 RS-232 behavior.  This is different from the canonical implementation. */
+	messageArray[i++] = (unsigned char) ( CRC >> 8 );	// grab high byte
+	messageArray[i++] = (unsigned char) ( CRC & 0xFF );	// get low byte 
+	
+	sendQuery( messageArray, (cmd_length+2) );
+}
+
+void sendQuery( unsigned char* arr, unsigned short cmd_length )
+{
+	int i;
+	
+	/* Output data frame */
+	for( i = 0; i < cmd_length; ++i )
+	{
+		Serial.print( arr[i] );
+	}
+} 
+
+/* Read an incoming transmission, validate, and retrieve data value */
+double getIncomingValue( double scalar, unsigned short num_bytes_exp )
+{
+	int i = 0;
+	unsigned char incoming[num_bytes_exp];
+	unsigned char DATA_HI, DATA_LO;
+	unsigned short byteCount, dataVal;
+	double retVal;
+	
+	// get bytes from serial stream
+	if(readSerialBuffer( incoming, num_bytes_exp ) < 0)
+	{
+		return -1; // timeout
+	}
+	
+	// validate and return the values in the stream
+	if(validateReceivedBuffer( incoming, num_bytes_exp ))
+	{
+		// In Modbus RTU, byte 2 of the message is the number of bytes of data
+		byteCount = incoming[2];
+		if( byteCount == 0x02 )
+		{
+			// only one word of data
+			DATA_HI = incoming[3];
+			DATA_LO = incoming[4];
+			dataVal = (unsigned short) ( DATA_HI << 8 | DATA_LO );
+			return (double) dataVal * scalar;
+		}
+		else // TODO -- NOT IMPLEMENTED!!!!
+		{
+			return -1;
+		}
+	}
+	return -1;
+}
+
+/* Reads an expected number of bytes from the serial input stream, returns them in a buffer */
+int readSerialBuffer( unsigned char* arr, unsigned short num_bytes_exp )
+{
+	int i = 0;
+	int maxTimeout = 4 + (3 * num_bytes_exp);
+	
+	/* Message timeout: 4 byte lengths + num_bytes_exp byte lengths x 3 */
+	while( Serial.available() < num_bytes_exp )
+	{
+		if( i++ >= maxTimeout ) {
+			Serial.flush();
+			return -1; // error -- TIMEOUT
+		}
+		delay( 1 ); // wait a ms (roughly the transfer time for 1 byte @ 9600 bps)
+		//delay( 10 ); // paranoia
+	}
+	
+	i = 0;
+	while((Serial.available() > 0) && (i < num_bytes_exp))
+	{	
+		arr[ i++ ] = Serial.read(); // read response
+	}
+	
+	// flush tbe buffer
+	Serial.flush(); 
+	return 0;
+}
+
+/* validate a received array of chars via a CRC check */
+bool validateReceivedBuffer( unsigned char* buffer, unsigned short num_bytes )
+{
+	unsigned short CRC, testCRC;
+	unsigned char CRC_LOW, CRC_HI;
+	int i = num_bytes-1;
+	
+	/* Check CRC to ensure data integrity */
+	CRC_LOW = buffer[ i-- ];			
+	CRC_HI = buffer[ i ];
+	testCRC = ( CRC_HI << 8 | CRC_LOW );				
+	CRC = generateCRC_16(buffer, (num_bytes-2));
+	
+	if( testCRC == CRC )
+	{
+		return true; // transfer is good!
+	}
+	return false;
+}
+
+/* Generate 16-bit Cyclic Redundancy Check */
+unsigned short generateCRC_16( unsigned char* data_frame, unsigned short data_length )
+{
+	unsigned char	uchCRCHi = 0xFF;				/* start with register being 0xFFFF */
+	unsigned char	uchCRCLo = 0xFF;
+	unsigned int 	index;							/* index into lookup table */
+	
+	while( data_length-- )							/* calculate CRC */
+	{
+		index = uchCRCHi ^ *( data_frame++ );		/* index gets high byte XOR'd with next item in dataframe	*/
+		uchCRCHi = uchCRCLo ^ auchCRCHi[ index ];	/* high byte gets XOR of low byte with high table indexed value */
+		uchCRCLo = auchCRCLo[ index ];				/* low byte gets low table indexed value */
+	}
+	
+	return ( uchCRCHi << 8 | uchCRCLo );			/* combine high and low bytes into CRC, return */
+}
+
+/*============================================================================
+   TYPE IMPLEMENTATION
+   ============================================================================
+*/
 /* Constructor */
-ControllerTransferProtocol::TriStarModbusRTU()
+ControllerTransferProtocol::ControllerTransferProtocol()
 {
 	// initialize serial baud rate
 	Serial.begin(9600);
@@ -271,98 +423,6 @@ double* ControllerTransferProtocol::getAllData()
 	return arr;
 }
 
-/* Builds and sends a Modbus query */
-void constructAndSendQuery( unsigned char* arr, unsigned short cmd_length )
-{
-	int i;
-	unsigned short CRC;
-	unsigned char messageArray[cmd_length+2]; 
-	
-	/* Get CRC value */
-	CRC = generateCRC_16( arr, cmd_length );
-	
-	/* Populate message array */
-	for( i = 0; i < cmd_length; ++i )
-	{
-		messageArray[i] = arr[i];
-	}
-	
-	/* Concatenate CRC onto message Array: This code was deduced from observations of the
-	    TS-45 RS-232 behavior.  This is different from the canonical implementation. */
-	messageArray[i++] = (unsigned char) ( CRC >> 8 );	// grab high byte
-	messageArray[i++] = (unsigned char) ( CRC & 0xFF );	// get low byte 
-	
-	sendQuery( messageArray, (cmd_length+2) );
-}
-
-void sendQuery( unsigned char* arr, unsigned short cmd_length )
-{
-	int i;
-	
-	/* Output data frame */
-	for( i = 0; i < cmd_length; ++i )
-	{
-		Serial.print( arr[i], HEX );
-	}
-} 
-
-double getIncomingValue( double scalar, unsigned short num_bytes_exp )
-{
-	int i = 0;
-	int maxTimeout = 4 + (3 * num_bytes_exp);
-	unsigned char incoming[ num_bytes_exp ];
-	unsigned short CRC, testCRC, dataVal;
-	double retVal;
-	
-	/* Message timeout: 4 byte lengths + num_bytes_exp byte lengths x 3 */
-	while( Serial.available() < num_bytes_exp )
-	{
-		if( i++ >= maxTimeout ) {
-			Serial.flush();
-			return -1; // error -- TIMEOUT
-		}
-		delay( 1 ); // wait a ms (roughly the transfer time for 1 byte @ 9600 bps)
-	}
-	
-	i = 0;
-	while((Serial.available() > 0) && (i < num_bytes_exp))
-	{	
-		incoming[ i++ ] = Serial.read(); // read response
-	}
-	Serial.flush(); // flush tbe buffer
-	
-	/* Check CRC to ensure data integrity */
-	testCRC = (unsigned short) (incoming[ i-- ] & 0xFFFF);			// low byte
-	testCRC = (unsigned short) (testCRC & (incoming[ i ] << 8));	// high byte
-	CRC = generateCRC_16(incoming, (num_bytes_exp-2));
-	
-	if( testCRC != CRC )
-	{
-		return -1; // transfer is bad!
-	}
-	
-	// grab data bytes
-	dataVal = (unsigned short) ((incoming[4] & 0xFFFF); 		// low byte
-	dataVal = (unsigned short) ((incoming[3] << 8) & dataVal);  // high byte
-	
-	return (double) dataVal * scalar;
-}
-
-unsigned short generateCRC_16( unsigned char* data_frame, unsigned short data_length )
-{
-	unsigned char	uchCRCHi = 0xFF;				/* start with register being 0xFFFF */
-	unsigned char	uchCRCLo = 0xFF;
-	unsigned int 	index;							/* index into lookup table */
-	
-	while( data_length-- )							/* calculate CRC */
-	{
-		index = uchCRCHi ^ *( data_frame++ );		/* index gets high byte XOR'd with next item in dataframe	*/
-		uchCRCHi = uchCRCLo ^ auchCRCHi[ index ];	/* high byte gets XOR of low byte with high table indexed value */
-		uchCRCLo = auchCRCLo[ index ];				/* low byte gets low table indexed value */
-	}
-	
-	return ( uchCRCHi << 8 | uchCRCLo );			/* combine high and low bytes into CRC, return */
-}
 
 
 

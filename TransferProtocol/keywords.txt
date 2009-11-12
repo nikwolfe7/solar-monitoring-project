@@ -3,13 +3,13 @@
 ########################
 
 ControllerTransferProtocol	KEYWORD1
-getSystemVoltage			KEYWORD2
-getBatteryVoltage			KEYWORD2
-getPwrSrcVoltage			KEYWORD2
-getMinBatteryVoltage		KEYWORD2
-getChargeCurrent			KEYWORD2
-getLoadCurrent				KEYWORD2
-getBatteryTemp				KEYWORD2
-getTotalKilowattHrs			KEYWORD2
-getTotalAmpHrs				KEYWORD2
-getAllData					KEYWORD2
+getSystemVoltage	KEYWORD2
+getBatteryVoltage	KEYWORD2
+getPwrSrcVoltage	KEYWORD2
+getMinBatteryVoltage	KEYWORD2
+getChargeCurrent	KEYWORD2
+getLoadCurrent	KEYWORD2
+getBatteryTemp	KEYWORD2
+getTotalKilowattHrs	KEYWORD2
+getTotalAmpHrs	KEYWORD2
+getAllData	KEYWORD2
