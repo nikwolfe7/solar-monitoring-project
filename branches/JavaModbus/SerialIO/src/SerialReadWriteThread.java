@@ -16,9 +16,10 @@ public class SerialReadWriteThread implements Runnable, SerialPortEventListener
 	private CommPortIdentifier portId;
 	private byte[] readBuffer;
 	private String portName;
-	private byte[] commandArr;
-	
-	
+	private byte[] commandArr = { 0x01, 0x03, 0x02, 0x10, -0x68, -0x4C, 0x2E }; // 12.53 V
+	private boolean transmit = false;
+	private boolean transmitted = false;
+
 	public SerialReadWriteThread( CommPortIdentifier pi )
 	{
 		this.portId = pi;
@@ -29,14 +30,13 @@ public class SerialReadWriteThread implements Runnable, SerialPortEventListener
 	private void setup()
 	{
 		this.readBuffer = new byte[1];
-		this.commandArr = new byte[4];
 		try {
 			this.serialPort = (SerialPort)portId.open( portName, 2000 );
 			this.inputStream = serialPort.getInputStream();
 			this.outputStream = serialPort.getOutputStream();
 			serialPort.addEventListener( this );
 			serialPort.notifyOnDataAvailable( true );
-			serialPort.notifyOnOutputEmpty( true );
+			serialPort.notifyOnOutputEmpty( false );
 			serialPort.setSerialPortParams(
 					9600, 
 					SerialPort.DATABITS_8,
@@ -58,18 +58,26 @@ public class SerialReadWriteThread implements Runnable, SerialPortEventListener
 	@Override
 	public void run()
 	{
-		try {
-			delay( 2000 ); // allows board to reboot
-		} 
-		catch (InterruptedException e1){ 
-			Thread.currentThread().interrupt(); 
-		}
+//		try {
+//			outputStream.write(8);
+//			//delay( 5000 ); // allows board to reboot
+//		} 
+//		catch (Exception e1){ 
+//		
+//			Thread.currentThread().interrupt(); 
+//		}
+		
 		System.out.println("By golly I've started!");
 		while (!Thread.interrupted())
 		{
 			try {
-				delay(1000);
-				outputStream.write("HELLO".getBytes());
+				if( transmit && !transmitted )
+				{
+					System.out.println("Writing response...");
+					outputStream.write(commandArr);
+					transmit = false;
+					transmitted = true;
+				}
 			} catch (Exception e) {
 				Thread.currentThread().interrupt();
 			}
@@ -100,8 +108,12 @@ public class SerialReadWriteThread implements Runnable, SerialPortEventListener
 					while( inputStream.available() > 0 ) {
 						inputStream.read(readBuffer);
 					}
-					char c = (char)readBuffer[0];
-					System.out.print(new String("" + c));
+					String bla = new String(readBuffer);
+					if( bla.equals("A") )
+					{
+						transmit = true;
+					}
+					System.out.print(bla);
 				} catch ( IOException e ) {}
 				break;
 		}
