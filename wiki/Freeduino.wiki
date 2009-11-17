@@ -5,6 +5,7 @@
   * [Freeduino#Parts_You_Need Parts You Need]
   * [Freeduino#Constructing_the_Board Constructing the Board]
   * [Freeduino#Using_the_Freeduino Using the Freeduino]
+  * [Freeduino#Serial_Pinout Serial Pinout]
 
 ===Building a Freeduino Max Serial Board===
 
@@ -89,4 +90,8 @@ If you have not used any of these technologies before and you are programming yo
 
 Yay open-source hardware!
 
+----
 
+===Serial Pinout===
+
+[Freeduino << Top]
