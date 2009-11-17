@@ -100,13 +100,13 @@ This is a DCE ([http://en.wikipedia.org/wiki/Data_circuit-terminating_equipment 
 
 The pinout of the Freeduino Female Serial Port is as follows:
 
-|| PIN || VALUE ||
-|| 1   ||       ||
-|| 2   ||       ||
-|| 3   ||       ||
-|| 4   ||       ||
-|| 5   ||       ||
-|| 6   ||       ||
-|| 7   ||       ||
-|| 8   ||       ||
-|| 9   ||       ||
+|| PIN || Voltage ||
+|| 1   || 0V      ||
+|| 2   || -6.3V   ||
+|| 3   || -6.3V   ||
+|| 4   || -6.3V   ||
+|| 5   || 0V      ||
+|| 6   || 0V      ||
+|| 7   || -6.3V   ||
+|| 8   || 0V      ||
+|| 9   || -1.1mV  ||
