@@ -96,7 +96,7 @@ Yay open-source hardware!
 
 [Freeduino << Top]
 
-This is a DCE (Data Communications Equipment) device. 
+This is a DCE ([http://en.wikipedia.org/wiki/Data_circuit-terminating_equipment Data Communications Equipment]) device. 
 
 The pinout of the Freeduino Female Serial Port is as follows:
 
