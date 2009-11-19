@@ -277,7 +277,7 @@ int readSerialBuffer( unsigned char* arr, unsigned short num_bytes_exp )
 	i = 0;
 	while((Serial.available() > 0) && (i < num_bytes_exp))
 	{	
-		arr[ i++ ] = Serial.read(); // read response
+		arr[i++] = Serial.read(); // read response
 	}
 	
 	// flush tbe buffer
