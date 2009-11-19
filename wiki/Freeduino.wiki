@@ -102,11 +102,15 @@ The pinout of the Freeduino Female Serial Port is as follows:
 
 || PIN || Voltage || Logical Value ||
 || 1   || 0V      ||               ||
-|| 2   || -6.3V   ||               ||
-|| 3   || -6.3V   ||               ||
+|| 2   || -6.3V   || TX            ||
+|| 3   || -6.3V   || RX            ||
 || 4   || -6.3V   ||               ||
 || 5   || 0V      || GND           ||
 || 6   || 0V      ||               ||
 || 7   || -6.3V   ||               ||
 || 8   || 0V      ||               ||
 || 9   || -1.1mV  || NC            ||
+
+The pinout for the RS-232 port between the Freeduino and the TriStar is as follows:
+
+<img src="http://solar-monitoring-project.googlecode.com/svn/img/ConnectionDiagram.jpg" alt="image" height="75%" width="75%"/>
