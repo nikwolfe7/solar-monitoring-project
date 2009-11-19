@@ -100,16 +100,29 @@ This is a DCE ([http://en.wikipedia.org/wiki/Data_circuit-terminating_equipment 
 
 The pinout of the Freeduino Female Serial Port is as follows:
 
-|| PIN || Voltage || Logical Value ||
+|| PIN || Voltage || Logical Value || 
 || 1   || 0V      ||               ||
 || 2   || -6.3V   || TX            ||
 || 3   || -6.3V   || RX            ||
-|| 4   || -6.3V   ||               ||
+|| 4   || -6.3V   || DTR           ||
 || 5   || 0V      || GND           ||
-|| 6   || 0V      ||               ||
+|| 6   || 0V      || DSR           ||
 || 7   || -6.3V   ||               ||
 || 8   || 0V      ||               ||
 || 9   || -1.1mV  || NC            ||
+
+A Null Modem pin connection is as follows:
+
+|| Female DB9 || Male DB9 ||
+|| 1          || 4        ||
+|| 2          || 3        ||
+|| 3          || 2        ||
+|| 4          || 6, 1     ||
+|| 5          || 5        ||
+|| 6          || 4        ||
+|| 7          || 8        ||  
+|| 8          || 7        ||
+|| 9          || NC       ||
 
 The pinout for the RS-232 port between the Freeduino and the TriStar is as follows:
 
