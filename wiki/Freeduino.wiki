@@ -98,7 +98,7 @@ Yay open-source hardware!
 
 This is a DCE ([http://en.wikipedia.org/wiki/Data_circuit-terminating_equipment Data Communications Equipment]) device. 
 
-The pinout of the Freeduino Female Serial Port is as follows:
+The pinout of the Freeduino Female Serial Port (when plugged in) is as follows:
 
 || PIN || Voltage || Logical Value || 
 || 1   || 0V      ||               ||
@@ -110,6 +110,8 @@ The pinout of the Freeduino Female Serial Port is as follows:
 || 7   || -6.3V   ||               ||
 || 8   || 0V      ||               ||
 || 9   || -1.1mV  || NC            ||
+
+This is sort of misleading, however... The Freeduino only uses pins 2, 3, 4, 5, so all other voltages are from the DTE side of the connection. 
 
 A Null Modem pin connection is as follows:
 
@@ -141,19 +143,4 @@ Which is:
 || ----------- ||----------- ||
 || ----------- ||----------- ||
 
-
-So, using a combination of the null modem cable, a gender changer, and one jumper cable,
-the following output pin configuration can be created:
-
-|| PIN || Voltage || Logical Value || Gender Changer || Female DB9 || Male DB9 || Good? ||
-|| 1   || 0V      ||               || Gender Changer || 1          || 4        || -||
-|| 2   || -6.3V   || TX            || Gender Changer || 2          || 3        || YES||
-|| 3   || -6.3V   || RX            || Gender Changer || 3          || 2        || YES||
-|| 4   || -6.3V   || DTR           || Gender Changer || 4          || 6, 1     || -||
-|| 5   || 0V      || GND           || Gender Changer || 5          || 5        || YES||
-|| 6   || 0V  *Supply (+) Voltage*    || DSR           || Gender Changer || 6          || 4        || YES|| 
-|| 7   || -6.3V   ||               || Gender Changer || 7          || 8        || -|| 
-|| 8   || 0V      ||               || Gender Changer || 8          || 7        || -||
-|| 9   || -1.1mV  || NC            || Gender Changer || 9          || NC       || -||
-
-Bearing in mind that voltage must be applied to pin 6... 
+Applying a voltage to pin 6 from the VS+ pin on the Max232 chip, we can achieve the correct pin out with just the addition of a null-modem cable connector. 
