@@ -143,4 +143,6 @@ Which is:
 || ----------- ||----------- ||
 || ----------- ||----------- ||
 
-Applying a voltage to pin 6 from the VS+ pin on the Max232 chip, we can achieve the correct pin out with just the addition of a null-modem cable connector. 
+Applying a voltage to pin 6 from the VS+ pin on the Max232 chip, we can achieve the correct pin out with just the addition of a null-modem cable connector. This can be done as shown below:
+
+<img src="http://solar-monitoring-project.googlecode.com/svn/img/th_pwrPin6 001.jpg" alt="image" height="75%" width="75%"/>
