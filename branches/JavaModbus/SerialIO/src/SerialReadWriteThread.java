@@ -18,7 +18,6 @@ public class SerialReadWriteThread implements Runnable, SerialPortEventListener
 	private String portName;
 	private byte[] commandArr = { 0x01, 0x03, 0x02, 0x10, -0x68, -0x4C, 0x2E }; // 12.53 V
 	private boolean transmit = false;
-	private boolean transmitted = false;
 
 	public SerialReadWriteThread( CommPortIdentifier pi )
 	{
@@ -71,12 +70,11 @@ public class SerialReadWriteThread implements Runnable, SerialPortEventListener
 		while (!Thread.interrupted())
 		{
 			try {
-				if( transmit && !transmitted )
+				if( transmit )
 				{
 					System.out.println("Writing response...");
 					outputStream.write(commandArr);
 					transmit = false;
-					transmitted = true;
 				}
 			} catch (Exception e) {
 				Thread.currentThread().interrupt();

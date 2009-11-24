@@ -43,9 +43,24 @@ public class SerialWriteThread implements Runnable
 	{
 		System.out.println("Yay! Time to write!");
 		try {
-			outputStream.write( "hello".getBytes() );
-		} catch (IOException e) {
+			Thread.sleep(4000);
+			System.out.println("Writing now...");
+			outputStream.write( "ABC".getBytes() );
+		} catch ( Exception e) {
 			e.printStackTrace();
+		}
+		while( !Thread.interrupted() )
+		{
+			synchronized( this )
+			{
+				try
+				{
+					this.wait();
+				} catch (InterruptedException e)
+				{
+					Thread.currentThread().interrupt();
+				}
+			}
 		}
 		serialPort.notifyOnOutputEmpty( false );
 		serialPort.close();
