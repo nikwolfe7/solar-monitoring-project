@@ -1,0 +1,13 @@
+= Links =
+
+[http://www.voicent.com/gateway.php Voicent VoiceXML Gateway]
+
+[http://www.arduino.cc/en/Hacking/LibraryTutorial Library Tutorial]
+
+[http://arduino.cc/en/Tutorial/HomePage Arduino Tutorials]
+
+[http://www.arduino.cc/playground/ Arduino Playground]
+
+[http://www.uchobby.com/index.php/2007/11/24/arduino-interrupts/ Arduino Interrupts]
+
+[http://www.tracfone.com/ Tracfone]
