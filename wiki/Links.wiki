@@ -1,5 +1,7 @@
 = Links =
 
+[http://arduino.cc/en/Main/Software Arduino Environment]
+
 [http://www.voicent.com/gateway.php Voicent VoiceXML Gateway]
 
 [http://www.arduino.cc/en/Hacking/LibraryTutorial Library Tutorial]
