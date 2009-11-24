@@ -87,11 +87,14 @@ const int* decimalArray[] = {  ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EI
 */
 const int STAR[]        = { NODE_1, NODE_D };
 const int POUND[]       = { NODE_3, NODE_D };
-const int ACCEPT_CALL[] = { NODE_1, ACCEPT };
+const int START_CALL[]  = { ACCEPT, ACCEPT };
 const int POWER[]       = { PWR, PWR };
 
 const int LED_PIN = 13;
+const int THIRTY_SECONDS = 100;
 const int interruptZero = 0;
+
+int LOOP_COUNTER = 0;
 
 boolean executeDataTransfer = false;
 boolean isRun = false;
@@ -127,6 +130,16 @@ double valArr[] = {
 const int NUM_DIAGNOSTIC_PARAMS = 5;
 
 /*===================================================================== 
+  ALERT PHONE NUMBER
+  
+  This array contains the phone number of the person to alert when
+  a problem is detected in the processed data
+  =====================================================================
+*/
+const int alertNum[] = { 9, 5, 4, 8, 3, 0, 6, 1, 8, 3 };
+const int ALERT_NUM_LENGTH  = 10; 
+
+/*===================================================================== 
   Controller Handle
   
   This is a reference to a ControllerTransferProtocol object. It is
@@ -157,82 +170,107 @@ void setup()
   digitalWrite( LED_PIN, LOW );
  
   // indicate to the user that we're starting up
-  indicateInitialize( 3, 500 );
-  
-  //debug
-  Serial.println("A");
-  
+  outputBlink( 4, 500 );
+   
   // initialize data array
   constructDataFrame( controller );
   
-  //togglePower();
-  //delay( 20000 ); // wait 20 secs for startup 
+  togglePower();
+  delay( 20000 ); // wait 20 secs for startup 
 }
 
 void loop()
 {
+  // check if time to do a transfer
   if( executeDataTransfer )
   {
-    // build and output our data frame
-    constructDataFrame( controller );
-    acceptCall();
+    // output our data frame
+    startCall();
     outputDataFrame( valArr, NUM_DIAGNOSTIC_PARAMS );
     terminateCall();
     setExecuteTransfer( false );
+    resetLoopCounter(); 
   }
+  
+  // poll for data every 30 seconds
+  if( LOOP_COUNTER < THIRTY_SECONDS )
+  {
+    incrementLoopCounter();
+    delay( 300 );  
+  }
+  else if( LOOP_COUNTER >= THIRTY_SECONDS )
+  {
+    // update the data fields
+    resetLoopCounter();
+    constructDataFrame( controller );
+    validateDataFrame();
+    outputBlink( 1, 30 );
+  } 
 }
 
 /*=====================================================================
   APPLICATION FUNCTIONS
-  
-  acceptCall() -- accepts an incoming call
+ 
+  alert() -- raise an alert to overseers that there is a problem requiring attention
   constructDataFrame() -- polls the controller and populates the data array to transfer
   incomingCallISR() -- interrupt service routine for incoming calls
-  indicateInitialize() -- debug output blinks indicating a process is starting
+  incrementLoopCounter() -- increments the main loop update variable
   initializeController() -- initializes the controller transfer protocol object
   initializeInterrupt() -- initializes external interrupts
   initializeOutputPinStates() -- initializes the state of the output pins
   initializeSerialPort() -- initializes all serial communication. 
+  outputBlink() -- debug output outputBlinks indicating a process is starting
   outputField() -- receives an int, outputs as keypresses 
   outputDataFrame() -- receives an array of values, outputs to cell phone
   pushKey() -- pushes a single key
+  resetLoopCounter() -- resets the main loop update variable
   setExecuteTransfer() -- toggles the flag that initiates a data transfer
   setInputPins() -- sets pins as inputs
   setOutputPins() -- sets pins as outputs
+  startCall() -- accepts an incoming call  
   terminateCall() -- terminates a current call 
   togglePower() -- turns power on and off
+  validateDataFrame() -- ensures that values in the data frame are within expected limits
  
   =====================================================================
 */
 
 /*=====================================================================
-  acceptCall() -- polls the controller and populates the data array 
+  alert() -- raise an alert to overseers that there is a problem requiring attention
 */
-void acceptCall()
+void alert()
 {
-  pushKey( ACCEPT_CALL );        // accept the call (assumes interrupt fired)
-  delay( 1000 );                 // wait 1 second for call to begin
+  int i;
+  // dial alert number
+  for( i = 0; i < ALERT_NUM_LENGTH; ++i )
+  {
+    pushKey( decimalArray[ alertNum[i] ] );
+  } 
+  
+  // push send, delay 10s for call to initiate 
+  startCall();
+  delay( 10000 );
+ 
+  // for ~20 seconds output '1' and '#' alternatively as an alarm
+  for( i = 0; i < 20; ++i )
+  {
+    pushKey( ONE );
+    pushKey( POUND ); 
+  }
+  
+  // end the call
+  terminateCall();
 }
-
+ 
 /*=====================================================================
   constructDataFrame() -- accepts an incoming call
 */
 void constructDataFrame( ControllerTransferProtocol ctp )
 {
-   //debug
-    Serial.println("A");
   panelVoltage = ctp.getPwrSrcVoltage();
-   //debug
-    Serial.println("A");
   panelAmperage = ctp.getChargeCurrent();
-   //debug
-    Serial.println("A");
   batteryVoltage = ctp.getBatteryVoltage();
-   //debug
-    Serial.println("A");
   batteryAmperage = ctp.getLoadCurrent();
-   //debug
-    Serial.println("A");
   temperature = ctp.getBatteryTemp(); 
   
   // repopulate data array
@@ -260,16 +298,11 @@ void incomingCallISR()
 }
 
 /*=====================================================================
-  indicateInitialize() -- debug output blinks indicating a process is starting
+  incrementLoopCounter()  -- increments the main loop update variable
 */
-void indicateInitialize( int beats, int delay_period )
+void incrementLoopCounter()
 {
-  for(int i = 0; i < beats; ++i ){
-    digitalWrite( LED_PIN, HIGH );    // set the LED on
-    delay( delay_period );            // wait
-    digitalWrite( LED_PIN, LOW );     // set the LED off
-    delay( delay_period );
-  }
+  ++LOOP_COUNTER;
 }
 
 /*=====================================================================
@@ -316,6 +349,19 @@ void initializeSerialPort()
 }
 
 /*=====================================================================
+  outputBlink() -- debug output outputBlinks indicating a process is starting
+*/
+void outputBlink( int beats, int delay_period )
+{
+  for(int i = 0; i < beats; ++i ){
+    digitalWrite( LED_PIN, HIGH );    // set the LED on
+    delay( delay_period );            // wait
+    digitalWrite( LED_PIN, LOW );     // set the LED off
+    delay( delay_period );
+  }
+}
+
+/*=====================================================================
   outputDataFrame() -- receives an array of values, outputs to cell phone
 */
 void outputDataFrame( double* valuesArray, int numVals )
@@ -323,11 +369,11 @@ void outputDataFrame( double* valuesArray, int numVals )
   // output the array
   for(int i = 0; i < numVals; ++i )
   { 
-    indicateInitialize( 1, 30 );       // blink to indicate separation
+    outputBlink( 1, 30 );       // outputBlink to indicate separation
     pushKey( POUND );                  // indicate field separator
     outputField( valuesArray[i] );     // test values!!
   }
-  indicateInitialize( 1, 30 );         // blink to indicate separation
+  outputBlink( 1, 30 );         // outputBlink to indicate separation
   pushKey( POUND );  
 }
 
@@ -396,6 +442,14 @@ void pushKey( const int* key )
 }
 
 /*=====================================================================
+  resetLoopCounter() -- resets the main loop update variable
+*/
+void resetLoopCounter()
+{
+  LOOP_COUNTER = 0;
+}
+
+/*=====================================================================
   setExecuteTransfer() -- toggles the flag that initiates a data transfer
 */
 void setExecuteTransfer( boolean value )
@@ -430,6 +484,15 @@ void setOutputPins()
 }
 
 /*=====================================================================
+  startCall() -- accepts an incoming call 
+*/
+void startCall()
+{
+  pushKey( START_CALL );        // accept the call (assumes interrupt fired)
+  delay( 1000 );                 // wait 1 second for call to begin
+}
+
+/*=====================================================================
   terminateCall() -- terminates a current call 
 */
 void terminateCall()
@@ -445,5 +508,28 @@ void togglePower()
   digitalWrite( POWER[0], HIGH );
   delay( 4000 ); // delay 4 seconds
   digitalWrite( POWER[0], LOW ); 
+}
+
+/*=====================================================================
+  validateDataFrame() -- ensures that values in the data frame are within expected limits
+*/
+void validateDataFrame()
+{
+  //valArr[0] = Panel Voltage
+  //valArr[1] = Panel Amperage
+  //valArr[2] = Battery Voltage
+  //valArr[3] = Battery Amperage
+  //valArr[4] = Temperature
+  
+  // TODO, make better abstractions of these comparisons
+  double panelVolt = valArr[0];
+  double battVolt = valArr[2];
+  
+  double LOW_VOLTAGE_DISCONNECT = 11.9;
+  if( battVolt <= LOW_VOLTAGE_DISCONNECT )
+  {
+    // an error has been detected. alert the masses!
+    alert();
+  }  
 }
 
