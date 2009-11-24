@@ -56,9 +56,16 @@ const int NODE_C         = 8;
 const int NODE_D         = 9;
 const int ACCEPT         = 10;
 const int PWR            = 11;
+const int LED_PIN        = 13;
+
+// System Voltage
+const int SYSTEM_VOLTAGE = 12;
+
+// Multiplier for Cut-Off Values
+const double CO_MULTIPLIER = 0.98;
 
 /*=====================================================================
-  DO NOT MODIFY...
+  DO NOT MODIFY ANYTHING BELOW HERE....
 */
 const int ZERO[]         = { NODE_2, NODE_D };
 const int ONE[]          = { NODE_1, NODE_A };
@@ -90,7 +97,6 @@ const int POUND[]       = { NODE_3, NODE_D };
 const int START_CALL[]  = { ACCEPT, ACCEPT };
 const int POWER[]       = { PWR, PWR };
 
-const int LED_PIN = 13;
 const int THIRTY_SECONDS = 100;
 const int interruptZero = 0;
 
@@ -105,11 +111,15 @@ boolean isRun = false;
   These are the doubles which polled for transfer
   =====================================================================
 */
+
 double panelVoltage = 0;
 double panelAmperage = 0;
 double batteryVoltage = 0;
 double batteryAmperage = 0;
 double temperature = 0; 
+
+// Cut-Off Multiplier for Voltage
+double LOW_VOLTAGE_CUTOFF = (SYSTEM_VOLTAGE * CO_MULTIPLIER);
 
 /*===================================================================== 
   CURRENT DATA FRAME
@@ -212,6 +222,7 @@ void loop()
   APPLICATION FUNCTIONS
  
   alert() -- raise an alert to overseers that there is a problem requiring attention
+  clearDataFrame() -- clears out the values in the data array before they are polled again
   constructDataFrame() -- polls the controller and populates the data array to transfer
   incomingCallISR() -- interrupt service routine for incoming calls
   incrementLoopCounter() -- increments the main loop update variable
@@ -222,6 +233,7 @@ void loop()
   outputBlink() -- debug output outputBlinks indicating a process is starting
   outputField() -- receives an int, outputs as keypresses 
   outputDataFrame() -- receives an array of values, outputs to cell phone
+  populateDataArray() -- fills the data array with the current values of the diagnostic params
   pushKey() -- pushes a single key
   resetLoopCounter() -- resets the main loop update variable
   setExecuteTransfer() -- toggles the flag that initiates a data transfer
@@ -261,24 +273,32 @@ void alert()
   // end the call
   terminateCall();
 }
+
+/*=====================================================================
+  clearDataFrame() -- clears out the values in the data array before they are polled again
+*/ 
+void clearDataFrame()
+{
+  panelVoltage = 0;
+  panelAmperage = 0;
+  batteryVoltage = 0;
+  batteryAmperage = 0;
+  temperature = 0;
+  populateDataArray();
+}
  
 /*=====================================================================
   constructDataFrame() -- accepts an incoming call
 */
 void constructDataFrame( ControllerTransferProtocol ctp )
 {
+  clearDataFrame();
   panelVoltage = ctp.getPwrSrcVoltage();
   panelAmperage = ctp.getChargeCurrent();
   batteryVoltage = ctp.getBatteryVoltage();
   batteryAmperage = ctp.getLoadCurrent();
   temperature = ctp.getBatteryTemp(); 
-  
-  // repopulate data array
-  valArr[0] = panelVoltage;
-  valArr[1] = panelAmperage;
-  valArr[2] = batteryVoltage;
-  valArr[3] = batteryAmperage;
-  valArr[4] = temperature;
+  populateDataArray();
 }
 
 /*=====================================================================
@@ -429,6 +449,19 @@ void outputField( double num )
 }
 
 /*=====================================================================
+  populateDataArray() -- fills the data array with the diagnostic params
+*/
+void populateDataArray()
+{
+  // populate data array
+  valArr[0] = panelVoltage;
+  valArr[1] = panelAmperage;
+  valArr[2] = batteryVoltage;
+  valArr[3] = batteryAmperage;
+  valArr[4] = temperature;
+}
+
+/*=====================================================================
   pushKey() -- pushes a single key
 */
 void pushKey( const int* key )
@@ -520,13 +553,10 @@ void validateDataFrame()
   //valArr[2] = Battery Voltage
   //valArr[3] = Battery Amperage
   //valArr[4] = Temperature
+  double currBatteryVoltage = valArr[2];
   
-  // TODO, make better abstractions of these comparisons
-  double panelVolt = valArr[0];
-  double battVolt = valArr[2];
-  
-  double LOW_VOLTAGE_DISCONNECT = 11.9;
-  if( battVolt <= LOW_VOLTAGE_DISCONNECT )
+  // TODO, make a better abstraction of this comparisons
+  if( currBatteryVoltage <= LOW_VOLTAGE_CUTOFF )
   {
     // an error has been detected. alert the masses!
     alert();
