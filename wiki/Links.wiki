@@ -1,5 +1,7 @@
 = Links =
 
+[http://forum.skype.com/index.php?showtopic=65113 Skype4Java]
+
 [http://arduino.cc/en/Main/Software Arduino Environment]
 
 [http://www.voicent.com/gateway.php Voicent VoiceXML Gateway]
