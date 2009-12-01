@@ -62,7 +62,7 @@ const int LED_PIN        = 13;
 const int SYSTEM_VOLTAGE = 12;
 
 // Multiplier for Cut-Off Values
-const double CO_MULTIPLIER = 0.98;
+const double CO_MULTIPLIER = 0.992;
 
 /*=====================================================================
   DO NOT MODIFY ANYTHING BELOW HERE....
@@ -116,7 +116,7 @@ double panelVoltage = 0;
 double panelAmperage = 0;
 double batteryVoltage = 0;
 double batteryAmperage = 0;
-double temperature = 0; 
+double totalKilowattHours = 0; 
 
 // Cut-Off Multiplier for Voltage
 double LOW_VOLTAGE_CUTOFF = (SYSTEM_VOLTAGE * CO_MULTIPLIER);
@@ -133,7 +133,7 @@ double valArr[] = {
   panelAmperage, 
   batteryVoltage, 
   batteryAmperage, 
-  temperature 
+  totalKilowattHours 
 };
 
 /* size of the data frame */
@@ -283,7 +283,7 @@ void clearDataFrame()
   panelAmperage = 0;
   batteryVoltage = 0;
   batteryAmperage = 0;
-  temperature = 0;
+  totalKilowattHours = 0;
   populateDataArray();
 }
  
@@ -297,7 +297,7 @@ void constructDataFrame( ControllerTransferProtocol ctp )
   panelAmperage = ctp.getChargeCurrent();
   batteryVoltage = ctp.getBatteryVoltage();
   batteryAmperage = ctp.getLoadCurrent();
-  temperature = ctp.getBatteryTemp(); 
+  totalKilowattHours = ctp.getTotalKilowattHrs(); 
   populateDataArray();
 }
 
@@ -458,7 +458,7 @@ void populateDataArray()
   valArr[1] = panelAmperage;
   valArr[2] = batteryVoltage;
   valArr[3] = batteryAmperage;
-  valArr[4] = temperature;
+  valArr[4] = totalKilowattHours;
 }
 
 /*=====================================================================
@@ -552,7 +552,7 @@ void validateDataFrame()
   //valArr[1] = Panel Amperage
   //valArr[2] = Battery Voltage
   //valArr[3] = Battery Amperage
-  //valArr[4] = Temperature
+  //valArr[4] = Total Kilowatt Hours
   double currBatteryVoltage = valArr[2];
   
   // TODO, make a better abstraction of this comparisons
