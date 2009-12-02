@@ -64,6 +64,9 @@ const int SYSTEM_VOLTAGE = 12;
 // Multiplier for Cut-Off Values
 const double CO_MULTIPLIER = 0.992;
 
+// Logging interval (# of 30-second periods between logs)
+const int LOG_INTERVAL = 1; // once an hour
+
 /*=====================================================================
   DO NOT MODIFY ANYTHING BELOW HERE....
 */
@@ -136,6 +139,17 @@ double valArr[] = {
   totalKilowattHours 
 };
 
+/*===================================================================== 
+  LOGGER DATA FRAMES
+  
+  These are the data frames that store historical data from the previous
+  two logging intervals. They are initialized to zero until their time
+  elapses.  
+  =====================================================================
+*/
+double valArrMinusOne[] = { 0, 0, 0, 0, 0 };
+double valArrMinusTwo[] = { 0, 0, 0, 0, 0 };
+
 /* size of the data frame */
 const int NUM_DIAGNOSTIC_PARAMS = 5;
 
@@ -196,7 +210,9 @@ void loop()
   {
     // output our data frame
     startCall();
-    outputDataFrame( valArr, NUM_DIAGNOSTIC_PARAMS );
+    outputDataFrame( valArr,         NUM_DIAGNOSTIC_PARAMS ); // current value
+    outputDataFrame( valArrMinusOne, NUM_DIAGNOSTIC_PARAMS ); // current value - 1 
+    outputDataFrame( valArrMinusTwo, NUM_DIAGNOSTIC_PARAMS ); // current value - 2
     terminateCall();
     setExecuteTransfer( false );
     resetLoopCounter(); 
@@ -212,6 +228,7 @@ void loop()
   {
     // update the data fields
     resetLoopCounter();
+    logIfIntervalElapsed();
     constructDataFrame( controller );
     validateDataFrame();
     outputBlink( 1, 30 );
@@ -230,11 +247,13 @@ void loop()
   initializeInterrupt() -- initializes external interrupts
   initializeOutputPinStates() -- initializes the state of the output pins
   initializeSerialPort() -- initializes all serial communication. 
+  logIfIntervalElapsed() -- decides to log the data in the queue if the specified interval is up
   outputBlink() -- debug output outputBlinks indicating a process is starting
   outputField() -- receives an int, outputs as keypresses 
   outputDataFrame() -- receives an array of values, outputs to cell phone
   populateDataArray() -- fills the data array with the current values of the diagnostic params
   pushKey() -- pushes a single key
+  queueData() -- queues the data in the logger arrays
   resetLoopCounter() -- resets the main loop update variable
   setExecuteTransfer() -- toggles the flag that initiates a data transfer
   setInputPins() -- sets pins as inputs
@@ -369,6 +388,21 @@ void initializeSerialPort()
 }
 
 /*=====================================================================
+  logIfIntervalElapsed() -- decides to log the data in the queue if the 
+  specified interval is up
+*/
+void logIfIntervalElapsed()
+{
+  // only initialized on first call
+  static int interval = 0;
+  if( ++interval >= LOG_INTERVAL )
+  {
+    interval = 0;
+    queueData();
+  }
+}
+
+/*=====================================================================
   outputBlink() -- debug output outputBlinks indicating a process is starting
 */
 void outputBlink( int beats, int delay_period )
@@ -403,7 +437,7 @@ void outputDataFrame( double* valuesArray, int numVals )
 void outputField( double num )
 { 
   // takes a positive number, outputs it to the keypad
-  if( num > 0 ) // ensure positive range
+  if( num > 0.001 ) // ensure positive & sufficiently large value
   {
     // first, we convert from double to long, preserving
     // TWO decimal places by multiplying 10^2.
@@ -439,12 +473,8 @@ void outputField( double num )
       }
     }
   }  
-  else { 
-    for( int i = 0; i < 3; ++i )
-    {
-      // zero value outputs 3 zeros
-      pushKey( decimalArray[ 0 ] );
-    }    
+  else { // equivalent of zero
+    pushKey( decimalArray[ 0 ] );    
   }
 }
 
@@ -472,6 +502,24 @@ void pushKey( const int* key )
   digitalWrite( key[0], LOW );    // reassert pin 1 LOW
   digitalWrite( key[1], LOW );    // reassert pin 2 LOW
   delay( 300 );                   // time required for transistor delay / pin debouncing 
+}
+
+/*=====================================================================
+  queueData() -- queues the data in the logger arrays
+*/
+void queueData()
+{
+  int i;
+  // move data in the n-1 position into n-2 position
+  for( i = 0; i < NUM_DIAGNOSTIC_PARAMS; ++i )
+  {
+    valArrMinusTwo[i] = valArrMinusOne[i];
+  }
+  // move data in the nth position into the n-1 position
+  for( i = 0; i < NUM_DIAGNOSTIC_PARAMS; ++i )
+  {
+    valArrMinusOne[i] = valArr[i];
+  }
 }
 
 /*=====================================================================
