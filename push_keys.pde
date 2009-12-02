@@ -65,7 +65,7 @@ const int SYSTEM_VOLTAGE = 12;
 const double CO_MULTIPLIER = 0.992;
 
 // Logging interval (# of 30-second periods between logs)
-const int LOG_INTERVAL = 1; // once an hour
+const int LOG_INTERVAL = 1; // once every 30 seconds
 
 /*=====================================================================
   DO NOT MODIFY ANYTHING BELOW HERE....
