@@ -1,4 +1,6 @@
 /*
+  ControllerTransferProtocol.h
+  
   Defines the interface for data transfer over an arbitrary transfer protocol
   
   NOTE: The methods described here are intended to be fairly generic. A controller 
