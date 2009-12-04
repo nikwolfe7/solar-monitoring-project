@@ -282,8 +282,8 @@ void alert()
   startCall();
   delay( 10000 );
  
-  // for ~20 seconds output '1' and '#' alternatively as an alarm
-  for( i = 0; i < 20; ++i )
+  // for ~10 seconds output '1' and '#' alternatively as an alarm
+  for( i = 0; i < 10; ++i )
   {
     pushKey( ONE );
     pushKey( POUND ); 
