@@ -66,5 +66,5 @@ Loading NimbusMonL-Regu font from %rom%lib/n022003l.pfb... 2535792 1187325 18714
 %%[Page: 60]%%
 %%[LastPage]%%
  ps2pdf -sDEVICE=pdfwrite -dNOPAUSE -dNOSAFER -dPDFSETTINGS=/prepress -dCompatibilityLevel=1.5
- -sstdout=C:\Documents and Settings\All Users\Application Data\tmp122E.log -sOutputFile=C:\Documents and Settings\All Users\Application Data\tmp122E.tmp -c .setpdfwrite <</NeverEmbed [false .standardfonts aload pop]>>
+ -sstdout=C:\Documents and Settings\All Users\Application Data\tmp12DB.log -sOutputFile=C:\Documents and Settings\All Users\Application Data\tmp12DB.tmp -c .setpdfwrite <</NeverEmbed [false .standardfonts aload pop]>>
  setdistillerparams -f
